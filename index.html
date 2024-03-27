@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property finder</title>
+</head>
+<body>
+    <div class="cont-img-bgr">
+        <div class="header">
+            <div class="logo-part">
+                <img src="images/logo.png" alt="logo">
+                <h1>Property Finder</h1>
+            </div>
+            <div class="nav-part">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="sale-type">
+            <div class="sale-type-title">
+                <h2>Τύπος Αγγελίας</h2>
+            </div>
+            <div class="sale-type-choice">
+                <input type="radio" name="sale-type" value="rent" id="rent" checked>
+                <label for="rent">Ενοικίαση</label>
+                <input type="radio" name="sale-type" value="buy" id="buy">
+                <label for="buy">Αγορά</label>
+            </div>
+        </div>
+        <div class="filter-bar">
+            <div class="city-filter">
+                <label for = "city">Πόλη</label>
+            </div>
+            <div class="city-choice">
+                <input type="text" name="city" id="city" placeholder="πχ. Αθήνα">
+            </div>
+            <div class="Area-filter">
+                <label for = "area">Περιοχή</label>
+            </div>
+            <div class="city-choice">
+                <input type="text" name="area" id="area" placeholder="πχ Κυφισσία">
+            </div>
+            <div class="type-filter">
+                <label for = "type">Τύπος Ακινήτου</label>
+            </div>
+            <div class="city-choice">
+                <select name="type" id="type">
+                    <option value="house">Σπίτι</option>
+                    <option value="apartment">Διαμέρισμα</option>
+                    <option value="office">Γραφείο</option>
+                    <option value="store">Κατάστημα</option>
+                    <option value="land">Οικόπεδο</option>
+                </select>
+            <div class="price-filter">
+                <label for = "price">Τιμή</label>
+            </div>
+            <div class="price-range">
+                <input type="number" name="min-price" id="min-price" placeholder="Ελάχιστη τιμή">
+                <input type="number" name="max-price" id="max-price" placeholder="Μέγιστη τιμή">
+            </div>
+            
+        </div>
+        <div class="area-size">
+            <label for="area-size">Εμβαδόν</label>
+            </div>
+            <div class="area-size-input">    
+            <input type="number" name="area-size" id="area-size" placeholder="Εμβαδόν">
+        </div>
+        <div class="search">
+            <button>Αναζήτηση</button>
+        </div>
+    </div>
+        <div class = "list-property">
+            <button>Καταχώρηση Αγγελίας</button>
+        </div>
+    </div>
+    </div>
+
+    <section class="why-us">
+        <div class="why-us-title">
+            <h2>Γιατί εμάς;</h2>
+        </div>
+        <div class="why-us-content">
+            <div class="why-us-item">
+                <img src="images/why-us-1.png" alt="why-us-1">
+                <h3>Αξιοπιστοι Συνεργατες</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae sit dolores dolor molestias a fugiat, perferendis, optio autem delectus voluptatibus doloribus dolorum? Error non quo facere deserunt laudantium modi praesentium?</p>
+            </div>
+            <div class="why-us-item">
+                <img src="images/why-us-2.png" alt="why-us-2">
+                <h3>Ευρεία Ποικιλία</h3>
+                <p>Στην ιστοσελίδα μας θα βρείτε μεγάλη ποικιλία ακινήτων σε όλη την Ελλάδα.</p>
+            </div>
+            <div class="why-us-item">
+                <img src="images/why-us-3.png" alt="why-us-3">
+                <h3>Εύκολη Αναζήτηση</h3>
+                <p>Η αναζήτηση ακινήτων στην ιστοσελίδα μας είναι εύκολη και γρήγορη.</p>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="footer-content">
+            <div class="footer-list">
+                <h3>Πλοήγηση</h3>
+                <ul>
+                    <li><a href="index.html">Αρχικη</a></li>
+                    <li><a href="about.html">Λιγα λογια για εμας</a></li>
+                    <li><a href="contact.html">Επικοινωνια</a></li>
+                </ul>
+            <div class="footer-list">
+                <h3>Επικοινωνία</h3>
+                <p>Τηλέφωνο: 210-1234567</p>
+                <p>Email: ladygaga@gmail.com</p>
+
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+
