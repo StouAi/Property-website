@@ -18,7 +18,7 @@ and change flex direction */
     display: flex;
     flex-direction: column;
     min-height: 50em;
-    background-image: url("/imgs/bgr-photo-main.jpg");
+    background-image: url("imgs/bgr-photo-main.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 
