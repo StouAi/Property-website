@@ -2,11 +2,14 @@
 are stacked on top of each other */
 :root{
     font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
 }
 body{
     display: flex;
     flex-direction: column;
 }
+
+
 
 /* have a background img fit the container 
 and change flex direction */
@@ -19,6 +22,20 @@ and change flex direction */
     background-size: cover;
     background-repeat: no-repeat;
     
+}
+
+.header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+}
+
+.logo-part{
+    display: flex;
+}
+
+.logo-part h1{
+    font-size: 2em;
 }
 
 
@@ -46,7 +63,7 @@ and change flex direction */
 }
 
 /* Style for when radio button is checked */
-.sale-type-choice input[type="radio"]:checked + label {
+.sale-type-choice input:checked + label {
     background-color: #044f85;
     color: white;
     border-color: #4CAF50;
@@ -61,16 +78,6 @@ and change flex direction */
 }
 
 
-
-
-
-
-
-.header{
-    display: flex;
-
-    
-}
 
 .nav-part ul{
     display: flex;
@@ -133,6 +140,32 @@ and change flex direction */
     display: inline;
 }
 
+.search{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.5em;
+    
+
+}
+
+.search button{
+    background-color: blueviolet;
+    color: white;
+    border-radius: 1em;
+    
+}
+
+.search button:hover{
+    background-color: #01aef9;
+}
+
+.search button:active{
+    background-color:blueviolet;
+}
+
 .list-property{
     display: flex;
     flex-wrap: wrap;
@@ -148,4 +181,46 @@ and change flex direction */
     padding: 1.5em;
 
     
+}
+
+.why-us{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 4em;
+}
+
+.why-us h2{
+    font-size: 2em;
+    text-align: center;
+}
+
+.why-us-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+}
+
+.why-us-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.why-us-title{
+    font-size: 2em;
+    text-align: center;
+
+}
+.why-us-block h3{
+    font-size: 2em;
+    text-align: center;
+
+}
+.why-us-block p{
+    font-size: 1.5em;
+    text-align: center;
 }
