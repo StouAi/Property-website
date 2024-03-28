@@ -21,6 +21,7 @@ and change flex direction */
     background-image: url("/imgs/bgr-photo-main.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+
     
 }
 
@@ -188,6 +189,7 @@ and change flex direction */
     flex-direction: column;
     justify-content: center;
     margin-top: 4em;
+    background-color: rgba(60, 122, 188,0.5);
 }
 
 .why-us h2{
@@ -200,6 +202,7 @@ and change flex direction */
     flex-wrap: wrap;
     justify-content: center;
     gap: 2em;
+    padding: 0em 2em 2em 2em;
 }
 
 .why-us-block{
@@ -208,6 +211,7 @@ and change flex direction */
     align-items: center;
     padding: 1em;
     border-radius: 1em;
+    border: 0.2em solid black;
 }
 
 .why-us-title{
@@ -223,4 +227,44 @@ and change flex direction */
 .why-us-block p{
     font-size: 1.5em;
     text-align: center;
+}
+
+.footer{
+
+    display: flex;
+    align-items: center;
+    padding: 3em;
+    background: linear-gradient(to bottom, rgba(60, 122, 188,0.5),rgba(255, 2, 166, 0.3) );
+    
+}
+
+.footer-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10em;
+    
+}
+
+.footer-content h3{
+    font-size: 2em;
+    text-align: center;
+    line-height: 4em;
+}
+
+.footer-content ul{
+    list-style: none;
+    font-size: 1.5em;
+}
+
+.footer-content li{
+    margin: 1em;
+}
+.footer-content a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.footer-content a:hover{
+    color: blueviolet;
 }
