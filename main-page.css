@@ -1,0 +1,151 @@
+/* page adjusts to screen size and sections 
+are stacked on top of each other */
+:root{
+    font-size: 10px;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+/* have a background img fit the container 
+and change flex direction */
+
+.cont-img-bgr{
+    display: flex;
+    flex-direction: column;
+    min-height: 50em;
+    background-image: url("/imgs/bgr-photo-main.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+
+
+.sale-type-choice input {
+    display: none;
+}
+
+
+.sale-type-choice label {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2em ;
+    font-weight: bold;
+    color: rgba(101, 214, 1, 0.49);
+}
+
+/* Style for when we hover over the label*/
+.sale-type-choice label:hover {
+    background-color: #01aef9;
+}
+
+/* Style for when radio button is checked */
+.sale-type-choice input[type="radio"]:checked + label {
+    background-color: #044f85;
+    color: white;
+    border-color: #4CAF50;
+}
+
+.main-content{
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+.header{
+    display: flex;
+
+    
+}
+
+.nav-part ul{
+    display: flex;
+    list-style: none;
+    gap: 1.5em;
+
+}
+
+.nav-part a{
+    text-decoration: none;
+    color: rgb(6, 110, 246);
+    font-size: 1.5em;
+}
+
+
+
+.filter-bar{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(246, 243, 243);
+    align-items: center;
+    border-radius: 5em;
+    padding: 1.5em;
+    
+
+}
+
+
+.filter-bar > div{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+.filter-bar input, .filter-bar select, .filter-bar button{
+    flex: 1;
+    flex-basis: 50%;
+    display: inline;
+    padding: 1em;
+    border-radius: 1em;
+    border: none;
+    margin: 0.5em;
+}
+
+.filter-bar label{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.price-filter{
+    display: flex;
+    
+}
+
+.price-filter input{
+    flex: 1;
+    flex-basis: 50%;
+    display: inline;
+}
+
+.list-property{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 4em;
+    
+}
+
+.list-property button{
+    background-color: blueviolet;
+    color: white;
+    border-radius: 5em;
+    padding: 1.5em;
+
+    
+}
