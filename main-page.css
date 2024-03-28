@@ -39,7 +39,18 @@ and change flex direction */
     font-size: 2em;
 }
 
+.nav-part ul{
+    display: flex;
+    list-style: none;
+    gap: 1.5em;
 
+}
+
+.nav-part a{
+    text-decoration: none;
+    color: rgb(6, 110, 246);
+    font-size: 1.5em;
+}
 
 .sale-type-choice input {
     display: none;
@@ -80,18 +91,7 @@ and change flex direction */
 
 
 
-.nav-part ul{
-    display: flex;
-    list-style: none;
-    gap: 1.5em;
 
-}
-
-.nav-part a{
-    text-decoration: none;
-    color: rgb(6, 110, 246);
-    font-size: 1.5em;
-}
 
 
 
@@ -188,7 +188,6 @@ and change flex direction */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 4em;
     background-color: rgba(60, 122, 188,0.5);
 }
 
@@ -235,7 +234,7 @@ and change flex direction */
     align-items: center;
     padding: 3em;
     background: linear-gradient(to bottom, rgba(60, 122, 188,0.5),rgba(255, 2, 166, 0.3) );
-    
+    justify-content: space-evenly;
 }
 
 .footer-content{
@@ -265,6 +264,11 @@ and change flex direction */
     color: rgb(0, 0, 0);
 }
 
-.footer-content a:hover{
+.footer-content a:hover,.nav-part a:hover{
     color: blueviolet;
+}
+
+.footer .logo-part{
+    align-items: center;
+
 }
