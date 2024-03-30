@@ -1,0 +1,160 @@
+:root{
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    background: linear-gradient(to bottom, rgba(255, 2, 166, 0.3),rgba(60, 122, 188,0.5) );
+    
+}
+
+
+
+.logo-part{
+    display: flex;
+}
+
+.logo-part h1{
+    font-size: 2em;
+}
+
+.nav-part ul{
+    display: flex;
+    list-style: none;
+    gap: 1.5em;
+
+}
+
+.nav-part a{
+    text-decoration: none;
+    color: rgb(6, 110, 246);
+    font-size: 1.5em;
+}
+
+.catchphrase{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3em;
+    background-color: rgba(60, 122, 188,0.5);
+}
+
+
+.catchphrase h1{
+    font-size: 4em;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: rgb(255, 255, 255);
+
+}
+
+.catchphrase p{
+    font-size: 2em;
+    text-align: center;
+    color: white;
+}
+
+
+.year_zero,.present_state{
+    display: flex;
+    margin-top: 1em;
+    align-items: center;
+    justify-content: space-around;
+    
+    
+}
+
+.year_zero img,
+.present_state img {
+    flex: 1; /* Allow the image to flex */
+    max-width: 100%; /* Ensure the image doesn't exceed its container's width */
+    max-height: 100%; /* Ensure the image doesn't exceed its container's height */
+    width: auto; /* Allow the image to adjust its width */
+    height: auto; /* Allow the image to adjust its height */
+    /* Set initial dimensions */
+    width: 20em; /* Initial width */
+    height: 20em; /* Initial height */
+
+}
+
+.text_zero,.text_present{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+    font-size: 2em;
+    
+}
+
+.text_zero h2,.text_present h2{
+    flex:1;
+    font-size: 2em;
+    color: rgb(4, 2, 2);
+}
+
+.year_zero img,.present_state img{
+    flex: 1;
+
+}
+
+.footer{
+
+    display: flex;
+    align-items: center;
+    padding: 3em;
+    background: linear-gradient(to bottom, rgba(60, 122, 188,0.5),rgba(255, 2, 166, 0.3) );
+    justify-content: space-evenly;
+}
+
+.footer-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10em;
+    
+}
+
+.footer-content h3{
+    font-size: 2em;
+    text-align: center;
+    line-height: 4em;
+}
+
+.footer-content ul{
+    list-style: none;
+    font-size: 1.5em;
+}
+
+.footer-content li{
+    margin: 1em;
+}
+.footer-content a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.footer-content a:hover,.nav-part a:hover{
+    color: blueviolet;
+}
+
+.footer .logo-part{
+    align-items: center;
+
+}
+
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(19, 17, 17);
+}

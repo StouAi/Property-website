@@ -29,6 +29,7 @@ and change flex direction */
     display: flex;
     justify-content: space-around;
     align-items: center; 
+    
 }
 
 .logo-part{
@@ -271,4 +272,11 @@ and change flex direction */
 .footer .logo-part{
     align-items: center;
 
+}
+
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(19, 17, 17);
 }
