@@ -33,25 +33,27 @@
 
     <section class="cont-img-bgr">
         <div class="main-content">
+
             <div class="catchphrase">
                 <h1>All properties just one click away</h1>
             </div>
-            <div class="sale-type">
-                <div class="sale-type-choice">
-                    <input type="radio" name="sale-type" value="rent" id="rent" checked>
-                    <label for="rent">Ενοικίαση</label>
-                    <input type="radio" name="sale-type" value="buy" id="buy">
-                    <label for="buy">Αγορά</label>
+
+            <div class="buy-rent">
+                <div class="tabs">
+                    <input type="radio" name="tabs" value="rent" id="buy" checked>
+                    <label class="tab" for="buy">Buy</label>
+                    <input type="radio" name="tabs" value="buy" id="rent">
+                    <label class="tab" for="rent">Rent</label>
+
+                    <span class="glider"></span>
                 </div>
             </div>
-            <div class="filter-bar">
-                <div class="city-filter">
-                    <input type="text" name="city" id="city" placeholder="Πόλη">
-                </div>
-                <div class="search">
-                    <button>Αναζήτηση</button>
-                </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Address, City, Zip, Neighborhood">
+                <button><img src="imgs/search-icon.png"></button>
             </div>
+
         </div>
 
         

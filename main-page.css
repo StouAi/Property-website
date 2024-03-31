@@ -45,11 +45,11 @@ and change flex direction */
     list-style: none;
     gap: 1.5em;
 
+
 }
 
 .nav-part a{
     text-decoration: none;
-    /* color: rgb(6, 110, 246); */
     font-size: 1.5em;
 }
 
@@ -58,43 +58,89 @@ and change flex direction */
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+    width: 40%;
 }
 
 .catchphrase h1{
     color: white;
-    font-size: 4em;
+    font-size: 6em;
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 100px;
 }
 
-.sale-type-choice input {
+
+
+
+
+
+.buy-rent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.buy-rent .tabs {
+    display: flex;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+    padding: 0.35em;
+    border-radius: 99px;
+}
+
+.buy-rent .tabs * {
+    z-index: 2;
+}
+
+.buy-rent input[type="radio"] {
     display: none;
 }
 
-
-.sale-type-choice label {
-    display: inline-block;
-    margin-right: 10px;
+.buy-rent .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 100px;
+    font-size: 1.5em;
+    font-weight: 400;
+    border-radius: 99px;
     cursor: pointer;
-    padding: 0.5em 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1.2em ;
-    font-weight: bold;
-    color: rgb(3, 0, 3);
-    background-color: white;
+    transition: color 0.15s ease-in;
 }
 
-/* Style for when we hover over the label*/
-.sale-type-choice label:hover {
-    background-color: #01aef9;
+
+.buy-rent input[type="radio"]:checked + label {
+    color: white;
 }
 
-/* Style for when radio button is checked */
-.sale-type-choice input:checked + label {
-    background-color: #044f85;
-    color: rgb(255, 255, 255);
-    border-color: #3500f6;
+.buy-rent input[id="buy"]:checked ~ .glider {
+    transform: translateX(0);
 }
+
+.buy-rent input[id="rent"]:checked ~ .glider {
+    transform: translateX(100%);
+}
+
+.buy-rent .glider {
+    position: absolute;
+    display: flex;
+    height: 45px;
+    width: 100px;
+    background-color: black;
+    color: white;
+    z-index: 1;
+    border-radius: 99px;
+    transition: 0.25s ease-out;
+}
+
+
+
+
+
+
 
 .main-content{
     margin-top: 4em;
@@ -105,100 +151,47 @@ and change flex direction */
 }
 
 
-
-
-
-
-
-.filter-bar{
-    display: flex;
-    flex-wrap: wrap;
-    background-color: rgb(246, 243, 243);
-    align-items: center;
-    border-radius: 5em;
-    padding: 1.5em;
-    
-
-}
-
-
-.filter-bar > div{
-    flex: 1;
+.search-bar {
+    width: 100%;
+    max-width: 700px;
+    height: 50px;
+    background: white;
     display: flex;
     align-items: center;
-    
-    
+    border-radius: 60px;
+    padding: 10px 10px;
 }
 
-.filter-bar input, .filter-bar select, .filter-bar button{
+.search-bar input {
+    background: transparent;
     flex: 1;
-    flex-basis: 50%;
-    display: inline;
-    padding: 1em;
-    border-radius: 1em;
-    border: none;
-    margin: 0.5em;
+    border: 0;
+    outline: none;
+    padding: 24px 20px;
+    font-size: 20px;
+    color: #cac7ff;
 }
 
-.filter-bar label{
-    text-align: center;
-    font-size: 1.5em;
+
+.search-bar button img {
+    width: 30px;
+    height: 30px;
 }
 
-.price-filter{
-    display: flex;
-    
-}
-
-.price-filter input{
-    flex: 1;
-    flex-basis: 50%;
-    display: inline;
-}
-
-.search{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.search-bar button {
+    border: 0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background: black;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 1.5em;
-    
-
-}
-
-.search button{
-    background-color: blueviolet;
-    color: white;
-    border-radius: 1em;
-    
-}
-
-.search button:hover{
-    background-color: #01aef9;
-}
-
-.search button:active{
-    background-color:blueviolet;
-}
-
-.list-property{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 4em;
-    
-}
-
-.list-property button{
-    background-color: blueviolet;
-    color: white;
-    border-radius: 5em;
-    padding: 1.5em;
 }
 
 
-.homes-listing,.land-listing{
+
+
+
+.homes-listing, .land-listing{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
