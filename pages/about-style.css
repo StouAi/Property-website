@@ -70,27 +70,23 @@ body{
     margin-top: 1em;
     align-items: center;
     justify-content: space-around;
+    width: 100%;
     
     
 }
 
 .year_zero img,
 .present_state img {
-    flex: 1; /* Allow the image to flex */
-    max-width: 100%; /* Ensure the image doesn't exceed its container's width */
-    max-height: 100%; /* Ensure the image doesn't exceed its container's height */
-    width: auto; /* Allow the image to adjust its width */
-    height: auto; /* Allow the image to adjust its height */
-    /* Set initial dimensions */
-    width: 20em; /* Initial width */
-    height: 20em; /* Initial height */
+    flex: 1; 
+    max-width: 100%; 
+    height: auto; 
+    width: 70em; 
 
 }
 
 .text_zero,.text_present{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex: 1;
+    font-size: 1em;
     padding: 1em;
     font-size: 2em;
     
@@ -102,10 +98,7 @@ body{
     color: rgb(4, 2, 2);
 }
 
-.year_zero img,.present_state img{
-    flex: 1;
 
-}
 
 .footer{
 
