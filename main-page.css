@@ -17,7 +17,7 @@ and change flex direction */
 .cont-img-bgr{
     display: flex;
     flex-direction: column;
-    min-height: 50em;
+    min-height: 70em;
     background-image: url("imgs/bgr-photo-main.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -28,16 +28,16 @@ and change flex direction */
 .header{
     display: flex;
     justify-content: space-around;
-    align-items: center; 
-    
-}
-
-.logo-part{
-    display: flex;
+    align-items: center;
+    background-color: white;
 }
 
 .logo-part h1{
     font-size: 2em;
+}
+
+.buy-rent {
+    font-size: 1.5em;
 }
 
 .nav-part ul{
@@ -49,7 +49,7 @@ and change flex direction */
 
 .nav-part a{
     text-decoration: none;
-    color: rgb(6, 110, 246);
+    /* color: rgb(6, 110, 246); */
     font-size: 1.5em;
 }
 
@@ -62,7 +62,7 @@ and change flex direction */
 }
 
 .catchphrase h1{
-    color: rgb(238, 238, 238);
+    color: white;
     font-size: 4em;
 }
 
@@ -195,53 +195,8 @@ and change flex direction */
     color: white;
     border-radius: 5em;
     padding: 1.5em;
-
-    
 }
 
-.why-us{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: rgba(60, 122, 188,0.5);
-}
-
-.why-us h2{
-    font-size: 2em;
-    text-align: center;
-}
-
-.why-us-content{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2em;
-    padding: 0em 2em 2em 2em;
-}
-
-.why-us-block{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1em;
-    border-radius: 1em;
-    border: 0.2em solid black;
-}
-
-.why-us-title{
-    font-size: 2em;
-    text-align: center;
-
-}
-.why-us-block h3{
-    font-size: 2em;
-    text-align: center;
-
-}
-.why-us-block p{
-    font-size: 1.5em;
-    text-align: center;
-}
 
 .homes-listing,.land-listing{
     display: flex;
@@ -285,14 +240,12 @@ and change flex direction */
     display: flex;
     align-items: center;
     padding: 3em;
-    background: linear-gradient(to bottom, rgba(60, 122, 188,0.5),rgba(255, 2, 166, 0.3) );
+    background: rgb(238, 238, 238);
     justify-content: space-evenly;
 }
 
-.footer-content{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.footer-content {
+    justify-content: left;
     gap: 10em;
     
 }
@@ -306,6 +259,10 @@ and change flex direction */
 .footer-content ul{
     list-style: none;
     font-size: 1.5em;
+}
+.footer-content li{
+    margin: 1em;
+    display: inline-block;
 }
 
 .footer-content li{
