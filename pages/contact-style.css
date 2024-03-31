@@ -11,33 +11,32 @@ body{
 .header{
     display: flex;
     justify-content: space-around;
-    align-items: center; 
-    background: linear-gradient(to bottom, rgba(255, 2, 166, 0.3),rgba(60, 122, 188,0.5) );
-    
-}
-
-
-
-.logo-part{
-    display: flex;
+    align-items: center;
+    background-color: white;
 }
 
 .logo-part h1{
     font-size: 2em;
 }
 
-.nav-part ul{
+.buy-rent {
+    font-size: 1.5em;
+}
+
+.nav-part ul,.buy-rent-links ul{
     display: flex;
     list-style: none;
     gap: 1.5em;
 
+
 }
 
-.nav-part a{
+.nav-part a,.buy-rent-links a{
     text-decoration: none;
-    color: rgb(6, 110, 246);
     font-size: 1.5em;
+    color: black;
 }
+
 
 
 .contact-info{
@@ -51,6 +50,7 @@ body{
     text-align: center;
     font-family: 'Playfair Display', serif;
     color: rgb(0, 0, 0);
+    background: rgb(238, 238, 238);
 }
 
 .contact-info-body{
@@ -78,14 +78,12 @@ body{
     display: flex;
     align-items: center;
     padding: 3em;
-    background: linear-gradient(to bottom, rgba(60, 122, 188,0.5),rgba(255, 2, 166, 0.3) );
+    background: rgb(238, 238, 238);
     justify-content: space-evenly;
 }
 
-.footer-content{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.footer-content {
+    justify-content: left;
     gap: 10em;
     
 }
@@ -100,6 +98,10 @@ body{
     list-style: none;
     font-size: 1.5em;
 }
+.footer-content li{
+    margin: 1em;
+    display: inline-block;
+}
 
 .footer-content li{
     margin: 1em;
@@ -109,7 +111,7 @@ body{
     color: rgb(0, 0, 0);
 }
 
-.footer-content a:hover,.nav-part a:hover{
+.footer-content a:hover,.nav-part a:hover,.buy-rent-links a:hover{
     color: blueviolet;
 }
 
