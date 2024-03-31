@@ -7,12 +7,21 @@
     <link rel="stylesheet" href="main-page.css">
 </head>
 <body>
-    <section class="cont-img-bgr">
+
+    <section class="nav-bar">
         <div class="header">
             <div class="logo-part">
                 <img src="images/logo.png" alt="logo">
                 <h1>Property Finder</h1>
             </div>
+
+            <div class="buy-rent-links">
+                <ul>
+                <li><a href="buy.html">Αγορά</a></li>
+                <li><a href="buy.html">Ενοικίαση</a></li>
+                </ul>
+            </div>
+
             <div class="nav-part">
                 <ul>
                     <li><a href="index.html">Αρχική</a></li>
@@ -22,77 +31,35 @@
                 </ul>
             </div>
         </div>
-    
+    </section>
+
+    <section class="cont-img-bgr">
         <div class="main-content">
+
             <div class="catchphrase">
-                <h1>Ολα τα ακινητα ενα κλικ μακρια</h1>
+                <h1>Όλα τα ακίνητα ενα κλικ μακριά</h1>
             </div>
-            <div class="sale-type">
-                <div class="sale-type-choice">
-                    <input type="radio" name="sale-type" value="rent" id="rent" checked>
-                    <label for="rent">Ενοικίαση</label>
-                    <input type="radio" name="sale-type" value="buy" id="buy">
-                    <label for="buy">Αγορά</label>
-                </div>
-            </div>
-            <div class="filter-bar">
-                <div class="city-filter">
-                    <input type="text" name="city" id="city" placeholder="Πόλη">
-                </div>
-                <div class="Area-filter">
-                    <input type="text" name="area" id="area" placeholder="Περιοχή">
-                </div>
-                <div class="type-filter">
-                    <select name="type" id="type" placeholder="Κατηγορία">
-                        <option value="house">Σπίτι</option>
-                        <option value="apartment">Διαμέρισμα</option>
-                        <option value="office">Γραφείο</option>
-                        <option value="store">Κατάστημα</option>
-                        <option value="land">Οικόπεδο</option>
-                    </select>
-                </div>
-                <div class="price-filter">
-                    <input type="text" name="min-price" id="min-price" placeholder="Ελάχιστη τιμή">
-                    <input type="text" name="max-price" id="max-price" placeholder="Μέγιστη τιμή">
-                </div>
-                
-                <div class="area-size">
-                    <input type="text" name="area-size" id="area-size" placeholder="Εμβαδόν">
-                </div>
-                <div class="search">
-                    <button>Αναζήτηση</button>
+
+            <div class="buy-rent">
+                <div class="tabs">
+                    <input type="radio" name="tabs" value="rent" id="buy" checked>
+                    <label class="tab" for="buy">Αγορά</label>
+                    <input type="radio" name="tabs" value="buy" id="rent">
+                    <label class="tab" for="rent">Ενοικίαση</label>
+
+                    <span class="glider"></span>
                 </div>
             </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Πόλη,Περιοχή,Οδός">
+                <button><img src="imgs/search-icon.png"></button>
+            </div>
+
         </div>
-        <div class = "list-property">
-            <button>Καταχώρηση Αγγελίας</button>
-        </div>
+
         
     </section>
-
-    <section class="why-us">
-        <div class="why-us-title">
-            <h2>Στόχος μας η εξυπηρέτηση σας</h2>
-        </div>
-        <div class="why-us-content">
-            <div class="why-us-block">
-                <img src="images/why-us-1.png" alt="why-us-1">
-                <h3>Αξιοπιστοι Συνεργατες</h3>
-                <p>Το προσωπικό μας φροντίζει να ε </p>
-            </div>
-            <div class="why-us-block">
-                <img src="images/why-us-2.png" alt="why-us-2">
-                <h3>Ευρεία Ποικιλία</h3>
-                <p>Στην ιστοσελίδα μας θα βρείτε το ακινητο που ταιριαζει στις αναγκες σας</p>
-            </div>
-            <div class="why-us-block">
-                <img src="images/why-us-3.png" alt="why-us-3">
-                <h3>Εύκολη Αναζήτηση</h3>
-                <p>Η εύρεση του ονειρικού σας ακινήτου δεν ήταν ποτέ πιο εύκολη</p>
-            </div>
-        </div>
-    </section>
-
 
     <section class="new-listings">
         <div class="new-listings-title">
@@ -190,26 +157,27 @@
 
         </div>
     </section>
+
     <section class="footer">
         <div class="footer-content">
-            <h3>Πλοήγηση</h3>
-            <div class="footer-list">
-                <ul>
-                    <li><a href="index.html">Αρχικη</a></li>
-                    <li><a href="pages/about-us.html">Λιγα λογια για εμας</a></li>
-                    <li><a href="pages/contact.html">Επικοινωνια</a></li>
-                </ul>
-            
-            </div>
             <div class="logo-part">
                 <img src="images/logo.png" alt="logo">
                 <h1>Property Finder</h1>
             </div>
+            <div class="footer-list">
+                <ul>
+                    <li><a href="index.html">Εμείς</a></li>
+                    <li><a href="pages/about-us.html">Επικοινωνία</a></li>
+                    <li><a href="pages/contact.html">Careers</a></li>
+                    <li><a href="pages/contact.html">Όροι &amp; Συνθήκες</a></li>
+                    <li><a href="pages/contact.html">Privacy Policy</a></li>
+                    <li><a href="pages/contact.html">Cookies</a></li>
+                </ul>
+            
+            </div>
+
             <p class="copyright">@2007 Property Finder.All rights reserved </p>
         </div>
     </section>
 </body>
 </html>
-
-
-
