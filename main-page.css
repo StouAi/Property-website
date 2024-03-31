@@ -99,7 +99,7 @@ and change flex direction */
     align-items: center;
     justify-content: center;
     height: 45px;
-    width: 100px;
+    width: 120px;
     font-size: 1.5em;
     font-weight: 400;
     border-radius: 99px;
@@ -124,7 +124,7 @@ and change flex direction */
     position: absolute;
     display: flex;
     height: 45px;
-    width: 100px;
+    width: 120px;
     background-color: black;
     color: white;
     z-index: 1;
@@ -154,8 +154,10 @@ and change flex direction */
     background: white;
     display: flex;
     align-items: center;
-    border-radius: 60px;
-    padding: 10px 10px;
+    border-radius: 6em;
+    padding: 1em 1em;
+    margin-top: 1em;
+
 }
 
 .search-bar input {
