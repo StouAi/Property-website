@@ -18,7 +18,7 @@ and change flex direction */
     display: flex;
     flex-direction: column;
     min-height: 70em;
-    background-image: url("imgs/bgr-photo-main.jpg");
+    background-image: url("imgs/top-down-hood.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 
@@ -179,7 +179,7 @@ and change flex direction */
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    background: black;
+    background: rgb(0, 0, 0);
     cursor: pointer;
 }
 
