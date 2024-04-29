@@ -14,22 +14,20 @@ body{
 /* have a background img fit the container 
 and change flex direction */
 
-.cont-img-bgr{
-    display: flex;
-    flex-direction: column;
-    min-height: 70em;
-    background-image: url("imgs/top-down-hood.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-
+.nav-bar{
     
+    background-color: #fff; /* Assuming a white background for contrast */
+    padding: 1em 2em; /* Top and bottom padding of 1em, left and right padding of 2em */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Horizontal offset, vertical offset, blur radius, color */
+    margin-bottom: 0.5em;
+     
 }
-
 .header{
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: white;
+    
 }
 
 .logo-part h1{
@@ -54,177 +52,62 @@ and change flex direction */
     color: black;
 }
 
-.catchphrase{
+
+
+.property-photos {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 40%;
+    justify-content: center; /* Center the flex items horizontally */
+    gap: 1em; /* Add a gap between flex items */
+    margin-top: 2em;
+    margin: 1em 4em; /* Add space around the photos */
+    border-radius: 1em;
 }
 
-.catchphrase h1{
-    color: white;
-    font-size: 6em;
-    font-family: 'Archivo Black', sans-serif;
-    font-weight: 900;
-    text-align: center;
-    text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 100px;
-}
-
-
-
-
-
-
-
-
-.buy-rent .tabs {
+.main-photo {
+    flex: 0 1 70%; /* Take 70% of available space, don't grow or shrink */
     display: flex;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
-    padding: 0.35em;
-    border-radius: 99px;
+    justify-content: flex-end;
+
 }
 
-.buy-rent .tabs * {
-    z-index: 2;
+.main-photo img {
+    width: 100%; /* Ensure image fills the available width */
 }
 
-.buy-rent input[type="radio"] {
-    display: none;
-}
-
-.buy-rent .tab {
+.secondary-photos {
+    flex: 0 1 30%; /* Take 30% of available space, don't grow or shrink */
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 45px;
-    width: 120px;
-    font-size: 1.5em;
-    font-weight: 400;
-    border-radius: 99px;
-    cursor: pointer;
-    transition: color 0.15s ease-in;
+    flex-direction: column; /* Stack secondary photos vertically */
+    justify-content: flex-end; /* Align photos at the top */
+
+}
+
+.second-photo,
+.third-photo {
+    flex: 1; /* Take equal space within the secondary photos container */
+}
+
+.second-photo img,
+.third-photo img {
+    width: 100%; /* Ensure images fill the available width */
+    height: auto; /* Maintain aspect ratio */
+     /* Add spacing between secondary photos */
 }
 
 
-.buy-rent input[type="radio"]:checked + label {
-    color: white;
-}
 
-.buy-rent input[id="buy"]:checked ~ .glider {
-    transform: translateX(0);
-}
-
-.buy-rent input[id="rent"]:checked ~ .glider {
-    transform: translateX(100%);
-}
-
-.buy-rent .glider {
-    position: absolute;
+.property-content{
     display: flex;
-    height: 45px;
-    width: 120px;
-    background-color: black;
-    color: white;
-    z-index: 1;
-    border-radius: 99px;
-    transition: 0.25s ease-out;
+    gap: 2em;
+
 }
 
-
-
-
-
-
-
-.main-content{
-    margin-top: 4em;
+.property-info{
+    flex: 1 1 50%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 1em;
 }
-
-
-.search-bar {
-    width: 100%;
-    max-width: 700px;
-    height: 50px;
-    background: white;
-    display: flex;
-    align-items: center;
-    border-radius: 6em;
-    padding: 1em 1em;
-    margin-top: 1em;
-
-}
-
-.search-bar input {
-    background: transparent;
-    flex: 1;
-    border: 0;
-    outline: none;
-    padding: 24px 20px;
-    font-size: 20px;
-    color: #cac7ff;
-}
-
-
-.search-bar button img {
-    width: 30px;
-    height: 30px;
-}
-
-.search-bar button {
-    border: 0;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    background: rgb(0, 0, 0);
-    cursor: pointer;
-}
-
-
-
-
-
-.homes-listing, .land-listing{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.property-listing {
-    border: 1px solid #ccc;
-    border-radius: 4em;
-    margin: 20px;
-    overflow: hidden;
-    width: 200px; 
-}
-
-.property-listing img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.property-listing figcaption {
-    padding: 10px;
-}
-
-.property-listing h2 {
-    font-size: 1.2em;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-.property-listing p {
-    font-size: 0.9em;
-    margin: 3px 0;
-    text-align: center;
-}
-
-
 
 .footer{
 
@@ -372,62 +255,5 @@ and change flex direction */
     border-color: #ccc;
 
 }
-
-
-
- 
-
-#facebookBtn, #googleBtn, #appleBtn {
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    color: black;
-    
-}
-
-#facebookBtn:hover, #googleBtn:hover, #appleBtn:hover {
-    background-color: #ccc;
-}
-
-#facebookBtn{
-    background-image: url('imgs/facebook_icon.ico');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left center; /* Position the image to the left of the button */
-    padding-left: 40px;
-}
-
-#googleBtn{
-    background-image: url('imgs/google_icon.ico');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left center; /* Position the image to the left of the button */
-    padding-left: 40px;
-}
-
-#appleBtn{
-    background-image: url('imgs/apple_icon.ico');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left center; /* Position the image to the left of the button */
-    padding-left: 40px;
-}
-
-
-
-
-#loginModal::backdrop {
-    background-color: rgba(17, 16, 16, 0.8); /* Semi-transparent gray background */
-    position: fixed; /* Fix the backdrop's position relative to the viewport */
-    top: 0; /* Align the top edge of the backdrop with the top edge of the viewport */
-    left: 0; /* Align the left edge of the backdrop with the left edge of the viewport */
-    width: 100%; /* Make the backdrop cover the entire width of the viewport */
-    height: 100%; /* Make the backdrop cover the entire height of the viewport */
-    z-index: 999; /* Ensure the backdrop is below the modal but above other elements */
-}
-
-
-
 
 
