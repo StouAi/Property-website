@@ -1,0 +1,124 @@
+:root{
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-bar{
+    
+    background-color: #fff; /* Assuming a white background for contrast */
+    padding: 1em 1em; /* Top and bottom padding of 1em, left and right padding of 2em */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Horizontal offset, vertical offset, blur radius, color */
+    margin-bottom: 0.5em;
+     
+}
+.header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+}
+
+.logo-part h1{
+    font-size: 2em;
+}
+
+.buy-rent {
+    font-size: 2em;
+}
+
+.nav-part ul,.buy-rent-links ul{
+    display: flex;
+    list-style: none;
+    gap: 1.5em;
+
+
+}
+
+.nav-part a,.buy-rent-links a{
+    text-decoration: none;
+    font-size: 2em;
+    color: black;
+}
+
+
+/* Base styles */
+.search-filters {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.search-bar input {
+    flex: 0 1 auto;
+    padding: 0.4em;
+    font-size: 16px;
+    width: 300px;
+    border-radius: 0.3em;
+    border: 0.1em solid #000000;
+}
+
+.property-type,.sale-type {
+    position: relative;
+}
+
+.type,.sale {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 0.3em;
+}
+
+/* Dropdown menu styles */
+.type-menu ,.sale-menu{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    display: none;  /* Hidden by default */
+    z-index: 1000;
+}
+
+.type-menu li,.sale-menu li{
+    border-bottom: 1px solid #ddd;
+}
+
+.type-menu li:last-child ,.sale-menu li:last-child{
+    border-bottom: none;
+}
+
+.type-menu li a,.sale-menu li a{
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 10px;
+}
+
+.type-menu li a:hover,.sale-menu li a:hover{
+    background-color: #000000;
+    color: white;
+}
+
+/* Show dropdown on hover */
+.property-type:hover .type-menu ,.sale-type:hover .sale-menu{
+    display: block;
+}
+
+/* Optional: Show dropdown on button click (if JavaScript is used) */
+.type.active + .type-menu {
+    display: block;
+}
+
+
+

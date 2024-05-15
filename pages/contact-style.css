@@ -7,7 +7,14 @@ body{
     flex-direction: column;
 }
 
-
+.nav-bar{
+    
+    background-color: #fff; /* Assuming a white background for contrast */
+    padding: 1em 1em; /* Top and bottom padding of 1em, left and right padding of 2em */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Horizontal offset, vertical offset, blur radius, color */
+    
+     
+}
 .header{
     display: flex;
     justify-content: space-around;

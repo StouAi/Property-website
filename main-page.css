@@ -25,6 +25,8 @@ and change flex direction */
     
 }
 
+
+
 .header{
     display: flex;
     justify-content: space-around;
