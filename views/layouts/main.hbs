@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="styles/home.css">
+</head>
+<body>
+
+    <header class="nav-bar">
+        <div class="header">
+            <div class="logo-part">
+                <img src="images/logo.png" alt="logo">
+                <h1>Property Finder</h1>
+            </div>
+
+            <div class="buy-rent-links">
+                <ul>
+                <li><a href="buy.html">Αγορά</a></li>
+                <li><a href="buy.html">Ενοικίαση</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-part">
+                <ul>
+                    <li><a href="/">Αρχική</a></li>
+                    <li><a href="/about-us">Εμείς</a></li>
+                    <li><a href="/contact">Επικοινωνία</a></li>
+                    <li><a href="/#" id="OpenModal">Σύνδεση</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {{{body}}}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="logo-part">
+                <img src="images/logo.png" alt="logo">
+                <h1>Property Finder</h1>
+            </div>
+            <div class="footer-list">
+                <ul>
+                    <li><a href="pages/about-us.html">Εμείς</a></li>
+                    <li><a href="pages/contact.html">Επικοινωνία</a></li>
+                    <li><a href="pages/contact.html">Όροι &amp; Συνθήκες</a></li>
+                    <li><a href="pages/contact.html">Privacy Policy</a></li>
+                    <li><a href="pages/contact.html">Cookies</a></li>
+                </ul>
+            
+            </div>
+
+            <p class="copyright">@2007 Property Finder.All rights reserved </p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    
+    <dialog id = "loginModal">
+        <form>
+            <button type="button" id = "CloseModal" >&times;</button>
+            <div class="modal-contents">
+            <h2>Κάντε Σύνδεση</h2>
+            <legend class="mail_login">Πρόσθεσε το email</legend>
+            <input type = "text" placeholder = "Email">
+            <button id ="contBtn" value = "default">Συνέχεια</button>
+            <div class="login_separator">
+                <hr class="login_separator_text">
+            </div>
+            <button id = "googleBtn" value = "default">Σύνδεση με Google</button>
+            <button id = "facebookBtn" value = "default">Σύνδεση με Facebook</button>
+            <button id = "appleBtn" value="default">Σύνδεση με Apple</button>
+            <p>Δημιουργόντας λογαριασμό συμφωνειτε με τους <a href="terms.html" target="_blank">όρους χρήσης και προυποθέσεις</a></p>
+        </div>
+        </form>
+    </dialog>
+</body>
+</html>

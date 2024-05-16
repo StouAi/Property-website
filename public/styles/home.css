@@ -1,0 +1,283 @@
+/* page adjusts to screen size and sections 
+are stacked on top of each other */
+:root{
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* have a background img fit the container 
+and change flex direction */
+
+.cont-img-bgr{
+    display: flex;
+    flex-direction: column;
+    min-height: 70em;
+    background-image: url("../images/top-down-hood.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    
+}
+
+
+
+.header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+}
+
+.logo-part h1{
+    font-size: 2em;
+}
+
+.buy-rent {
+    font-size: 1.5em;
+}
+
+.nav-part ul,.buy-rent-links ul{
+    display: flex;
+    list-style: none;
+    gap: 1.5em;
+
+
+}
+
+.nav-part a,.buy-rent-links a{
+    text-decoration: none;
+    font-size: 1.5em;
+    color: black;
+}
+
+.catchphrase{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+}
+
+.catchphrase h1{
+    color: white;
+    font-size: 6em;
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 100px;
+}
+
+
+
+
+
+
+
+
+.buy-rent .tabs {
+    display: flex;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+    padding: 0.35em;
+    border-radius: 99px;
+}
+
+.buy-rent .tabs * {
+    z-index: 2;
+}
+
+.buy-rent input[type="radio"] {
+    display: none;
+}
+
+.buy-rent .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 120px;
+    font-size: 1.5em;
+    font-weight: 400;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+}
+
+
+.buy-rent input[type="radio"]:checked + label {
+    color: white;
+}
+
+.buy-rent input[id="buy"]:checked ~ .glider {
+    transform: translateX(0);
+}
+
+.buy-rent input[id="rent"]:checked ~ .glider {
+    transform: translateX(100%);
+}
+
+.buy-rent .glider {
+    position: absolute;
+    display: flex;
+    height: 45px;
+    width: 120px;
+    background-color: black;
+    color: white;
+    z-index: 1;
+    border-radius: 99px;
+    transition: 0.25s ease-out;
+}
+
+
+
+
+
+
+
+.main-content{
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.search-bar {
+    width: 100%;
+    max-width: 700px;
+    height: 50px;
+    background: white;
+    display: flex;
+    align-items: center;
+    border-radius: 6em;
+    padding: 1em 1em;
+    margin-top: 1em;
+
+}
+
+.search-bar input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 24px 20px;
+    font-size: 20px;
+    color: #cac7ff;
+}
+
+
+.search-bar button img {
+    width: 30px;
+    height: 30px;
+}
+
+.search-bar button {
+    border: 0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+
+
+
+
+.homes-listing, .land-listing{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.property-listing {
+    border: 1px solid #ccc;
+    border-radius: 4em;
+    margin: 20px;
+    overflow: hidden;
+    width: 200px; 
+}
+
+.property-listing img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.property-listing figcaption {
+    padding: 10px;
+}
+
+.property-listing h2 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.property-listing p {
+    font-size: 0.9em;
+    margin: 3px 0;
+    text-align: center;
+}
+
+
+
+.footer{
+
+    display: flex;
+    align-items: center;
+    padding: 3em;
+    background: rgb(238, 238, 238);
+    justify-content: space-evenly;
+}
+
+.footer-content {
+    justify-content: left;
+    gap: 10em;
+    
+}
+
+.footer-content h3{
+    font-size: 2em;
+    text-align: center;
+    line-height: 4em;
+}
+
+.footer-content ul{
+    list-style: none;
+    font-size: 1.5em;
+}
+.footer-content li{
+    margin: 1em;
+    display: inline-block;
+}
+
+.footer-content li{
+    margin: 1em;
+}
+.footer-content a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.footer-content a:hover,.nav-part a:hover,.buy-rent-links a:hover{
+    color: blueviolet;
+}
+
+.footer .logo-part{
+    align-items: center;
+
+}
+
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(19, 17, 17);
+}
