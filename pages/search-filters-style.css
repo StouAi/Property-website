@@ -67,7 +67,7 @@ body{
     position: relative;
 }
 
-.type,.sale,.price ,.area{
+.type,.sale,.price ,.area,.subtype{
     background-color: #000000;
     color: white;
     border: none;
@@ -78,14 +78,16 @@ body{
 }
 
 /* Dropdown menu styles */
-.type-menu ,.sale-menu,.price-menu ,.area-menu{
+.type-menu ,.sale-menu,.price-menu ,.area-menu,.subtype-menu{
     list-style: none;
     margin: 0;
     padding: 0;
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    min-width: 150px;
     background-color: white;
     border: 1px solid #ccc;
     display: none;  /* Hidden by default */
@@ -93,17 +95,35 @@ body{
     text-align: center;
 }
 
+.type-menu li,.sale-menu li,.subtype-menu li{
+    border-bottom: 1px solid #ddd;
+}
+
+.type-menu li:last-child ,.sale-menu li:last-child,.subtype-menu li:last-child{
+    border-bottom: none;
+}
+
+.type-menu li a,.sale-menu li a,.subtype-menu li a{
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+.type-menu li a:hover,.sale-menu li a:hover,.subtype-menu li a:hover{
+    background-color: #000000;
+    color: white;
+}
+
  .price-menu , .area-menu{
     min-width: 300px;
     width: auto;
-    left: -150%; 
     border-radius: 0.8em;
     border: solid 0.1em #000000;
 }  
 
-.area-menu{
-    left: -100%;
-}
+
 
 .price-input ,.area-input{
     display: flex;
@@ -148,26 +168,7 @@ input[type="number"]::-webkit-inner-spin-button {
     justify-content: center;
   }
 
-.type-menu li,.sale-menu li{
-    border-bottom: 1px solid #ddd;
-}
 
-.type-menu li:last-child ,.sale-menu li:last-child{
-    border-bottom: none;
-}
-
-.type-menu li a,.sale-menu li a{
-    text-decoration: none;
-    color: black;
-    display: block;
-    padding: 10px;
-    font-size: 1.2em;
-}
-
-.type-menu li a:hover,.sale-menu li a:hover{
-    background-color: #000000;
-    color: white;
-}
 
 /* Show dropdown on hover */
 .property-type:hover .type-menu ,
