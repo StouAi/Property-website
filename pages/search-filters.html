@@ -41,7 +41,7 @@
         </div>
 
         <div class="property-type">
-            <button type="menu" class="type" id="type">Τύπος</button>
+            <button type="menu" class="type" id="typeButton">Τύπος</button>
             <ul class="type-menu">
                 <li><a href="#">Σπίτι</a></li>
                 <li><a href="#">Διαμέρισμα</a></li>
@@ -52,11 +52,55 @@
         </div>
 
         <div class="sale-type">
-            <button type="menu" class="sale" id="sale">Πώληση</button>
+            <button type="menu" class="sale" id="saleButton">Πώληση</button>
             <ul class="sale-menu">
                 <li><a href="#">Ενοικίαση</a></li>
                 <li><a href="#">Πώληση</a></li>
             </ul>
+        </div>
+
+        <div class="price-range">
+            <button type="menu" class="price" id="priceButton">Τιμή</button>
+            <div class="price-menu">
+                <header>
+                    <h2>Price Range</h2>
+                    <p>Διαλέξτε την ελάχιστη και μέγιστη τιμή</p>
+                  </header>
+                  <div class="price-input">
+                    <div class="field">
+                      <span>Min</span>
+                      <input type="number" class="input-min" value="2500">
+                    </div>
+                    <div class="separator">-</div>
+                    <div class="field">
+                      <span>Max</span>
+                      <input type="number" class="input-max" value="7500">
+                    </div>
+                  </div>
+                  
+            </div>
+        </div>
+
+        <div class="area-range">
+            <button type="menu" class="area" id="areaButton">Εμβαδόν</button>
+            <div class="area-menu">
+                <header>
+                    <h2>Area Range</h2>
+                    <p>Διαλέξτε την ελάχιστη και μέγιστη εμβαδόν</p>
+                </header>
+                <div class="area-input">
+                    <div class="field">
+                      <span>Min</span>
+                      <input type="number" class="input-min" value="50">
+                    </div>
+                    <div class="separator">-</div>
+                    <div class="field">
+                      <span>Max</span>
+                      <input type="number" class="input-max" value="150">
+                    </div> 
+                </div>  
+
+            </div>
         </div>
 
     </section>
@@ -82,6 +126,6 @@
             <p class="copyright">@2007 Property Finder.All rights reserved </p>
         </div>
     </section>
-    <script src="script.js"></script>
+    <script src="../jsFiles/search-filter.js"></script>
 </body>
 </html>

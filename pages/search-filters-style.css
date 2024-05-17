@@ -46,26 +46,28 @@ body{
 
 
 /* Base styles */
+
 .search-filters {
     display: flex;
     gap: 0.5em;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .search-bar input {
     flex: 0 1 auto;
     padding: 0.4em;
     font-size: 16px;
-    width: 300px;
+    width: 250px;
     border-radius: 0.3em;
     border: 0.1em solid #000000;
 }
 
-.property-type,.sale-type {
+.property-type,.sale-type ,.price-range,.area-range{
     position: relative;
 }
 
-.type,.sale {
+.type,.sale,.price ,.area{
     background-color: #000000;
     color: white;
     border: none;
@@ -76,7 +78,7 @@ body{
 }
 
 /* Dropdown menu styles */
-.type-menu ,.sale-menu{
+.type-menu ,.sale-menu,.price-menu ,.area-menu{
     list-style: none;
     margin: 0;
     padding: 0;
@@ -88,7 +90,63 @@ body{
     border: 1px solid #ccc;
     display: none;  /* Hidden by default */
     z-index: 1000;
+    text-align: center;
 }
+
+ .price-menu , .area-menu{
+    min-width: 300px;
+    width: auto;
+    left: -150%; 
+    border-radius: 0.8em;
+    border: solid 0.1em #000000;
+}  
+
+.area-menu{
+    left: -100%;
+}
+
+.price-input ,.area-input{
+    display: flex;
+    gap: 0.5em;
+    padding: 0.5em;
+}
+.price-input .field ,.area-input .field{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+header p, .field span{
+    font-size: 1.9em;
+
+}
+
+
+
+.field input {
+    width: 60%;
+    height: 100%;
+    outline: none;
+    font-size: 19px;
+    margin-left: 12px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #999;
+
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.price-input .separator,.area-input .separator{
+    width: 130px;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+  }
 
 .type-menu li,.sale-menu li{
     border-bottom: 1px solid #ddd;
@@ -103,6 +161,7 @@ body{
     color: black;
     display: block;
     padding: 10px;
+    font-size: 1.2em;
 }
 
 .type-menu li a:hover,.sale-menu li a:hover{
@@ -111,7 +170,9 @@ body{
 }
 
 /* Show dropdown on hover */
-.property-type:hover .type-menu ,.sale-type:hover .sale-menu{
+.property-type:hover .type-menu ,
+.sale-type:hover .sale-menu,
+.price-range:hover .price-menu,.area-range:hover .area-menu{
     display: block;
 }
 
