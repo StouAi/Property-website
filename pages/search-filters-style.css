@@ -235,9 +235,60 @@ input[type="number"]::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-/* Optional: Show dropdown on button click (if JavaScript is used) */
-.type.active + .type-menu {
-    display: block;
+
+
+.footer{
+
+    display: flex;
+    align-items: center;
+    padding: 3em;
+    background: rgb(238, 238, 238);
+    justify-content: space-evenly;
+}
+
+.footer-content {
+    justify-content: left;
+    gap: 10em;
+    
+}
+
+.footer-content h3{
+    font-size: 2em;
+    text-align: center;
+    line-height: 4em;
+}
+
+.footer-content ul{
+    list-style: none;
+    font-size: 1.5em;
+}
+.footer-content li{
+    margin: 1em;
+    display: inline-block;
+}
+
+.footer-content li{
+    margin: 1em;
+}
+.footer-content a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.footer-content a:hover,.nav-part a:hover,.buy-rent-links a:hover{
+    color: blueviolet;
+}
+
+.footer .logo-part{
+    align-items: center;
+
+}
+
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(19, 17, 17);
 }
 
 
