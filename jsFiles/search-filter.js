@@ -1,61 +1,66 @@
 document.addEventListener('DOMContentLoaded', function() {
-    function updateButtonText(menuSelector, buttonSelector) {
-        const menuItems = document.querySelectorAll(menuSelector + ' a');
-        const button = document.querySelector(buttonSelector);
-
-        menuItems.forEach(item => {
-            item.addEventListener('click', function (event) {
-                event.preventDefault();
-                button.textContent = this.textContent.trim(); // Update the button text
-
-                // If the button is typeButton, update the subtype menu
-                if (buttonSelector === '#typeButton') {
-                    updateSubtypeMenu(this.textContent.trim());
-                }
-            });
-        });
-    }
-
-    function updateSubtypeMenu(type) {
-        const subtypeMenu = document.querySelector('.subtype-menu');
-        subtypeMenu.innerHTML = ''; // Clear the menu
-
+    const typeSelect = document.getElementById('typeSelect');
+    const subtypeSelect = document.getElementById('subtypeSelect');
+    const saleSelect = document.getElementById('saleSelect');
+    const priceMinInput = document.querySelector('.price-input .input-min');
+    const priceMaxInput = document.querySelector('.price-input .input-max');
+    const areaMinInput = document.querySelector('.area-input .input-min');
+    const areaMaxInput = document.querySelector('.area-input .input-max');
+    
+    // Update subtype options based on type selection
+    typeSelect.addEventListener('change', function() {
+        const type = typeSelect.value;
+        subtypeSelect.innerHTML = ''; // Clear existing options
+        
         if (type === 'Κατοικία') {
-            subtypeMenu.innerHTML = `
-                <li><a href="#">Μονοκατοικία</a></li>
-                <li><a href="#">Διαμέρισμα</a></li>
-                <li><a href="#">Στούντιο</a></li>
-                <li><a href="#">Μεζονέτα</a></li>
+            subtypeSelect.innerHTML = `
+                <option value="Όλα">Όλα</option>
+                <option value="Μονοκατοικία">Μονοκατοικία</option>
+                <option value="Διαμέρισμα">Διαμέρισμα</option>
+                <option value="Στούντιο">Στούντιο</option>
+                <option value="Μεζονέτα">Μεζονέτα</option>
             `;
         } else if (type === 'Επαγγελματικό') {
-            subtypeMenu.innerHTML = `
-                <li><a href="#">Κατάστημα</a></li>
-                <li><a href="#">Γραφείο</a></li>
-                <li><a href="#">Αποθήκη</a></li>
+            subtypeSelect.innerHTML = `
+                <option value="Όλα">Όλα</option>
+                <option value="Κατάστημα">Κατάστημα</option>
+                <option value="Γραφείο">Γραφείο</option>
+                <option value="Αποθήκη">Αποθήκη</option>
             `;
-        } else if (type === 'Οικόπεδο') {
-            subtypeMenu.innerHTML = `
-                <li><a href="#">Οικόπεδο</a></li>
-                <li><a href="#">Αγροτεμάχιο</a></li>
+        } else if (type === 'Γη') {
+            subtypeSelect.innerHTML = `
+                <option value="Όλα">Όλα</option>
+                <option value="Οικόπεδο">Οικόπεδο</option>
+                <option value="Αγροτεμάχιο">Αγροτεμάχιο</option>
+            `;
+        } else {
+            subtypeSelect.innerHTML = `
+                <option value="">Επιλέξτε κατηγορία</option>
             `;
         }
-        // Reattach event listeners to new items
-        updateButtonText('.subtype-menu', '#subtypeButton');
-    }
-
-    // Update button text for type, sale, and subtype menus
-    updateButtonText('.type-menu', '#typeButton');
-    updateButtonText('.sale-menu', '#saleButton');
-    updateButtonText('.subtype-menu', '#subtypeButton');
-
-    // Show/hide subtype menu on hover
-    const subtypeContainer = document.querySelector('.subtype-type');
-
-    subtypeContainer.addEventListener('mouseover', function() {
-        document.querySelector('.subtype-menu').style.display = 'block';
     });
 
-    subtypeContainer.addEventListener('mouseout', function() {
-        document.querySelector('.subtype-menu').style.display = 'none';
+    // Add submit event listener to the form
+    const searchForm = document.querySelector('.search-filters');
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Collect form data
+        const formData = new FormData(searchForm);
+        const searchData = {
+            location: formData.get('location'),
+            type: formData.get('type'),
+            subtype: formData.get('subtype'),
+            sale: formData.get('sale'),
+            priceMin: formData.get('priceMin'),
+            priceMax: formData.get('priceMax'),
+            areaMin: formData.get('areaMin'),
+            areaMax: formData.get('areaMax')
+        };
+
+        console.log(searchData);
+
+        // Here you can perform your search with the collected data
+        // For example, send a request to your server or filter results on the page
     });
 });

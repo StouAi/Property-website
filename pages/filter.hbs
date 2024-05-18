@@ -1,0 +1,314 @@
+<form class="search-filters">
+    <div class="search-bar">
+        <input type="text" name="location" placeholder="Πόλη,Περιοχή,Οδός">
+    </div>
+
+    <div class="property-type">
+        <button type="button" class="type" id="typeButton">Τύπος</button>
+        <ul class="type-menu">
+            <li><a href="#">Κατοικία</a></li>
+            <li><a href="#">Επαγγελματικό</a></li>
+            <li><a href="#">Γη</a></li>
+        </ul>
+    </div>
+
+    <div class="subtype-type">
+        <button type="button" class="subtype" id="subtypeButton">Υποκατηγορία</button>
+        <ul class="subtype-menu"></ul>
+    </div>
+
+    <div class="sale-type">
+        <button type="button" class="sale" id="saleButton">Πώληση</button>
+        <ul class="sale-menu">
+            <li><a href="#">Ενοικίαση</a></li>
+            <li><a href="#">Πώληση</a></li>
+        </ul>
+    </div>
+
+    <div class="price-range">
+        <button type="button" class="price" id="priceButton">Τιμή</button>
+        <div class="price-menu">
+            <header>
+                <h2>Price Range</h2>
+                <p>Διαλέξτε την ελάχιστη και μέγιστη τιμή</p>
+            </header>
+            <div class="price-input">
+                <div class="field">
+                    <span>Min</span>
+                    <input type="number" class="input-min" name="price_min" value="2500">
+                </div>
+                <div class="separator">-</div>
+                <div class="field">
+                    <span>Max</span>
+                    <input type="number" class="input-max" name="price_max" value="7500">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="area-range">
+        <button type="button" class="area" id="areaButton">Εμβαδόν</button>
+        <div class="area-menu">
+            <header>
+                <h2>Area Range</h2>
+                <p>Διαλέξτε την ελάχιστη και μέγιστη εμβαδόν</p>
+            </header>
+            <div class="area-input">
+                <div class="field">
+                    <span>Min</span>
+                    <input type="number" class="input-min" name="area_min" value="50">
+                </div>
+                <div class="separator">-</div>
+                <div class="field">
+                    <span>Max</span>
+                    <input type="number" class="input-max" name="area_max" value="150">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="searchFilter">
+        <button type="submit" class="search" id="searchBtn">
+            <img src="../imgs/search-icon.png" alt="Search">
+        </button>
+    </div>
+</form>
+
+
+
+
+<section class="search-filters">
+        <div class="search-bar">
+            <input type="text" placeholder="Πόλη,Περιοχή,Οδός">
+            
+        </div>
+
+        <div class="property-type">
+            <button type="menu" class="type" id="typeButton">Τύπος</button>
+            <ul class="type-menu">
+                <li><a href="#">Κατοικία</a></li>
+                <li><a href="#">Επαγγελματικό</a></li>
+                <li><a href="#">Γη</a></li>
+                
+            </ul>
+
+        </div>
+
+        <div class="subtype-type">
+            <button type="menu" class="subtype" id="subtypeButton">Υποκατηγορία</button>
+           
+            <ul class="subtype-menu">
+                
+            </ul>
+        </div>
+
+        <div class="sale-type">
+            <button type="menu" class="sale" id="saleButton">Πώληση</button>
+            <ul class="sale-menu">
+                <li><a href="#">Ενοικίαση</a></li>
+                <li><a href="#">Πώληση</a></li>
+            </ul>
+        </div>
+
+        <div class="price-range">
+            <button type="menu" class="price" id="priceButton">Τιμή</button>
+            <div class="price-menu">
+                <header>
+                    <h2>Price Range</h2>
+                    <p>Διαλέξτε την ελάχιστη και μέγιστη τιμή</p>
+                  </header>
+                  <div class="price-input">
+                    <div class="field">
+                      <span>Min</span>
+                      <input type="number" class="input-min" value="2500">
+                    </div>
+                    <div class="separator">-</div>
+                    <div class="field">
+                      <span>Max</span>
+                      <input type="number" class="input-max" value="7500">
+                    </div>
+                  </div>
+                  
+            </div>
+        </div>
+
+        <div class="area-range">
+            <button type="menu" class="area" id="areaButton">Εμβαδόν</button>
+            <div class="area-menu">
+                <header>
+                    <h2>Area Range</h2>
+                    <p>Διαλέξτε την ελάχιστη και μέγιστη εμβαδόν</p>
+                </header>
+                <div class="area-input">
+                    <div class="field">
+                      <span>Min</span>
+                      <input type="number" class="input-min" value="50">
+                    </div>
+                    <div class="separator">-</div>
+                    <div class="field">
+                      <span>Max</span>
+                      <input type="number" class="input-max" value="150">
+                    </div> 
+                </div>  
+
+            </div>
+        </div>
+
+        <div class="searchFilter">
+            <button type="submit" class="search" id="searchBtn"><img src="../imgs/search-icon.png"></button>
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+    .search-filters {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-bar input {
+    flex: 0 1 auto;
+    padding: 0.4em;
+    font-size: 16px;
+    width: 250px;
+    border-radius: 0.3em;
+    border: 0.1em solid #000000;
+}
+
+.property-type,.sale-type ,.subtype-type,.price-range,.area-range,.search{
+    position: relative;
+}
+
+.type,.sale,.price ,.area,.subtype,.search{
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 0.3em;
+}
+
+/* Dropdown menu styles */
+.type-menu ,.sale-menu,.price-menu ,.area-menu,.subtype-menu{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    min-width: 150px;
+    background-color: white;
+    border: 1px solid #ccc;
+    display: none;  /* Hidden by default */
+    z-index: 1000;
+    text-align: center;
+}
+
+.type-menu li,.sale-menu li,.subtype-menu li{
+    border-bottom: 1px solid #ddd;
+}
+
+.type-menu li:last-child ,.sale-menu li:last-child,.subtype-menu li:last-child{
+    border-bottom: none;
+}
+
+.type-menu li a,.sale-menu li a,.subtype-menu li a{
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+.type-menu li a:hover,.sale-menu li a:hover,.subtype-menu li a:hover{
+    background-color: #000000;
+    color: white;
+}
+
+ .price-menu , .area-menu{
+    min-width: 300px;
+    width: auto;
+    border-radius: 0.8em;
+    border: solid 0.1em #000000;
+}  
+
+
+
+.price-input ,.area-input{
+    display: flex;
+    gap: 0.5em;
+    padding: 0.5em;
+}
+.price-input .field ,.area-input .field{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+header p, .field span{
+    font-size: 1.9em;
+
+}
+
+
+
+.field input {
+    width: 60%;
+    height: 100%;
+    outline: none;
+    font-size: 19px;
+    margin-left: 12px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #999;
+
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.price-input .separator,.area-input .separator{
+    width: 130px;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .search img {
+    width: 25px;
+    height: auto;
+}
+
+.search {
+    border: 0;
+    border-radius: 25%;
+    width:auto; ;
+    height: 45px;
+    background: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+
+/* Show dropdown on hover */
+.property-type:hover .type-menu ,
+.sale-type:hover .sale-menu,
+.price-range:hover .price-menu,.area-range:hover .area-menu{
+    display: block;
+}

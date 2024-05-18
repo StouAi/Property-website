@@ -34,85 +34,55 @@
     </section>
 
 
-    <section class="search-filters">
+    <form class="search-filters">
         <div class="search-bar">
-            <input type="text" placeholder="Πόλη,Περιοχή,Οδός">
-            
+            <input type="text" name="location" placeholder="Πόλη,Περιοχή,Οδός">
         </div>
-
+    
         <div class="property-type">
-            <button type="menu" class="type" id="typeButton">Τύπος</button>
-            <ul class="type-menu">
-                <li><a href="#">Κατοικία</a></li>
-                <li><a href="#">Επαγγελματικό</a></li>
-                <li><a href="#">Γη</a></li>
-                
-            </ul>
-
+            <select name="property_type" id="typeSelect">
+                <option value="">Όλα</option>
+                <option value="Κατοικία">Κατοικία</option>
+                <option value="Επαγγελματικό">Επαγγελματικό</option>
+                <option value="Γη">Γη</option>
+            </select>
         </div>
-
+    
         <div class="subtype-type">
-            <button type="menu" class="subtype" id="subtypeButton">Υποκατηγορία</button>
-           
-            <ul class="subtype-menu">
-                
-            </ul>
+            <select name="subtype" id="subtypeSelect">
+                <option value="">Επιλέξτε Υποκατηγορία</option>
+                <!-- Subtype options will be populated dynamically based on property type selection -->
+            </select>
         </div>
-
+    
         <div class="sale-type">
-            <button type="menu" class="sale" id="saleButton">Πώληση</button>
-            <ul class="sale-menu">
-                <li><a href="#">Ενοικίαση</a></li>
-                <li><a href="#">Πώληση</a></li>
-            </ul>
+            <select name="sale_type" id="saleSelect">
+                <option value="Ενοικίαση">Ενοικίαση</option>
+                <option value="Πώληση">Πώληση</option>
+            </select>
         </div>
-
-        <div class="price-range">
-            <button type="menu" class="price" id="priceButton">Τιμή</button>
-            <div class="price-menu">
-                <header>
-                    <h2>Price Range</h2>
-                    <p>Διαλέξτε την ελάχιστη και μέγιστη τιμή</p>
-                  </header>
-                  <div class="price-input">
-                    <div class="field">
-                      <span>Min</span>
-                      <input type="number" class="input-min" value="2500">
-                    </div>
-                    <div class="separator">-</div>
-                    <div class="field">
-                      <span>Max</span>
-                      <input type="number" class="input-max" value="7500">
-                    </div>
-                  </div>
-                  
-            </div>
+    
+        <div class="price-range compact-range">
+            <label for="priceMin">Τιμή</label>
+            <input type="number" id="priceMin" name="price_min" value="2500" placeholder="Ελάχιστη">
+            <span>-</span>
+            <input type="number" id="priceMax" name="price_max" value="7500" placeholder="Μέγιστη">
         </div>
-
-        <div class="area-range">
-            <button type="menu" class="area" id="areaButton">Εμβαδόν</button>
-            <div class="area-menu">
-                <header>
-                    <h2>Area Range</h2>
-                    <p>Διαλέξτε την ελάχιστη και μέγιστη εμβαδόν</p>
-                </header>
-                <div class="area-input">
-                    <div class="field">
-                      <span>Min</span>
-                      <input type="number" class="input-min" value="50">
-                    </div>
-                    <div class="separator">-</div>
-                    <div class="field">
-                      <span>Max</span>
-                      <input type="number" class="input-max" value="150">
-                    </div> 
-                </div>  
-
-            </div>
+        
+        <div class="area-range compact-range">
+            <label for="areaMin">Εμβαδόν</label>
+            <input type="number" id="areaMin" name="area_min" value="50" placeholder="Ελάχιστο">
+            <span>-</span>
+            <input type="number" id="areaMax" name="area_max" value="150" placeholder="Μέγιστο">
         </div>
-
-    </section>
-
+    
+        <div class="searchFilter">
+            <button type="submit" class="search" id="searchBtn">
+                <img src="../imgs/search-icon.png" alt="Search">
+            </button>
+        </div>
+    </form>
+    
     <section class="footer">
         <div class="footer-content">
             <div class="logo-part">

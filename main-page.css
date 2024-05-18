@@ -282,9 +282,9 @@ and change flex direction */
     color: rgb(19, 17, 17);
 }
 
-#loginModal {
+#loginModal,#registerModal {
     width: 25em;
-    height: 40em; /* Set the width of the modal */
+    height:fit-content; 
     margin: 0 auto; /* Center the modal horizontally */
 
     background-color: rgb(255, 254, 254); /* Background color of the modal */
@@ -298,7 +298,7 @@ and change flex direction */
     z-index: 1000; /* Ensure the modal is above other elements */
 }
 
-#loginModal::backdrop {
+#loginModal::backdrop ,#registerModal::backdrop{
     background-color: rgba(17, 16, 16, 0.8); /* Semi-transparent gray background */
     position: fixed; /* Fix the backdrop's position relative to the viewport */
     top: 0; /* Align the top edge of the backdrop with the top edge of the viewport */
@@ -308,7 +308,7 @@ and change flex direction */
     z-index: 999; /* Ensure the backdrop is below the modal but above other elements */
 }
 
-#CloseModal {
+.CloseModal {
     position: absolute; /* Position the button absolutely within its parent */
     top: 10px; /* Distance from the top edge of the parent */
     right: 10px; /* Distance from the right edge of the parent */
@@ -320,7 +320,7 @@ and change flex direction */
     font-size: 1.5em;
 }
 
-#CloseModal:hover{
+.CloseModal:hover,#BackBtn:hover{
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
 }
@@ -356,7 +356,7 @@ and change flex direction */
     margin-top: 1em;
     font-size: 1.5em;
 }
-#contBtn{
+#contBtn,#EnterBtn{
     flex: 1;
     justify-content: center;
     align-items: center;
@@ -365,12 +365,28 @@ and change flex direction */
     
 }
 
+#emailWarning{
+    color: red;
+    font-size: 1em;
+    display: none;
+}
+
+#BackBtn{
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    border:none;
+    border-radius: 1em;
+    
+}
 .modal-contents input{
     text-align: end;
     padding: 0.5em;
     border-radius: 1em;
 }
-#contBtn:hover{
+#contBtn:hover,#EnterBtn:hover,#BackBtn:hover{
     border-color: #ccc;
 
 }

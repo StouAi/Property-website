@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property finder</title>
     <link rel="stylesheet" href="main-page.css">
-    <script src = "main-page.mjs" defer></script>
+   
 </head>
 <body>
 
@@ -184,11 +184,11 @@
     
     <dialog id = "loginModal">
         <form>
-            <button type="button" id = "CloseModal" >&times;</button>
+            <button type="button" class = "CloseModal" >&times;</button>
             <div class="modal-contents">
-            <h2>Κάντε Σύνδεση</h2>
-            <legend class="mail_login">Πρόσθεσε το email</legend>
-            <input type = "text" placeholder = "Email">
+            <h2>Κάντε Σύνδεση ή Εγγραφή</h2>
+            <input type = "text" id="emailInput" placeholder = "Email">
+            <span id="emailWarning" >Παρακαλώ εισάγετε ένα email.</span>
             <button id ="contBtn" value = "default">Συνέχεια</button>
             <div class="login_separator">
                 <hr class="login_separator_text">
@@ -200,5 +200,26 @@
         </div>
         </form>
     </dialog>
+
+    <dialog id="registerModal">
+        <form>
+            <div class="close-back">
+                <button type="button" class= "CloseModal" >&times;</button>
+                <button type="button" id= "BackBtn" >&lt;--</button>
+            </div>
+            <div class="modal-contents">
+            <h2>Κάντε Εγγραφή</h2>
+            <input type = "password" placeholder = "Κωδικός">
+            <input type = "password" placeholder = "Επιβεβαίωση Κωδικού">
+            <button id ="EnterBtn" value = "default">Συνέχεια</button>
+            <div class="login_separator">
+                <hr class="login_separator_text">
+            </div>
+           
+            <p>Δημιουργόντας λογαριασμό συμφωνειτε με τους <a href="terms.html" target="_blank">όρους χρήσης και προυποθέσεις</a></p>   
+        </div>
+        </form>
+    </dialog>
+    <script src="main-page.mjs"></script>
 </body>
 </html>

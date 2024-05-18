@@ -47,6 +47,9 @@ body{
 
 /* Base styles */
 
+
+/*/////////////////////////////////////////////////*/
+/* General layout for search filters */
 .search-filters {
     display: flex;
     gap: 0.5em;
@@ -54,6 +57,7 @@ body{
     flex-wrap: wrap;
 }
 
+/* Search bar input styles */
 .search-bar input {
     flex: 0 1 auto;
     padding: 0.4em;
@@ -63,11 +67,13 @@ body{
     border: 0.1em solid #000000;
 }
 
-.property-type,.sale-type ,.price-range,.area-range{
+/* Property type, sale type, and other buttons */
+.property-type, .sale-type, .subtype-type, .price-range, .area-range, .search {
     position: relative;
 }
 
-.type,.sale,.price ,.area,.subtype{
+/* General button styles */
+.type, .sale, .price, .area, .subtype, .search {
     background-color: #000000;
     color: white;
     border: none;
@@ -78,7 +84,7 @@ body{
 }
 
 /* Dropdown menu styles */
-.type-menu ,.sale-menu,.price-menu ,.area-menu,.subtype-menu{
+.type-menu, .sale-menu, .price-menu, .area-menu, .subtype-menu {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -95,15 +101,52 @@ body{
     text-align: center;
 }
 
-.type-menu li,.sale-menu li,.subtype-menu li{
+select, .search {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 0.3em;
+}
+
+/* Adjusting select elements to match the button styles */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 0.3em;
+    border: 0.1em solid #000000;
+    text-align: center;
+}
+
+select:focus {
+    outline: none;
+    border: 0.1em solid #fff;
+}
+
+select option {
+    background-color: white;
+    color: black;
+}
+
+/* Menu item styles */
+.type-menu li, .sale-menu li, .subtype-menu li {
     border-bottom: 1px solid #ddd;
 }
 
-.type-menu li:last-child ,.sale-menu li:last-child,.subtype-menu li:last-child{
+.type-menu li:last-child, .sale-menu li:last-child, .subtype-menu li:last-child {
     border-bottom: none;
 }
 
-.type-menu li a,.sale-menu li a,.subtype-menu li a{
+/* Menu links */
+.type-menu li a, .sale-menu li a, .subtype-menu li a {
     text-decoration: none;
     color: black;
     display: block;
@@ -111,38 +154,20 @@ body{
     font-size: 1.2em;
 }
 
-.type-menu li a:hover,.sale-menu li a:hover,.subtype-menu li a:hover{
+.type-menu li a:hover, .sale-menu li a:hover, .subtype-menu li a:hover {
     background-color: #000000;
     color: white;
 }
 
- .price-menu , .area-menu{
+/* Price and area menu styles */
+.price-menu, .area-menu {
     min-width: 300px;
     width: auto;
     border-radius: 0.8em;
     border: solid 0.1em #000000;
-}  
-
-
-
-.price-input ,.area-input{
-    display: flex;
-    gap: 0.5em;
-    padding: 0.5em;
-}
-.price-input .field ,.area-input .field{
-    display: flex;
-    width: 100%;
-    align-items: center;
 }
 
-header p, .field span{
-    font-size: 1.9em;
-
-}
-
-
-
+/* Input field styles */
 .field input {
     width: 60%;
     height: 100%;
@@ -152,29 +177,50 @@ header p, .field span{
     border-radius: 5px;
     text-align: center;
     border: 1px solid #999;
-
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+    -webkit-appearance: none;
 }
 
-.price-input .separator,.area-input .separator{
-    width: 130px;
+/* Compact range styles */
+.compact-range {
     display: flex;
-    font-size: 19px;
     align-items: center;
-    justify-content: center;
-  }
+    gap: 0.5em;
+}
 
+.compact-range label {
+    margin-right: 0.5em;
+    font-weight: bold;
+}
 
+.compact-range input[type="number"] {
+    width: 80px;
+    padding: 0.4em;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 0.3em;
+}
 
-/* Show dropdown on hover */
-.property-type:hover .type-menu ,
-.sale-type:hover .sale-menu,
-.price-range:hover .price-menu,.area-range:hover .area-menu{
-    display: block;
+.compact-range span {
+    font-size: 1.2em;
+}
+
+/* Search button styles */
+.search img {
+    width: 25px;
+    height: auto;
+}
+
+.search {
+    border: 0;
+    border-radius: 25%;
+    width: auto;
+    height: 45px;
+    background: rgb(0, 0, 0);
+    cursor: pointer;
 }
 
 /* Optional: Show dropdown on button click (if JavaScript is used) */
