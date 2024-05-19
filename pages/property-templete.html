@@ -33,18 +33,24 @@
     </section>
 
     <section class="property-photos">
-        <div class="main-photo">
-            <img src="../imgs/greece_map.png" alt="property photo 1">
-        </div>
-        <div class="secondary-photos">
-            
-            <div class="second-photo">
-                <img src="../imgs/lighbulb.jpg" alt="property photo 2">
-            </div>
-            <div class="third-photo">    
-                <img src="../imgs/lighbulb.jpg" alt="property photo 3">
-            </div>
+        <div class="add-fav">
+            <label for="fav">Προσθήκη στα αγαπημένα</label>
+            <input type="checkbox" id="fav">
 
+        </div>
+        <div class="photos">
+            <div class="main-photo">
+                <img src="../imgs/greece_map.png" alt="property photo 1">
+            </div>
+            <div class="secondary-photos">
+                
+                <div class="second-photo">
+                    <img src="../imgs/lighbulb.jpg" alt="property photo 2">
+                </div>
+                <div class="third-photo">    
+                    <img src="../imgs/lighbulb.jpg" alt="property photo 3">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -86,13 +92,13 @@
                 <h3>Ενδιαφέρομαι</h3>
                 <form action="">
                     <div class="name">
-                        <input type="text" placeholder="Όνομα">
-                        <input type="text" placeholder="Επώνυμο">
+                        <input type="text" name="FirstName"  placeholder="Όνομα">
+                        <input type="text" name="LastName" placeholder="Επώνυμο">
                     </div>
-                    <input type="email" placeholder="Email">
-                    <input type="tel" placeholder="Τηλέφωνο">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Σχόλια"></textarea>
-                    <button class="property-interest">Αποστολή</button>
+                    <input type="email" name ="email" placeholder="Email">
+                    <input type="tel" name="phone" placeholder="Τηλέφωνο">
+                    <textarea name="comments" id="" cols="30" rows="10" placeholder="Σχόλια"></textarea>
+                    <button type="submit" class="property-interest">Αποστολή</button>
                 </form>
             </div>
         </div>
@@ -115,7 +121,7 @@
                     <li><a href="contact.html">Όροι &amp; Συνθήκες</a></li>
                     <li><a href="contact.html">Privacy Policy</a></li>
                     <li><a href="contact.html">Cookies</a></li>
-                </ul>>
+                </ul>
             
             </div>
 
@@ -126,23 +132,6 @@
 
 
 
-    <dialog id = "loginModal">
-        <form>
-            <button type="button" id = "CloseModal" >&times;</button>
-            <div class="modal-contents">
-            <h2>Κάντε Σύνδεση</h2>
-            <legend class="mail_login">Πρόσθεσε το email</legend>
-            <input type = "text" placeholder = "Email">
-            <button id ="contBtn" value = "default">Συνέχεια</button>
-            <div class="login_separator">
-                <hr class="login_separator_text">
-            </div>
-            <button id = "googleBtn" value = "default">Σύνδεση με Google</button>
-            <button id = "facebookBtn" value = "default">Σύνδεση με Facebook</button>
-            <button id = "appleBtn" value="default">Σύνδεση με Apple</button>
-            <p>Δημιουργόντας λογαριασμό συμφωνειτε με τους <a href="terms.html" target="_blank">όρους χρήσης και προυποθέσεις</a></p>
-        </div>
-        </form>
-    </dialog>
+    
 </body>
 </html>

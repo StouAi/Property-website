@@ -52,9 +52,19 @@ and change flex direction */
     color: black;
 }
 
+.add-fav{
+    font-size: 1.5em;
+    color: black;
+    text-align: center;
+}
 
+.property-photos{
+    width: fit-content;
+    margin: 0 auto;
 
-.property-photos {
+}
+
+.photos {
     display: flex;
     justify-content: center; /* Center the flex items horizontally */
     gap: 1em; /* Add a gap between flex items */
@@ -116,7 +126,7 @@ and change flex direction */
 }
 
 .property-info p{
-    font-size: 1.5em;
+    font-size: 20px;
 
 }
 
