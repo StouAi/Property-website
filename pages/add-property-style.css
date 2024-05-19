@@ -1,0 +1,133 @@
+.property-info {
+    position: absolute; /* Position the button absolutely within its parent */
+    top: 10px; /* Distance from the top edge of the parent */
+    right: 10px; /* Distance from the right edge of the parent */
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 1em;
+    text-align: center;
+    padding: 0.2em 1em;
+    font-size: 1.5em;
+}
+
+.form-contents {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.property-form {
+    width: 30em; /* Increase width */
+    height: fit-content;
+    margin: 0 auto; /* Center the modal horizontally */
+    background-color: rgb(255, 254, 254); /* Background color of the modal */
+    border-radius: 1em; /* Rounded corners for the modal */
+    padding: 30px; /* Increase padding */
+    box-shadow: 0.8em rgba(0, 0, 0, 0.1); /* Add a shadow to the modal */
+    position: fixed; /* Fix the modal's position relative to the viewport */
+    top: 50%; /* Align the top edge of the modal with the vertical center of the viewport */
+    left: 50%; /* Align the left edge of the modal with the horizontal center of the viewport */
+    transform: translate(-50%, -50%); /* Move the modal back by half its width and height */
+    z-index: 1000; /* Ensure the modal is above other elements */
+    border: solid 1px black;
+}
+
+.location-bar {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    flex-direction: column;
+}
+
+.location-bar label {
+    font-size: 22px; /* Increase font size */
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+::placeholder {
+    color: #ffffff; /* Lighter placeholder text color */
+}
+
+input[type="text"], input[type="number"] {
+    color: white; /* Text color */
+    background-color: #000; /* Background color */
+    padding: 0.6em; /* Increase padding */
+    font-size: 18px; /* Increase font size */
+    border-radius: 0.3em;
+    border: 0.1em solid #000;
+    width: 100%;
+    max-width: 300px; /* Increase max-width */
+    box-sizing: border-box;
+}
+
+.location-bar input,
+.property-type select,
+.subtype-type select,
+.sale-type select,
+.price input,
+.area input {
+    padding: 0.6em; /* Increase padding */
+    font-size: 18px; /* Increase font size */
+    border-radius: 0.3em;
+    border: 0.1em solid #000;
+    width: 100%;
+    max-width: 300px; /* Increase max-width */
+    box-sizing: border-box;
+    color: white;
+    background-color: #000;
+    text-align: center;
+}
+
+.compact-range input {
+    width: 150px; /* Increase width */
+}
+
+.filters-btn, .search, .submit {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 12px 24px; /* Increase padding */
+    cursor: pointer;
+    font-size: 18px; /* Increase font size */
+    border-radius: 0.3em;
+}
+
+.filters-btn:hover, .search:hover, .submit:hover {
+    background-color: #333;
+}
+
+.additional-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em; /* Increase gap */
+}
+
+.additional-filters .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.additional-filters .filter-group label {
+    font-size: 16px; /* Increase font size */
+    font-weight: bold;
+}
+
+.additional-filters .filter-group input {
+    padding: 0.6em; /* Increase padding */
+    font-size: 18px; /* Increase font size */
+    border-radius: 0.3em;
+    border: 0.1em solid #000;
+    width: 100%;
+    max-width: 250px; /* Increase max-width */
+    box-sizing: border-box;
+    color: white;
+    background-color: #000;
+}

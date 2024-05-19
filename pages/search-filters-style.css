@@ -221,12 +221,12 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
 /* Search button styles */
-.search img {
+.submit img {
     width: 25px;
     height: auto;
 }
 
-.search {
+.submit {
     border: 0;
     border-radius: 25%;
     width: auto;
