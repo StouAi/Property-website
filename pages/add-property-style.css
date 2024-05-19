@@ -1,13 +1,60 @@
+:root {
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+/* Nav Bar Styling */
+.nav-bar {
+    background-color: #fff;
+    padding: 1em 2em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.5em;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-part h1 {
+    font-size: 2em;
+}
+
+.buy-rent {
+    font-size: 1.5em;
+}
+
+.nav-part ul,
+.buy-rent-links ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5em;
+}
+
+.nav-part a,
+.buy-rent-links a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: black;
+}
+
+/* Form Section Styling */
 .property-info {
-    position: absolute; /* Position the button absolutely within its parent */
-    top: 10px; /* Distance from the top edge of the parent */
-    right: 10px; /* Distance from the right edge of the parent */
+    display: flex;
+    justify-content: center;
+    padding: 2em 0;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     border-radius: 1em;
     text-align: center;
-    padding: 0.2em 1em;
-    font-size: 1.5em;
 }
 
 .form-contents {
@@ -20,18 +67,12 @@
 }
 
 .property-form {
-    width: 30em; /* Increase width */
-    height: fit-content;
-    margin: 0 auto; /* Center the modal horizontally */
-    background-color: rgb(255, 254, 254); /* Background color of the modal */
-    border-radius: 1em; /* Rounded corners for the modal */
-    padding: 30px; /* Increase padding */
-    box-shadow: 0.8em rgba(0, 0, 0, 0.1); /* Add a shadow to the modal */
-    position: fixed; /* Fix the modal's position relative to the viewport */
-    top: 50%; /* Align the top edge of the modal with the vertical center of the viewport */
-    left: 50%; /* Align the left edge of the modal with the horizontal center of the viewport */
-    transform: translate(-50%, -50%); /* Move the modal back by half its width and height */
-    z-index: 1000; /* Ensure the modal is above other elements */
+    width: 30em;
+    margin: 0 auto;
+    background-color: rgb(255, 254, 254);
+    border-radius: 1em;
+    padding: 30px;
+    box-shadow: 0.8em rgba(0, 0, 0, 0.1);
     border: solid 1px black;
 }
 
@@ -43,7 +84,7 @@
 }
 
 .location-bar label {
-    font-size: 22px; /* Increase font size */
+    font-size: 22px;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -52,18 +93,19 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 ::placeholder {
-    color: #ffffff; /* Lighter placeholder text color */
+    color: #ffffff;
 }
 
-input[type="text"], input[type="number"] {
-    color: white; /* Text color */
-    background-color: #000; /* Background color */
-    padding: 0.6em; /* Increase padding */
-    font-size: 18px; /* Increase font size */
+input[type="text"],
+input[type="number"] {
+    color: white;
+    background-color: #000;
+    padding: 0.6em;
+    font-size: 18px;
     border-radius: 0.3em;
     border: 0.1em solid #000;
     width: 100%;
-    max-width: 300px; /* Increase max-width */
+    max-width: 300px;
     box-sizing: border-box;
 }
 
@@ -73,12 +115,12 @@ input[type="text"], input[type="number"] {
 .sale-type select,
 .price input,
 .area input {
-    padding: 0.6em; /* Increase padding */
-    font-size: 18px; /* Increase font size */
+    padding: 0.6em;
+    font-size: 18px;
     border-radius: 0.3em;
     border: 0.1em solid #000;
     width: 100%;
-    max-width: 300px; /* Increase max-width */
+    max-width: 300px;
     box-sizing: border-box;
     color: white;
     background-color: #000;
@@ -86,27 +128,31 @@ input[type="text"], input[type="number"] {
 }
 
 .compact-range input {
-    width: 150px; /* Increase width */
+    width: 150px;
 }
 
-.filters-btn, .search, .submit {
+.filters-btn,
+.search,
+.submit {
     background-color: #000;
     color: white;
     border: none;
-    padding: 12px 24px; /* Increase padding */
+    padding: 12px 24px;
     cursor: pointer;
-    font-size: 18px; /* Increase font size */
+    font-size: 18px;
     border-radius: 0.3em;
 }
 
-.filters-btn:hover, .search:hover, .submit:hover {
+.filters-btn:hover,
+.search:hover,
+.submit:hover {
     background-color: #333;
 }
 
 .additional-filters {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5em; /* Increase gap */
+    gap: 1.5em;
 }
 
 .additional-filters .filter-group {
@@ -116,18 +162,77 @@ input[type="text"], input[type="number"] {
 }
 
 .additional-filters .filter-group label {
-    font-size: 16px; /* Increase font size */
+    font-size: 16px;
     font-weight: bold;
 }
 
 .additional-filters .filter-group input {
-    padding: 0.6em; /* Increase padding */
-    font-size: 18px; /* Increase font size */
+    padding: 0.6em;
+    font-size: 18px;
     border-radius: 0.3em;
     border: 0.1em solid #000;
     width: 100%;
-    max-width: 250px; /* Increase max-width */
+    max-width: 250px;
     box-sizing: border-box;
     color: white;
     background-color: #000;
 }
+
+/* Footer Section Styling */
+.footer{
+
+    display: flex;
+    align-items: center;
+    padding: 3em;
+    background: rgb(238, 238, 238);
+    justify-content: space-evenly;
+}
+
+.footer-content {
+    justify-content: left;
+    gap: 10em;
+    
+}
+
+.footer-content h3{
+    font-size: 2em;
+    text-align: center;
+    line-height: 4em;
+}
+
+.footer-content ul{
+    list-style: none;
+    font-size: 1.5em;
+}
+.footer-content li{
+    margin: 1em;
+    display: inline-block;
+}
+
+.footer-content li{
+    margin: 1em;
+}
+.footer-content a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.footer-content a:hover,.nav-part a:hover,.buy-rent-links a:hover{
+    color: blueviolet;
+}
+
+.footer .logo-part{
+    align-items: center;
+
+}
+
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(19, 17, 17);
+}
+
+
+
+
