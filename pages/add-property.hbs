@@ -17,8 +17,8 @@
 
             <div class="buy-rent-links">
                 <ul>
-                <li><a href="buy.html">Αγορά</a></li>
-                <li><a href="buy.html">Ενοικίαση</a></li>
+                    <li><a href="buy.html">Αγορά</a></li>
+                    <li><a href="buy.html">Ενοικίαση</a></li>
                 </ul>
             </div>
 
@@ -27,34 +27,20 @@
                     <li><a href="index.html">Αρχική</a></li>
                     <li><a href="pages/about-us.html">Εμείς</a></li>
                     <li><a href="pages/contact.html">Επικοινωνία</a></li>
-                    <li><a id = "OpenModal" href="#">Σύνδεση</a></li>
+                    <li><a id="OpenModal" href="#">Σύνδεση</a></li>
                 </ul>
             </div>
         </div>
     </section>
-    <section class="main-content">
-        <div class="add-info">
-            <p>Το Property Finder σας εγγυάται μια απλή και γρήγορη διαδικασία υποβολής αγγελιών, προσφέροντας:</p>
-            <ul>
-                <li>Εύχρηστο περιβάλλον για την καταχώρηση των στοιχείων της ιδιοκτησίας σας</li>
-                <li>Άμεση ορατότητα από πιθανούς αγοραστές και ενοικιαστές</li>
-                <li>Υποστήριξη και βοήθεια από την ομάδα μας σε κάθε βήμα</li>
-                <li>Ασφαλή και αξιόπιστη πλατφόρμα για τη διαχείριση των αγγελιών σας</li>
-            </ul>
-            <p>Ξεκινήστε σήμερα και βρείτε τους ιδανικούς ενδιαφερόμενους για την ιδιοκτησία σας με το Property Finder!</p>
 
-        </div>
-
-
-    <div class="property-info">
-        
+    <section class="property-info">
         <form class="property-form">
             <div class="form-contents">
                 <div class="location-bar">
                     <label for="location"><strong>Συμπληρώστε την τοποθεσία με την παρακάτω σειρά</strong></label>
                     <input type="text" name="location" placeholder="Πόλη,Περιοχή,Οδός">
                 </div>
-            
+
                 <div class="property-type">
                     <select name="property_type" id="typeSelect">
                         <option value="Κατοικία">Κατοικία</option>
@@ -62,49 +48,50 @@
                         <option value="Γη">Γη</option>
                     </select>
                 </div>
-            
+
                 <div class="subtype-type">
                     <select name="subtype" id="subtypeSelect">
                         <option value="">Επιλέξτε Υποκατηγορία</option>
-                        <!-- Subtype options will be populated dynamically based on property type selection -->
+                        {{#each subtypes}}
+                            <option value="{{this.value}}">{{this.text}}</option>
+                        {{/each}}
                     </select>
                 </div>
-            
+
                 <div class="sale-type">
                     <select name="sale_type" id="saleSelect">
                         <option value="Ενοικίαση">Ενοικίαση</option>
                         <option value="Πώληση">Πώληση</option>
                     </select>
                 </div>
-            
+
                 <div class="price compact-range">
                     <input type="number" id="price" name="price" value="null" placeholder="Τιμή">
                 </div>
-                
+
                 <div class="area compact-range">
                     <input type="number" id="area" name="area" value="null" placeholder="Εμβαδό(τμ)">
                 </div>
 
-
                 <div class="searchFilter">
                     <button type="button" class="filters-btn" id="filtersBtn">Περισσότερα</button>
                 </div>
-            
+
                 <div class="additional-filters compact-range" id="additionalFilters" style="display: none;">
-                    <!-- Additional filters will be added here based on the property type -->
+                    {{#each additionalFilters}}
+                        <div class="filter">
+                            <label for="{{this.id}}">{{this.label}}</label>
+                            <input type="{{this.type}}" id="{{this.id}}" name="{{this.name}}" value="{{this.value}}">
+                        </div>
+                    {{/each}}
                 </div>
 
-
                 <div class="searchFilter">
-                    <button type="submit" class="submit" id="submitProp">
-                    Yποβολή
-                    </button>
+                    <button type="submit" class="submit" id="submitProp">Yποβολή</button>
                 </div>
             </div>
         </form>
-        
-    </div>
- </section>
+    </section>
 
     <section class="footer">
         <div class="footer-content">
@@ -120,10 +107,9 @@
                     <li><a href="contact.html">Privacy Policy</a></li>
                     <li><a href="contact.html">Cookies</a></li>
                 </ul>
-            
             </div>
 
-            <p class="copyright">@2007 Property Finder.All rights reserved </p>
+            <p class="copyright">@2007 Property Finder.All rights reserved</p>
         </div>
     </section>
     <h1></h1>

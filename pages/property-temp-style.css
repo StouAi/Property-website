@@ -53,9 +53,13 @@ and change flex direction */
 }
 
 .add-fav{
-    font-size: 1.5em;
+    
     color: black;
     text-align: center;
+}
+
+.add-fav label{
+    font-size: 20px;
 }
 
 .property-photos{
@@ -125,7 +129,7 @@ and change flex direction */
     text-size-adjust: auto;    
 }
 
-.property-info p{
+.property-info p, .property-info h2{
     font-size: 20px;
 
 }
@@ -150,6 +154,12 @@ and change flex direction */
     font-size: 2em;
 }
 
+.interest-form input, .interest-form textarea{
+    padding: 0.5em;
+    border-radius: 1em;
+    border: 0.1em solid rgb(0, 0, 0);
+    
+}
 .interest-form button{
     padding: 0.5em 1em;
     border-radius: 1em;
