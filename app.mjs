@@ -21,8 +21,8 @@ app.set('view engine', 'hbs');
 app.set('views', './views');
 
 // Middlewares
-//app.use(express.urlencoded({ extended: false }));
-app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 app.use(express.json());
 
 // Database connection

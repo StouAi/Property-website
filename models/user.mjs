@@ -3,20 +3,20 @@ import bcrypt from 'bcrypt';
 
 // Create the user table
 db.exec(`
-    CREATE TABLE IF NOT EXISTS users (
+    CREATE TABLE IF NOT EXISTS Users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE NOT NULL,
-        email TEXT UNIQUE NOT NULL,
         password TEXT NOT NULL
     )
 `);
 
+
 // Register a new user
-export const registerUser = async (username, email, password) => {
+export const registerUser = async (username, password) => {
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const stmt = db.prepare('INSERT INTO users (username, email, password) VALUES (?, ?, ?)');
-        const { lastInsertRowid } = stmt.run(username, email, hashedPassword);
+        const stmt = db.prepare('INSERT INTO Users (username, password) VALUES (?, ?)');
+        const { lastInsertRowid } = stmt.run(username, hashedPassword);
         return lastInsertRowid;
     } catch (error) {
         console.error('Error registering user:', error);
@@ -35,21 +35,10 @@ export const findUserByUsername = (username) => {
     }
 };
 
-// Find a user by email
-export const findUserByEmail = (email) => {
-    try {
-        const stmt = db.prepare('SELECT * FROM users WHERE email = ?');
-        return stmt.get(email);
-    } catch (error) {
-        console.error('Error finding user by email:', error);
-        throw error;
-    }
-};
-
 // Authenticate user
-export const authenticateUser = async (email, password) => {
+export const authenticateUser = async (username, password) => {
     try {
-        const user = findUserByEmail(email);
+        const user = findUserByUsername(username);
         if (user && await bcrypt.compare(password, user.password)) {
             return user;
         }

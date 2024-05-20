@@ -1,5 +1,6 @@
 import express from 'express';
-import { registerUserHandler, authenticateUserHandler } from './controllers/userController.mjs';
+import { loginUserHandler, authenticateUserHandler } from './controllers/userController.mjs';
+import { checkUserExists, signupUserHandler} from './controllers/userController.mjs';
 import { createPropertyHandler, getPropertiesHandler } from './controllers/propertyController.mjs';
 import authMiddleware from './middleware/authMiddleware.mjs';
 
@@ -8,7 +9,7 @@ const router = express.Router();
 // Home Page
 router.get('/', (req, res) => {
     try{
-        res.render('home', { title: 'Property Finder', properties: [] });
+        res.render('home', { title: 'Property Finder', catchphrase: "Όλα τα ακίνητα ενα κλικ μακριά", properties: [] });
     } catch (error) {
         console.error('Error loading home page:', error);
         res.status(500).json({ message: 'Error loading home page' });
@@ -35,45 +36,64 @@ router.get('/contact', (req, res) => {
     }
 });
 
-// Log-in Page
-router.get('/#', (req, res) => {
+// Buy / Rent Page
+router.get('/buy', (req, res) => {
     try{
-        res.render('log-in', { title: 'Log-in' });
+        res.render('home', { title: 'Property Finder', catchphrase: "Ακίνητα προς Αγορά", properties: [] });
+    } catch (error) {
+        console.error('Error loading home page:', error);
+        res.status(500).json({ message: 'Error loading home page' });
+    }
+});
+
+router.get('/rent', (req, res) => {
+    try{
+        res.render('home', { title: 'Property Finder', catchphrase: "Ακίνητα προς Ενοικίαση", properties: [] });
+    } catch (error) {
+        console.error('Error loading home page:', error);
+        res.status(500).json({ message: 'Error loading home page' });
+    }
+});
+
+
+
+// Create property page
+router.get('/createProperty', (req, res) => {
+    try{
+        res.render('add-property', { title: 'Add property' });
+    } catch (error) {
+        console.error('Error loading add property page:', error);
+        res.status(500).json({ message: 'Error loading add property page' });
+    }
+});
+
+router.get('/getProperties', getPropertiesHandler);
+router.post('/createProperty', createPropertyHandler);
+
+router.get('/search', (req, res) => {
+    try{
+        res.render('filters', { title: 'Search' });
+    } catch (error) {
+        console.error('Error loading search page:', error);
+        res.status(500).json({ message: 'Error loading search page' });
+    }
+});
+
+router.post('/gay', getPropertiesHandler);
+
+
+// Login
+router.get('/login', (req, res) => {
+    try{
+        res.render('auth/login-signup', { layout: 'login-signup'});
     } catch (error) {
         console.error('Error loading login page:', error);
         res.status(500).json({ message: 'Error loading login page' });
     }
 });
 
-// // User Routes
-// router.post('/users/register', registerUserHandler);
-// router.post('/users/login', authenticateUserHandler);
-
-// // Property Routes
-// router.route('/properties')
-//     .get(getPropertiesHandler)
-//     .post(authMiddleware, createPropertyHandler);
-
-// // Property Routes
-// router.get('/properties', async (req, res) => {
-//     try {
-//         const properties = await getProperties();
-//         res.json(properties);
-//     } catch (error) {
-//         console.error('Error fetching properties:', error);
-//         res.status(500).json({ message: 'Error fetching properties' });
-//     }
-// });
-
-// router.post('/properties', async (req, res) => {
-//     const { title, description, price, location } = req.body;
-//     try {
-//         const propertyId = await createProperty(title, description, price, location);
-//         res.status(201).json({ message: 'Property created', propertyId });
-//     } catch (error) {
-//         console.error('Error creating property:', error);
-//         res.status(500).json({ message: 'Error creating property' });
-//     }
-// });
+router.post('/login', loginUserHandler);
+// router.post('/authUser', authenticateUserHandler);
+// router.post('/signupUser', signupUserHandler);
 
 export default router;

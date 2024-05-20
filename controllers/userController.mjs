@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { findUserByEmail, registerUser, authenticateUser } from '../models/user.mjs';
+import { findUserByUsername, registerUser, authenticateUser } from '../models/user.mjs';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -11,25 +11,44 @@ const generateToken = (user) => {
 };
 
 // Register a new user
-export const registerUserHandler = async (req, res) => {
-    const { username, email, password } = req.body;
-
+export const loginUserHandler = async (req, res) => {
     try {
-        const existingUser = findUserByEmail(email);
-        if (existingUser) {
-            return res.status(400).json({ message: 'User already exists' });
-        }
+        const { formType, username, password, alsoPassword } = req.body;
 
-        const userId = await registerUser(username, email, password);
-        const user = findUserByEmail(email);
+        if (formType === 'login') {
+            if (!findUserByUsername(username)) {
+                return res.json({ success: false, message: 'User does not exist.' });
+            } 
 
-        if (userId) {
-            const token = generateToken(user);
-            res.status(201).json({ userId, token });
-        } else {
-            res.status(500).json({ message: 'User registration failed' });
+            const authenticated = await authenticateUser(username, password);
+
+            if (authenticated) {
+                return res.json({ success: true, message: 'User authenticated.', redirect: '/' });
+            } else {
+                return res.json({ success: false, message: 'Invalid email or password.' });
+            }
+        } else if (formType === 'signup') {
+            if (findUserByUsername(username)) {
+                return res.json({ success: false, message: 'User already exists.' });
+            } 
+
+            if (password !== alsoPassword) {
+                return res.json({ success: false, message: 'Passwords do not match.' });
+            }
+
+            const userId = await registerUser(username, password);
+            const user = findUserByUsername(username);
+
+            if (userId) {
+                const token = generateToken(user);
+                // return res.status(201).json({ userId, token });
+                return res.json({ success: true, message: 'User registered.', redirect: '/' });
+            } else {
+                return res.json({ success: false, message: 'User registration failed.' });
+            }
         }
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'User registration failed' });
     }
 };
@@ -41,8 +60,9 @@ export const authenticateUserHandler = async (req, res) => {
     try {
         const user = await authenticateUser(email, password);
         if (user) {
-            const token = generateToken(user);
-            res.json({ email: user.email, token });
+            res.redirect('/');
+            // const token = generateToken(user);
+            // res.json({ email: user.email, token });
         } else {
             res.status(401).json({ message: 'Invalid email or password' });
         }
@@ -50,3 +70,33 @@ export const authenticateUserHandler = async (req, res) => {
         res.status(500).json({ message: 'User authentication failed' });
     }
 };
+
+
+// Check if user exists based on email
+export const checkUserExists = async (req, res) => {
+    const existingUser = findUserByUsername(req.body.username);
+    if (existingUser) {
+        res.render('auth/login-password', { title: 'Log in', layout: 'login-signup'});
+    } else {
+        res.render('auth/signup-password', { title: 'Sign up', layout: 'login-signup'});
+    }
+};
+
+export const signupUserHandler = async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const userId = await registerUser(username, password);
+        // const user = findUserByUsername(username);
+
+        if (userId) {
+            res.redirect('/');
+            // const token = generateToken(user);
+            // res.status(201).json({ userId, token });
+        } else {
+            res.status(500).json({ message: 'User registration failed' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'User registration failed' });
+    }
+}
