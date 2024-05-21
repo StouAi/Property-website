@@ -60,7 +60,7 @@ router.get('/rent', (req, res) => {
 // Create property page
 router.get('/createProperty', (req, res) => {
     try{
-        res.render('add-property', { title: 'Add property' });
+        res.render('add-property-2', { title: 'Add property' });
     } catch (error) {
         console.error('Error loading add property page:', error);
         res.status(500).json({ message: 'Error loading add property page' });
@@ -79,7 +79,7 @@ router.get('/search', (req, res) => {
     }
 });
 
-router.post('/gay', getPropertiesHandler);
+router.post('/search', getPropertiesHandler);
 
 
 // Login

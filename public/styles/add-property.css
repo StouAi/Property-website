@@ -1,0 +1,145 @@
+/*text section*/
+.main-content{
+    display: flex;
+    justify-content: space-around;
+}
+
+.add-info{
+    flex: 0 1 30%;
+    padding: 2em;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 1em;
+    text-align: center;
+    font-size: 30px;
+}
+
+/* Form Section Styling */
+.property-info {
+    padding: 2em 0;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 1em;
+    text-align: center;
+}
+
+.form-contents {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.property-form {
+    width: 30em;
+    margin: 0 auto;
+    background-color: rgb(255, 254, 254);
+    border-radius: 1em;
+    padding: 30px;
+    box-shadow: 0.8em rgba(0, 0, 0, 0.1);
+    border: solid 1px black;
+}
+
+.location-bar {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    flex-direction: column;
+}
+
+.location-bar label {
+    font-size: 22px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+::placeholder {
+    color: #ffffff;
+}
+
+input[type="text"],
+input[type="number"] {
+    color: white;
+    background-color: #000;
+    padding: 0.6em;
+    font-size: 18px;
+    border-radius: 0.3em;
+    border: 0.1em solid #000;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+.location-bar input,
+.property-type select,
+.subtype-type select,
+.sale-type select,
+.price input,
+.area input {
+    padding: 0.6em;
+    font-size: 18px;
+    border-radius: 0.3em;
+    border: 0.1em solid #000;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    color: white;
+    background-color: #000;
+    text-align: center;
+}
+
+.compact-range input {
+    width: 150px;
+}
+
+.filters-btn,
+.search,
+.submit {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 0.3em;
+}
+
+.filters-btn:hover,
+.search:hover,
+.submit:hover {
+    background-color: #333;
+}
+
+.additional-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
+
+.additional-filters .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.additional-filters .filter-group label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.additional-filters .filter-group input {
+    padding: 0.6em;
+    font-size: 18px;
+    border-radius: 0.3em;
+    border: 0.1em solid #000;
+    width: 100%;
+    max-width: 250px;
+    box-sizing: border-box;
+    color: white;
+    background-color: #000;
+}

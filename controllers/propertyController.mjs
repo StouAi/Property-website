@@ -2,14 +2,14 @@ import { createProperty, getAllProperties, getPropertiesWithFilters } from '../m
 
 // Create a new property
 export const createPropertyHandler = (req, res) => {
-    let { property, location } = req.body;
+    let { userID, property, location } = req.body;
 
     property.surface = parseInt(property.surface);
     property.price = parseInt(property.price);
     property.constructionYear = parseInt(property.constructionYear);
 
     try {
-        const propertyId = createProperty(property, location);
+        const propertyId = createProperty(userID, property, location);
         if (propertyId) {
             res.status(201).json({ propertyId });
         } else {
@@ -39,7 +39,7 @@ export const getPropertiesHandler = (req, res) => {
 
     try {
         let locationFilters = null;
-        // const properties = getAllProperties();
+
         const properties = getPropertiesWithFilters(propertyFilters, locationFilters);
         console.log(properties);
         res.json(properties);

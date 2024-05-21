@@ -20,7 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
             formType: 'signup',
             username: event.target.email.value,
             password: event.target.password.value,
-            alsoPassword: event.target.alsoPassword.value
+            alsoPassword: event.target.alsoPassword.value,
+            fName: event.target.fName.value,
+            lName: event.target.lName.value,
+            phone: event.target.phone.value
         };
 
         fetch('/login', {

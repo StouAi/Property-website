@@ -6,17 +6,20 @@ db.exec(`
     CREATE TABLE IF NOT EXISTS Users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
+        password TEXT NOT NULL,
+        fName TEXT NOT NULL,
+        lName TEXT NOT NULL,
+        phone INTEGER NOT NULL
     )
 `);
 
 
 // Register a new user
-export const registerUser = async (username, password) => {
+export const registerUser = async (username, password, fName, lName, phone) => {
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const stmt = db.prepare('INSERT INTO Users (username, password) VALUES (?, ?)');
-        const { lastInsertRowid } = stmt.run(username, hashedPassword);
+        const stmt = db.prepare('INSERT INTO Users (username, password, fName, lName, phone) VALUES (?, ?, ?, ?, ?)');
+        const { lastInsertRowid } = stmt.run(username, hashedPassword, fName, lName, phone);
         return lastInsertRowid;
     } catch (error) {
         console.error('Error registering user:', error);
