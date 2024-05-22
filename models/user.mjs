@@ -38,6 +38,17 @@ export const findUserByUsername = (username) => {
     }
 };
 
+// Find a user by ID
+export const findUserByID = (userID) => {
+    try {
+        const stmt = db.prepare('SELECT * FROM users WHERE id = ?');
+        return stmt.get(userID);
+    } catch (error) {
+        console.error('Error finding user by ID:', error);
+        throw error;
+    }
+};
+
 // Authenticate user
 export const authenticateUser = async (username, password) => {
     try {
