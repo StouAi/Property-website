@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginUserHandler, checkAuthenticated } from './controllers/userController.mjs';
+import { loginUserHandler, logoutUserHandler, checkAuthenticated } from './controllers/userController.mjs';
 import { createPropertyHandler, getPropertiesHandler, showHomePropertiesHandler, showPropertyPageHandler } from './controllers/propertyController.mjs';
 import authMiddleware from './middleware/authMiddleware.mjs';
 
@@ -76,7 +76,7 @@ router.get('/search', (req, res) => {
 router.post('/search', checkAuthenticated, getPropertiesHandler);
 
 
-// Login
+// Login / Logout
 router.get('/login', (req, res) => {
     try{
         res.render('auth/login-signup', { layout: 'login-signup'});
@@ -85,7 +85,7 @@ router.get('/login', (req, res) => {
         res.status(500).json({ message: 'Error loading login page' });
     }
 });
-
 router.post('/login', loginUserHandler);
+router.get('/logout', logoutUserHandler);
 
 export default router;

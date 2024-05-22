@@ -46,6 +46,17 @@ export const loginUserHandler = async (req, res) => {
     }
 };
 
+// Logout User
+export const logoutUserHandler = async (req, res) => {
+    try {
+        req.session.destroy();
+        res.redirect('/');
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'User logout failed' });
+    }
+};
+
 // Authenticate User
 export const checkAuthenticated = async (req, res, next) => {
     try {

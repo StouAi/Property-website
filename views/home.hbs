@@ -5,19 +5,21 @@
         <h1>{{catchphrase}}</h1>
     </div>
 
-    <div class="buy-rent">
-        <div class="tabs">
-            <input type="radio" name="tabs" value="rent" id="buy" checked>
-            <label class="tab" for="buy">Αγορά</label>
-            <input type="radio" name="tabs" value="buy" id="rent">
-            <label class="tab" for="rent">Ενοικίαση</label>
-            <span class="glider"></span>
+    <form action="/search" method="POST">
+        <div class="buy-rent">
+            <div class="tabs">
+                <input type="radio" name="tabs" value="rent" id="buy" checked>
+                <label class="tab" for="buy">Αγορά</label>
+                <input type="radio" name="tabs" value="buy" id="rent">
+                <label class="tab" for="rent">Ενοικίαση</label>
+                <span class="glider"></span>
+            </div>
         </div>
-    </div>
+    </form>
 
     <div class="search-bar">
         <input type="text" placeholder="Country, City, ZIP Code, Neighborhood etc">
-        <button><img src="images/search-icon.png"></button>
+        <button type="submit"><img src="images/search-icon.png"></button>
     </div>
 </section>
 
@@ -32,11 +34,6 @@
                 <a href="/property/{{this.id}}">
                     <figure class="property-listing">
                         <img src="images/bgr-photo-main.jpg" alt="House Image">
-                        {{!-- <figcaption>
-                            <h2>{{this.type}}</h2>
-                            <p>€{{this.price}}</p>
-                            <p>{{this.surface}}τ.μ</p>
-                        </figcaption> --}}
                         <div class="property-info">
                             <p class="type">{{this.type}} / {{this.subtype}}</p>
                             <p class="price"><b>€{{this.price}}</b></p>
