@@ -20,7 +20,7 @@
 
         <div class="search-bar">
             <input type="text" placeholder="Πόλη,Περιοχή,Οδός">
-            <button><img src="images/search-icon.png"></button>
+            <button id="search-button"><img src="images/search-icon.png"></button>
         </div>
     </div>
 </section>
@@ -30,94 +30,39 @@
         <h2>Νεες Αγγελιες Κατοικιων</h2>
     </div>
     <div class="homes-listing">
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Κατοικία</h2>
-                <p>Πατρα,Αγίου Νικολαου</p>
-                <p>Price: €300,000</p>
-                <p>Κρεβατοκάμαρες: 3 Μπάνια: 2</p>
-                <p>2000τ.μ</p>
-            </figcaption>
-        </figure>
+          {{#each land_properties}}
 
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Κατοικία</h2>
-                <p>Πατρα,Κουκούλι</p>
-                <p>Price: €100,000</p>
-                <p>Κρεβατοκάμαρες:2 Μπάνια: 1</p>
-                <p>1000τ.μ</p>
-            </figcaption>
-        </figure>
-
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Κατοικία</h2>
-                <p>Πατρα,Αρόη</p>
-                <p>Price: €80,000</p>
-                <p>Κρεβατοκάμαρες: 2 Μπάνια: 1</p>
-                <p>600τ.μ</p>
-            </figcaption>
-        </figure>
-
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Κατοικία</h2>
-                <p>Θεσσαλονικη,Τούμπα</p>
-                <p>Price: €120,000</p>
-                <p>Κρεβατοκάμαρες: 3 Μπάνια: 2</p>
-                <p>800τ.μ</p>
-            </figcaption>
-        </figure>
+          <a href="/properties/{{id}}" > <figure class="property-listing">
+                <img src="{{image}}" alt="House Image">
+                <figcaption>
+                    <h2>{{subtype}}</h2>
+                    <p>{{location}}</p>
+                    <p>{{sale}}</p>
+                    <p>Τιμή: €{{price}}</p>
+                    <p>Κρεβατοκάμαρες: {{bedrooms}} Μπάνια: {{bathrooms}}</p>
+                    <p>{{area}}τ.μ</p>
+                </figcaption>
+            </figure> </a>
+            {{/each}}
 
     </div>
     <div class="new-listings-title">
         <h2>Νεες Αγγελιες Οικοπέδων</h2>
     </div>
     <div class="land-listing">
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Οικόπεδο</h2>
-                <p>Πατρα,Αγυια</p>
-                <p>Price: €160,000</p>
-                <p>680τ.μ</p>
-            </figcaption>
-        </figure>
-
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Οικόπεδο</h2>
-                <p>Πατρα,Εγλυκάδα</p>
-                <p>Price: €115,000</p>
-                <p>440τ.μ</p>
-            </figcaption>
-        </figure>
-
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Οικόπεδο</h2>
-                <p>Θεσσαλονικη,Άνω πολη </p>
-                <p>Price: €111,000</p>
-                <p>82τ.μ</p>
-            </figcaption>
-        </figure>
-
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Οικόπεδο</h2>
-                <p>Πειραιάς,λιμάνι</p>
-                <p>Price: €1,300,000</p>
-                <p>500τ.μ</p>
-            </figcaption>
-        </figure>
+        {{#each properties}}
+            <figure class="property-listing">
+                <img src="{{image}}" alt="House Image">
+                <figcaption>
+                    <h2>{{subtype}}</h2>
+                    <p>{{location}}</p>
+                    <p>{{sale}}</p>
+                    <p>Τιμή: €{{price}}</p>
+                    <p>Κρεβατοκάμαρες: {{bedrooms}} Μπάνια: {{bathrooms}}</p>
+                    <p>{{area}}τ.μ</p>
+                </figcaption>
+            </figure>
+            {{/each}}
 
     </div>
 </section>

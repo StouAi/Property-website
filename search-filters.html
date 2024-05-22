@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search-page</title>
+    <link rel="stylesheet" href="search-filters-style.css"> 
+    
+</head>
+<body>
+    <section class="nav-bar">
+        <div class="header">
+            <div class="logo-part">
+                <img src="images/logo.png" alt="logo">
+                <h1>Property Finder</h1>
+            </div>
+
+            <div class="buy-rent-links">
+                <ul>
+                <li><a href="buy.html">Αγορά</a></li>
+                <li><a href="buy.html">Ενοικίαση</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-part">
+                <ul>
+                    <li><a href="../index.html">Αρχική</a></li>
+                    <li><a href="about-us.html">Εμείς</a></li>
+                    <li><a href="contact.html">Επικοινωνία</a></li>
+                    <li><a href="login.html">Σύνδεση</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <form class="search-filters">
+        <div class="search-bar">
+            <input type="text" name="location" placeholder="Πόλη,Περιοχή,Οδός">
+        </div>
+    
+        <div class="property-type">
+            <select name="property_type" id="typeSelect">
+                <option value="">Όλα</option>
+                <option value="Κατοικία">Κατοικία</option>
+                <option value="Επαγγελματικό">Επαγγελματικό</option>
+                <option value="Γη">Γη</option>
+            </select>
+        </div>
+    
+        <div class="subtype-type">
+            <select name="subtype" id="subtypeSelect">
+                <option value="">Επιλέξτε Υποκατηγορία</option>
+                <!-- Subtype options will be populated dynamically based on property type selection -->
+            </select>
+        </div>
+    
+        <div class="sale-type">
+            <select name="sale_type" id="saleSelect">
+                <option value="Ενοικίαση">Ενοικίαση</option>
+                <option value="Πώληση">Πώληση</option>
+            </select>
+        </div>
+    
+        <div class="price-range compact-range">
+            <label for="priceMin">Τιμή</label>
+            <input type="number" id="priceMin" name="price_min" value="null" placeholder="Ελάχιστη">
+            <span>-</span>
+            <input type="number" id="priceMax" name="price_max" value="null" placeholder="Μέγιστη">
+        </div>
+        
+        <div class="area-range compact-range">
+            <label for="areaMin">Εμβαδόν</label>
+            <input type="number" id="areaMin" name="area_min" value="null" placeholder="Ελάχιστο">
+            <span>-</span>
+            <input type="number" id="areaMax" name="area_max" value="null" placeholder="Μέγιστο">
+        </div>
+
+
+        <div class="searchFilter">
+            <button type="button" class="filters-btn" id="filtersBtn">Φίλτρα</button>
+        </div>
+    
+        <div class="additional-filters compact-range" id="additionalFilters" style="display: none;">
+            <!-- Additional filters will be added here based on the property type -->
+        </div>
+
+
+        <div class="searchFilter">
+            <button type="submit" class="search submit" id="searchBtn">
+                <img src="../imgs/search-icon.png" alt="Search">
+            </button>
+        </div>
+    </form>
+    
+    <section class="footer">
+        <div class="footer-content">
+            <div class="logo-part">
+                <img src="images/logo.png" alt="logo">
+                <h1>Property Finder</h1>
+            </div>
+            <div class="footer-list">
+                <ul>
+                    <li><a href="index.html">Εμείς</a></li>
+                    <li><a href="pages/about-us.html">Επικοινωνία</a></li>
+                    <li><a href="pages/contact.html">Careers</a></li>
+                    <li><a href="pages/contact.html">Όροι &amp; Συνθήκες</a></li>
+                    <li><a href="pages/contact.html">Privacy Policy</a></li>
+                    <li><a href="pages/contact.html">Cookies</a></li>
+                </ul>
+            
+            </div>
+
+            <p class="copyright">@2007 Property Finder.All rights reserved </p>
+        </div>
+    </section>
+    <script src="../jsFiles/search-filter.js"></script>
+</body>
+</html>

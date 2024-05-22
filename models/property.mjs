@@ -167,6 +167,7 @@ export const createProperty = (property, location) => {
 export const getAllProperties = () => {
     try {
         const stmt = db.prepare('SELECT * FROM Properties');
+        console.log(stmt.all());
         return stmt.all();
     } catch (error) {
         console.error('Error getting properties:', error);
@@ -176,8 +177,9 @@ export const getAllProperties = () => {
 
 export const getResidentialProperties = () => {
     try {
-        const stmt = db.prepare(`SELECT (id, address, description, surface, price, pricePerSquare, constructionYear, publishedAt, floor, levels, bedrooms, bathrooms)
-                                 FROM Properties JOIN Residential ON Properties.id = Residential.propertyId`);
+        const stmt = db.prepare(`SELECT Properties.id, Properties.address, Properties.description, Properties.surface, Properties.price, Properties.pricePerSquare, Properties.constructionYear, Properties.publishedAt, Residential.floor, Residential.levels, Residential.bedrooms, Residential.bathrooms
+                         FROM Properties JOIN Residential ON Properties.id = Residential.propertyId`);
+
         return stmt.all();
     } catch (error) {
         console.error('Error getting residential properties:', error);

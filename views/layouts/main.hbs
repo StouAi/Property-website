@@ -27,7 +27,11 @@
                     <li><a href="/">Αρχική</a></li>
                     <li><a href="/about-us">Εμείς</a></li>
                     <li><a href="/contact">Επικοινωνία</a></li>
-                    <li><a href="/login">Σύνδεση</a></li>
+                    {{#if userId}}
+                        <li><a href="/logout">Αποσύνδεση</a></li>
+                    {{else}}
+                       <li><a href="/login">Σύνδεση</a> </li>
+                    {{/if}}
                 </ul>
             </div>
         </div>

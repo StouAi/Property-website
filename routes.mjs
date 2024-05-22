@@ -3,13 +3,16 @@ import { loginUserHandler, authenticateUserHandler } from './controllers/userCon
 import { checkUserExists, signupUserHandler} from './controllers/userController.mjs';
 import { createPropertyHandler, getPropertiesHandler } from './controllers/propertyController.mjs';
 import authMiddleware from './middleware/authMiddleware.mjs';
+import { getAllProperties, getResidentialProperties } from './models/property.mjs';
 
 const router = express.Router();
 
 // Home Page
 router.get('/', (req, res) => {
     try{
-        res.render('home', { title: 'Property Finder', catchphrase: "Όλα τα ακίνητα ενα κλικ μακριά", properties: [] });
+        const land_properties = getAllProperties();
+        console.log(land_properties);
+        res.render('home', { title: 'Property Finder', catchphrase: "Όλα τα ακίνητα ενα κλικ μακριά", properties: land_properties});
     } catch (error) {
         console.error('Error loading home page:', error);
         res.status(500).json({ message: 'Error loading home page' });
@@ -33,6 +36,15 @@ router.get('/contact', (req, res) => {
     } catch (error) {
         console.error('Error loading contact page:', error);
         res.status(500).json({ message: 'Error loading contact page' });
+    }
+});
+
+router.get('/properties', (req, res) => {
+    try{
+        res.render('property', { title: 'Property' });
+    } catch (error) {
+        console.error('Error loading property page:', error);
+        res.status(500).json({ message: 'Error loading property page' });
     }
 });
 
@@ -91,6 +103,17 @@ router.get('/login', (req, res) => {
         res.status(500).json({ message: 'Error loading login page' });
     }
 });
+
+router.get('/logout', (req, res) => {
+    try{
+        res.session.destroy();
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error logging out:', error);
+        res.status(500).json({ message: 'Error logging out' });
+    }
+})
+
 
 router.post('/login', loginUserHandler);
 // router.post('/authUser', authenticateUserHandler);

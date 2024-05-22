@@ -1,6 +1,38 @@
- <link rel="stylesheet" href="/styles/properties.css">
-    
- <section class="property-photos">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="property-temp-style.css">
+</head>
+<body>
+    <section class="nav-bar">
+        <div class="header">
+            <div class="logo-part">
+                <img src="images/logo.png" alt="logo">
+                <h1>Property Finder</h1>
+            </div>
+
+            <div class="buy-rent-links">
+                <ul>
+                <li><a href="buy.html">Αγορά</a></li>
+                <li><a href="buy.html">Ενοικίαση</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-part">
+                <ul>
+                    <li><a href="index.html">Αρχική</a></li>
+                    <li><a href="pages/about-us.html">Εμείς</a></li>
+                    <li><a href="pages/contact.html">Επικοινωνία</a></li>
+                    <li><a id = "OpenModal" href="#">Σύνδεση</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="property-photos">
 
         <div class="photos">
             <div class="main-photo">
@@ -27,10 +59,10 @@
     <section class="property-content">
         <div class="property-info">
             <div class="Adress-and-price">
-                <h2 class="adress">{{adress}}</h2>
+                <h2 class="adress">Διευθυνση Zip code </h2>
                 <div class="price">
-                    <p>{{property[price}}</p>
-                    <p>{{property[area]}}</p>
+                    <p>€ 100.000</p>
+                    <p> 2000/m^2</p>
                 </div>
             </div>
             <div class="separator">
@@ -77,3 +109,32 @@
         
     </section>
 
+
+    
+    <section class="footer">
+        <div class="footer-content">
+            <div class="logo-part">
+                <img src="images/logo.png" alt="logo">
+                <h1>Property Finder</h1>
+            </div>
+            <div class="footer-list">
+                <ul>
+                    <li><a href="about-us.html">Εμείς</a></li>
+                    <li><a href="contact.html">Επικοινωνία</a></li>
+                    <li><a href="contact.html">Όροι &amp; Συνθήκες</a></li>
+                    <li><a href="contact.html">Privacy Policy</a></li>
+                    <li><a href="contact.html">Cookies</a></li>
+                </ul>
+            
+            </div>
+
+            <p class="copyright">@2007 Property Finder.All rights reserved </p>
+        </div>
+    </section>
+
+
+
+
+    
+</body>
+</html>

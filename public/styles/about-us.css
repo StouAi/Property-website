@@ -7,18 +7,18 @@ body{
     flex-direction: column;
 }
 
-.catchphrase{
+.number-one {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
     padding: 3em;
-    background: rgb(238, 238, 238);
+    background: rgb(154, 100, 100);
+    text-align: center;
+    
 
 }
 
 
-.catchphrase h1{
+.number-one h1{
     font-size: 4em;
     text-align: center;
     font-family: 'Playfair Display', serif;
@@ -26,11 +26,6 @@ body{
 
 }
 
-.catchphrase p{
-    font-size: 2em;
-    text-align: center;
-    color: white;
-}
 
 
 .year_zero, .present_state{

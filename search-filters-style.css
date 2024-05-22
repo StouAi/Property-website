@@ -1,4 +1,53 @@
-<style>
+:root{
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-bar{
+    
+    background-color: #fff; /* Assuming a white background for contrast */
+    padding: 1em 1em; /* Top and bottom padding of 1em, left and right padding of 2em */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Horizontal offset, vertical offset, blur radius, color */
+    margin-bottom: 0.5em;
+     
+}
+.header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+}
+
+.logo-part h1{
+    font-size: 2em;
+}
+
+.buy-rent {
+    font-size: 2em;
+}
+
+.nav-part ul,.buy-rent-links ul{
+    display: flex;
+    list-style: none;
+    gap: 1.5em;
+
+
+}
+
+.nav-part a,.buy-rent-links a{
+    text-decoration: none;
+    font-size: 2em;
+    color: black;
+}
+
+
+/* Base styles */
+
+
 /*/////////////////////////////////////////////////*/
 /* General layout for search filters */
 .search-filters {
@@ -172,12 +221,12 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
 /* Search button styles */
-.search img {
+.submit img {
     width: 25px;
     height: auto;
 }
 
-.search {
+.submit {
     border: 0;
     border-radius: 25%;
     width: auto;
@@ -185,64 +234,62 @@ input[type="number"]::-webkit-inner-spin-button {
     background: rgb(0, 0, 0);
     cursor: pointer;
 }
-</style>
 
-<form action="/gay" method="POST" class="search-filters">
-    <div class="search-bar">
-        <input type="text" name="location" placeholder="Πόλη,Περιοχή,Οδός">
-    </div>
 
-    <div class="property-type">
-        <select name="property[type]" id="typeSelect">
-            <option value="residential">Κατοικία</option>
-            <option value="commercial">Επαγγελματικό</option>
-            <option value="land">Γη</option>
-        </select>
-    </div>
 
-    <div class="subtype-type">
-        <select name="property[subtype]" id="subtypeSelect">
-            <option value="">Επιλέξτε Υποκατηγορία</option>
-            <!-- Subtype options will be populated dynamically based on property type selection -->
-        </select>
-    </div>
+.footer{
 
-    <div class="sale-type">
-        <select name="property[sale_type]" id="saleSelect">
-            <option value="Ενοικίαση">Ενοικίαση</option>
-            <option value="Πώληση">Πώληση</option>
-        </select>
-    </div>
+    display: flex;
+    align-items: center;
+    padding: 3em;
+    background: rgb(238, 238, 238);
+    justify-content: space-evenly;
+}
 
-    <div class="price-range compact-range">
-        <label for="priceMin">Τιμή</label>
-        <input type="number" id="priceMin" name="property[minPrice]" value="null" placeholder="Ελάχιστη">
-        <span>-</span>
-        <input type="number" id="priceMax" name="property[maxPrice]" value="null" placeholder="Μέγιστη">
-    </div>
+.footer-content {
+    justify-content: left;
+    gap: 10em;
     
-    <div class="area-range compact-range">
-        <label for="areaMin">Εμβαδόν</label>
-        <input type="number" id="areaMin" name="property[minSurface]" value="null" placeholder="Ελάχιστο">
-        <span>-</span>
-        <input type="number" id="areaMax" name="property[maxSurface]" value="null" placeholder="Μέγιστο">
-    </div>
+}
+
+.footer-content h3{
+    font-size: 2em;
+    text-align: center;
+    line-height: 4em;
+}
+
+.footer-content ul{
+    list-style: none;
+    font-size: 1.5em;
+}
+.footer-content li{
+    margin: 1em;
+    display: inline-block;
+}
+
+.footer-content li{
+    margin: 1em;
+}
+.footer-content a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.footer-content a:hover,.nav-part a:hover,.buy-rent-links a:hover{
+    color: blueviolet;
+}
+
+.footer .logo-part{
+    align-items: center;
+
+}
+
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(19, 17, 17);
+}
 
 
-    <div class="searchFilter">
-        <button type="button" class="filters-btn" id="filtersBtn">Φίλτρα</button>
-    </div>
 
-    <div class="additional-filters compact-range" id="additionalFilters" style="display: none;">
-        <!-- Additional filters will be added here based on the property type -->
-    </div>
-
-
-    <div class="searchFilter">
-        <button type="submit" class="search" id="searchBtn">
-            <img src="images/search-icon.png" alt="Search">
-        </button>
-    </div>
-</form>
-
-<script src="scripts/search-properties-script.mjs" defer></script>
