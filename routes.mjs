@@ -3,21 +3,33 @@ import { loginUserHandler, authenticateUserHandler } from './controllers/userCon
 import { checkUserExists, signupUserHandler} from './controllers/userController.mjs';
 import { createPropertyHandler, getPropertiesHandler } from './controllers/propertyController.mjs';
 import authMiddleware from './middleware/authMiddleware.mjs';
-import { getAllProperties, getResidentialProperties } from './models/property.mjs';
 
 const router = express.Router();
 
 // Home Page
 router.get('/', (req, res) => {
     try{
-        const land_properties = getAllProperties();
-        console.log(land_properties);
-        res.render('home', { title: 'Property Finder', catchphrase: "Όλα τα ακίνητα ενα κλικ μακριά", properties: land_properties});
+        const properties = getPropertiesHandler(req, res);
+        res.render('home', { title: 'Property Finder', catchphrase: "Όλα τα ακίνητα ενα κλικ μακριά", properties: properties });
     } catch (error) {
         console.error('Error loading home page:', error);
         res.status(500).json({ message: 'Error loading home page' });
     }
 });
+
+router.get('/property/:id', (req, res) => {
+    try {
+        console.log('Property ID:', req.params.id)
+        res.render('property', { address: 'dieuthinsi', price: '5 eurw', surface: '100 metros cuadrados' })
+        // const property = await Property.findById(req.params.id);
+        // if (!property) {
+        //     return res.status(404).send('Property not found');
+        // }
+        // res.render('property', { property });
+    } catch (err) {
+        res.status(500).send('Server Error');
+    }
+  });
 
 // About Us Page
 router.get('/about-us', (req, res) => {
@@ -36,15 +48,6 @@ router.get('/contact', (req, res) => {
     } catch (error) {
         console.error('Error loading contact page:', error);
         res.status(500).json({ message: 'Error loading contact page' });
-    }
-});
-
-router.get('/properties', (req, res) => {
-    try{
-        res.render('property', { title: 'Property' });
-    } catch (error) {
-        console.error('Error loading property page:', error);
-        res.status(500).json({ message: 'Error loading property page' });
     }
 });
 
@@ -72,7 +75,7 @@ router.get('/rent', (req, res) => {
 // Create property page
 router.get('/createProperty', (req, res) => {
     try{
-        res.render('add-property', { title: 'Add property' });
+        res.render('add-property-2', { title: 'Add property' });
     } catch (error) {
         console.error('Error loading add property page:', error);
         res.status(500).json({ message: 'Error loading add property page' });
@@ -84,14 +87,14 @@ router.post('/createProperty', createPropertyHandler);
 
 router.get('/search', (req, res) => {
     try{
-        res.render('filters', { title: 'Search' });
+        res.render('filters', { title: 'Search', properties: []});
     } catch (error) {
         console.error('Error loading search page:', error);
         res.status(500).json({ message: 'Error loading search page' });
     }
 });
 
-router.post('/gay', getPropertiesHandler);
+router.post('/search', getPropertiesHandler);
 
 
 // Login
@@ -103,17 +106,6 @@ router.get('/login', (req, res) => {
         res.status(500).json({ message: 'Error loading login page' });
     }
 });
-
-router.get('/logout', (req, res) => {
-    try{
-        res.session.destroy();
-        res.redirect('/');
-    } catch (error) {
-        console.error('Error logging out:', error);
-        res.status(500).json({ message: 'Error logging out' });
-    }
-})
-
 
 router.post('/login', loginUserHandler);
 // router.post('/authUser', authenticateUserHandler);

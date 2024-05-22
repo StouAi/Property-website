@@ -1,0 +1,115 @@
+
+
+.property-adder{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    
+}
+
+.add-info{
+    flex: 0 1 50%;
+    padding: 2em;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 1em;
+    text-align: center;
+    font-size: 30px;
+}
+
+.add-info ul{
+    list-style: none;
+    padding: 0;
+}
+
+.add-info li::before {
+    content: "\2714"; /* Unicode character for check mark */
+    color: black; /* Set the color to black */
+    padding-right: 1em;
+}
+
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.property-form{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(0, 0, 0);
+    padding: 50px 0;
+    border-radius: 20px;
+    gap: 10px;
+    align-items: center;
+}
+.form-contents {
+    margin-top: 2em;
+    display: flex;
+    
+    flex-wrap: wrap;   
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-contents div{
+    flex: 0 1 25%;
+
+}
+
+.location-bar {
+    margin: 2px;
+
+
+}
+
+input[type="text"],
+input[type="number"] ,select{
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    padding: 0.6em;
+    font-size: 18px;
+    border-radius: 0.3em;
+    border: 0.1em solid #000;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+textarea{
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    padding: 0.6em;
+    font-size: 18px;
+    border-radius: 0.3em;
+    border: 0.1em solid #000;
+    width: 100%;
+}
+
+::placeholder {
+    color: #000000;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.submit{
+    background-color: #fffbfb;
+    color: #000000;
+    padding: 1em;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+    font-size: 20px;
+    width: 100%;
+    width: 150px;
+    text-align: center;
+}
+

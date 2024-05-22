@@ -5,34 +5,48 @@ import { db } from '../config/db.mjs';
 db.exec(`
     CREATE TABLE IF NOT EXISTS Inquiries (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        message TEXT NOT NULL
+        fromId INTEGER NOT NULL,
+        propertyId INTEGER NOT NULL,
+        createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        message TEXT NOT NULL,
+        FOREIGN KEY (fromId) REFERENCES Users (id),
+        FOREIGN KEY (propertyId) REFERENCES Properties (id)
     )
 `);
 
 
-
-
-
-// Create a new property
-export const createProperty = (property) => {
+// Create a new inquiry
+export const createInquiry = (inquiry) => {
     try {
-        const stmt = db.prepare('INSERT INTO Properties (title, description, price, location) VALUES (?, ?, ?, ?)');
-        const { lastInsertRowid } = stmt.run(title, description, price, location);
+        const stmt = db.prepare('INSERT INTO Inquiries (fromId, propertyId, message) VALUES (?, ?, ?)');
+        const { lastInsertRowid } = stmt.run(inquiry.fromId, inquiry.propertyId, inquiry.message);
         return lastInsertRowid;
     } catch (error) {
-        console.error('Error creating property:', error);
+        console.error('Error creating inquiry:', error);
         throw error;
     }
 };
 
-// Get all properties
-export const getProperties = () => {
+// Get all inquiries for a property
+export const getInquiriesByProperty = (propertyId) => {
     try {
-        const stmt = db.prepare('SELECT * FROM Properties');
-        return stmt.all();
+        const stmt = db.prepare('SELECT * FROM Inquiries WHERE propertyId = ?');
+        const inquiries = stmt.all(propertyId);
+        return inquiries;
     } catch (error) {
-        console.error('Error getting properties:', error);
+        console.error('Error fetching inquiries:', error);
+        throw error;
+    }
+};
+
+// Get all inquiries for a user
+export const getInquiriesByUser = (userId) => {
+    try {
+        const stmt = db.prepare('SELECT * FROM Inquiries WHERE fromId = ?');
+        const inquiries = stmt.all(userId);
+        return inquiries;
+    } catch (error) {
+        console.error('Error fetching inquiries:', error);
         throw error;
     }
 };

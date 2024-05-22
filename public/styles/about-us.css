@@ -2,23 +2,24 @@
     font-size: 10px;
     font-family: 'Times New Roman', Times, serif;
 }
+
 body{
     display: flex;
     flex-direction: column;
 }
 
-.number-one {
+.catchphrase{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 3em;
-    background: rgb(154, 100, 100);
-    text-align: center;
-    
+    background: rgb(238, 238, 238);
 
 }
 
 
-.number-one h1{
+.catchphrase h1{
     font-size: 4em;
     text-align: center;
     font-family: 'Playfair Display', serif;
@@ -26,7 +27,11 @@ body{
 
 }
 
-
+.catchphrase p{
+    font-size: 2em;
+    text-align: center;
+    color: white;
+}
 
 .year_zero, .present_state{
     display: flex;

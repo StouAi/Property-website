@@ -15,58 +15,58 @@ document.addEventListener('DOMContentLoaded', function() {
         'residential': `
             <div class="filter-group">
                 <label for="floorMin">Όροφος</label>
-                <input type="number" id="floorMin" name="property[minFloor]" value="null" placeholder="Ελάχιστος">
+                <input type="number" id="floorMin" name="propertyFilters[minFloor]" value="null" placeholder="Ελάχιστος">
                 <span>-</span>
-                <input type="number" id="floorMax" name="property[maxFloor]" value="null" placeholder="Μέγιστος">
+                <input type="number" id="floorMax" name="propertyFilters[maxFloor]" value="null" placeholder="Μέγιστος">
             </div>
 
             <div class="filter-group">
                 <label for="levelsMin">Αριθμός Ορόφων</label>
-                <input type="number" id="levelsMin" name="property[minLevels]" value="null" placeholder="Ελάχιστος">
+                <input type="number" id="levelsMin" name="propertyFilters[minLevels]" value="null" placeholder="Ελάχιστος">
                 <span>-</span>
-                <input type="number" id="levelsMax" name="property[maxLevels]" value="null" placeholder="Μέγιστος">
+                <input type="number" id="levelsMax" name="propertyFilters[maxLevels]" value="null" placeholder="Μέγιστος">
             </div>
 
             <div class="filter-group">
                 <label for="bedroomsMin">Αριθμός Υπνοδωματίων</label>
-                <input type="number" id="bedroomsMin" name="property[minBedrooms]" value="null" placeholder="Ελάχιστος">
+                <input type="number" id="bedroomsMin" name="propertyFilters[minBedrooms]" value="null" placeholder="Ελάχιστος">
                 <span>-</span>
-                <input type="number" id="bedroomsMax" name="property[maxBedrooms]" value="null" placeholder="Μέγιστος">
+                <input type="number" id="bedroomsMax" name="propertyFilters[maxBedrooms]" value="null" placeholder="Μέγιστος">
             </div>
 
             <div class="filter-group">
                 <label for="bathroomsMin">Αριθμός μπάνιων</label>
-                <input type="number" id="bathroomsMin" name="property[minBathrooms]" value="null" placeholder="Ελάχιστος">
+                <input type="number" id="bathroomsMin" name="propertyFilters[minBathrooms]" value="null" placeholder="Ελάχιστος">
                 <span>-</span>
-                <input type="number" id="bathroomsMax" name="property[maxBathrooms]" value="null" placeholder="Μέγιστος">
+                <input type="number" id="bathroomsMax" name="propertyFilters[maxBathrooms]" value="null" placeholder="Μέγιστος">
             </div>
         `,
         'commercial': `
             <div class="filter-group">
                 <label for="floorMin">Όροφος</label>
-                <input type="number" id="floorMin" name="property[minFloor]" value="null" placeholder="Ελάχιστος">
+                <input type="number" id="floorMin" name="propertyFilters[minFloor]" value="null" placeholder="Ελάχιστος">
                 <span>-</span>
-                <input type="number" id="floorMax" name="property[maxFloor]" value="null" placeholder="Μέγιστος">
+                <input type="number" id="floorMax" name="propertyFilters[maxFloor]" value="null" placeholder="Μέγιστος">
             </div>
 
             <div class="filter-group">
                 <label for="levelsMin">Αριθμός Ορόφων</label>
-                <input type="number" id="levelsMin" name="property[minLevels]" value="null" placeholder="Ελάχιστος">
+                <input type="number" id="levelsMin" name="propertyFilters[minLevels]" value="null" placeholder="Ελάχιστος">
                 <span>-</span>
-                <input type="number" id="levelsMax" name="property[maxLevels]" value="null" placeholder="Μέγιστος">
+                <input type="number" id="levelsMax" name="propertyFilters[maxLevels]" value="null" placeholder="Μέγιστος">
             </div>
 
             <div class="filter-group">
                 <label for="bathroomsMin">Αριθμός μπάνιων</label>
-                <input type="number" id="bathroomsMin" name="property[minBathrooms]" value="null" placeholder="Ελάχιστος">
+                <input type="number" id="bathroomsMin" name="propertyFilters[minBathrooms]" value="null" placeholder="Ελάχιστος">
                 <span>-</span>
-                <input type="number" id="bathroomsMax" name="property[maxBathrooms]" value="null" placeholder="Μέγιστος">
+                <input type="number" id="bathroomsMax" name="propertyFilters[maxBathrooms]" value="null" placeholder="Μέγιστος">
             </div>
         `,
         'land': `
             <div class="filter-group">
                 <label for="buildable">Οικοδομίσιμο</label>
-                <input type="checkbox" id="buildable" name="buildable">
+                <input type="checkbox" id="buildable" name="propertyFilters[buildable]">
             </div>
         `
     };
@@ -91,15 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <option value="Γραφείο">Γραφείο</option>
                 <option value="Αποθήκη">Αποθήκη</option>
             `;
-        }
-        // else if (type === 'land') {
-        //     subtypeSelect.innerHTML = `
-        //         <option value="Όλα">Όλα</option>
-        //         <option value="Οικόπεδο">Οικόπεδο</option>
-        //         <option value="Αγροτεμάχιο">Αγροτεμάχιο</option>
-        //     `;
-        // }
-        else {
+        } else {
             subtypeSelect.innerHTML = `
                 <option value="">Επιλέξτε κατηγορία</option>
             `;

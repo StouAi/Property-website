@@ -4,16 +4,17 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const generateToken = (user) => {
-    return jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
-        expiresIn: '30d'
-    });
-};
+// const generateToken = (user) => {
+//     return jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
+//         expiresIn: '30d'
+//     });
+// };
 
 // Register a new user
 export const loginUserHandler = async (req, res) => {
     try {
-        const { formType, username, password, alsoPassword } = req.body;
+        let { formType, username, password, alsoPassword, fName, lName, phone} = req.body;
+        phone = parseInt(phone);
 
         if (formType === 'login') {
             if (!findUserByUsername(username)) {
@@ -36,12 +37,11 @@ export const loginUserHandler = async (req, res) => {
                 return res.json({ success: false, message: 'Passwords do not match.' });
             }
 
-            const userId = await registerUser(username, password);
+            const userId = await registerUser(username, password, fName, lName, phone);
             const user = findUserByUsername(username);
 
             if (userId) {
-                const token = generateToken(user);
-                // return res.status(201).json({ userId, token });
+                // const token = generateToken(user);
                 return res.json({ success: true, message: 'User registered.', redirect: '/' });
             } else {
                 return res.json({ success: false, message: 'User registration failed.' });
