@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="styles/add-property.css">
 
-<section class="main-content">
+<section class="property-adder">
     <div class="add-info">
         <p>Το Property Finder σας εγγυάται μια απλή και γρήγορη διαδικασία υποβολής αγγελιών, προσφέροντας:</p>
         <ul>
@@ -13,55 +13,59 @@
     </div>
 
     <div class="property-info">
-        <form class="property-form">
+        <form action = "/createProperty" method="POST" class="property-form">
             <div class="form-contents">
-                <div class="location-bar">
-                    <label for="location"><strong>Συμπληρώστε την τοποθεσία με την παρακάτω σειρά</strong></label>
-                    <input type="text" name="location" placeholder="Πόλη,Περιοχή,Οδός">
+
+                <div class="column">
+                
+                    <input type="text" id="country" name="location[country]" required placeholder="Χώρα">
+                    <input type="text" id="city" name="location[city]" required placeholder="Πόλη">
+                    <input type="text" id="zip" name="location[zip]" required placeholder="Ταχ Κώδικας">
+                    <input type="text" id="neighborhood" name="location[neighborhood]" required placeholder="Περιοχή">
+                    <input type="text" id="adress" name="property[address]" required placeholder="Οδός">
                 </div>
             
-                <div class="property-type">
-                    <select name="property_type" id="typeSelect">
+                <div class="column">
+                    <select name="property[type]" id="type" >
                         <option value="Κατοικία">Κατοικία</option>
                         <option value="Επαγγελματικό">Επαγγελματικό</option>
                         <option value="Γη">Γη</option>
                     </select>
-                </div>
+                
             
-                <div class="subtype-type">
-                    <select name="subtype" id="subtypeSelect">
-                        <option value="">Επιλέξτε Υποκατηγορία</option>
+                
+                    <select name="property[subtype]" id="subtype" required>
+                        <option value="">Υποκατηγορία</option>
                         <!-- Subtype options will be populated dynamically based on property type selection -->
                     </select>
-                </div>
-            
-                <div class="sale-type">
-                    <select name="sale_type" id="saleSelect">
+                
+                    <select name="property[forRent]" id="forRent">
                         <option value="Ενοικίαση">Ενοικίαση</option>
                         <option value="Πώληση">Πώληση</option>
                     </select>
-                </div>
-            
-                <div class="price compact-range">
-                    <input type="number" id="price" name="price" value="null" placeholder="Τιμή">
-                </div>
                 
-                <div class="area compact-range">
-                    <input type="number" id="area" name="area" value="null" placeholder="Εμβαδό(τμ)">
-                </div>
-
-                <div class="searchFilter">
-                    <button type="button" class="filters-btn" id="filtersBtn">Περισσότερα</button>
-                </div>
             
-                <div class="additional-filters compact-range" id="additionalFilters" style="display: none;">
-                    <!-- Additional filters will be added here based on the property type -->
+                
+                    <input type="number" id="price" name="property[price]" required placeholder="Τιμή">
+                
+                
+                
+                    <input type="number"  id="surface" name="property[surface]" required placeholder="Εμβαδό(τμ)">
                 </div>
 
-                <div class="searchFilter">
-                    <button type="submit" class="submit" id="submitProp">Yποβολή</button>
+                <div class="column">
+                    <textarea  id="description" name="property[description]" cols="20" rows="10" required placeholder="Περιγραφή"></textarea>
+                
+                    <div class="additional-filters compact-range" id="additionalFilters" style="display: none;">
+                        <!-- Additional filters will be added here based on the property type -->
+                    </div>
+
                 </div>
             </div>
+            
+            <button type="submit" class="submit" >Yποβολή</button>
+            
+            
         </form>
     </div>
 </section>

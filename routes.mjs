@@ -53,9 +53,9 @@ router.get('/rent', (req, res) => {
 
 
 // Create property page
-router.get('/createProperty', (req, res) => {
+router.get('/add', (req, res) => {
     try{
-        res.render('add-property', { title: 'Add property' });
+        res.render('add-property-2', { title: 'Add property' });
     } catch (error) {
         console.error('Error loading add property page:', error);
         res.status(500).json({ message: 'Error loading add property page' });
@@ -63,7 +63,7 @@ router.get('/createProperty', (req, res) => {
 });
 
 router.get('/getProperties', getPropertiesHandler);
-router.post('/createProperty', createPropertyHandler);
+router.post('/add', createPropertyHandler);
 
 router.get('/search', (req, res) => {
     try{
