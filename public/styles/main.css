@@ -23,13 +23,13 @@ body{
     font-size: 1.5em;
 }
 
-.nav-part ul,.buy-rent-links ul{
+.nav-part ul, .buy-rent-links ul{
     display: flex;
     list-style: none;
     gap: 1.5em;
 }
 
-.nav-part a,.buy-rent-links a{
+.nav-part a, .buy-rent-links a{
     text-decoration: none;
     font-size: 1.5em;
     color: black;
@@ -60,7 +60,6 @@ body{
 
 /* Footer */
 .footer{
-
     display: flex;
     align-items: center;
     padding: 3em;

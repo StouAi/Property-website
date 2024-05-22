@@ -1,4 +1,4 @@
-:root{
+/* :root{
     font-size: 10px;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -6,7 +6,7 @@
 body{
     display: flex;
     flex-direction: column;
-}
+} */
 
 .add-fav{
     
@@ -63,8 +63,6 @@ body{
     height: auto; /* Maintain aspect ratio */
      /* Add spacing between secondary photos */
 }
-
-
 
 .property-content{
     display: flex;

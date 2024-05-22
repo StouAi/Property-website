@@ -84,8 +84,11 @@ export const getPropertiesHandler = (req, res) => {
 // Show home page properties
 export const showHomePropertiesHandler = (req, res) => {
     try {
-        const propertiesForSale = getPropertiesForSale();
-        const propertiesForRent = getPropertiesForRent();
+        let propertiesForSale = getPropertiesForSale();
+        let propertiesForRent = getPropertiesForRent();
+        propertiesForSale = propertiesForSale.map(property => getPropertyFromID(property.id));
+        propertiesForRent = propertiesForRent.map(property => getPropertyFromID(property.id));
+
         res.render('home', {
             title: 'Property Finder',
             catchphrase: "Ακίνητα προς Αγορά",
@@ -108,11 +111,6 @@ export const showPropertyPageHandler = (req, res) => {
         console.log('User: ', user);
 
         res.render('property', { property, user });
-        // const property = await Property.findById(req.params.id);
-        // if (!property) {
-        //     return res.status(404).send('Property not found');
-        // }
-        // res.render('property', { property });
     } catch (err) {
         res.status(500).send('Server Error');
     }

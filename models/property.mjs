@@ -215,11 +215,11 @@ export const getPropertyFromID = (propertyID) => {
                 break;
             case 'commercial':
                 const commercialStmt = db.prepare('SELECT * FROM Commercial WHERE propertyId = ?');
-                details = residentialStmt.get(propertyID);
+                details = commercialStmt.get(propertyID);
                 break;
             case 'land':
                 const landStmt = db.prepare('SELECT * FROM Land WHERE propertyId = ?');
-                details = residentialStmt.get(propertyID);
+                details = landStmt.get(propertyID);
                 break;
             default:
                 throw new Error('Invalid property type');

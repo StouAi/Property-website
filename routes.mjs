@@ -1,6 +1,5 @@
 import express from 'express';
-import { loginUserHandler, authenticateUserHandler } from './controllers/userController.mjs';
-import { checkUserExists, signupUserHandler} from './controllers/userController.mjs';
+import { loginUserHandler, checkAuthenticated } from './controllers/userController.mjs';
 import { createPropertyHandler, getPropertiesHandler, showHomePropertiesHandler, showPropertyPageHandler } from './controllers/propertyController.mjs';
 import authMiddleware from './middleware/authMiddleware.mjs';
 
@@ -74,7 +73,7 @@ router.get('/search', (req, res) => {
     }
 });
 
-router.post('/search', getPropertiesHandler);
+router.post('/search', checkAuthenticated, getPropertiesHandler);
 
 
 // Login
@@ -88,7 +87,5 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', loginUserHandler);
-// router.post('/authUser', authenticateUserHandler);
-// router.post('/signupUser', signupUserHandler);
 
 export default router;
