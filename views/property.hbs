@@ -25,10 +25,10 @@
 <section class="property-content">
     <div class="property-info">
         <div class="Adress-and-price">
-            <h2 class="adress">{{address}}</h2>
+            <h2 class="adress">{{property.address}}</h2>
             <div class="price">
-                <p>{{price}}</p>
-                <p>{{area}}</p>
+                <p>{{property.price}}</p>
+                <p>{{property.surface}}</p>
             </div>
         </div>
         <div class="separator">
@@ -36,8 +36,7 @@
         </div>
         <div class="property-descrip">
             <h2>Περιγραφή</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit maxime voluptate quas, consectetur quia accusamus quasi assumenda ullam blanditiis 
-                dolor consequatur delectus natus facere aspernatur deleniti quisquam officia aliquam magnam.</p>
+            <p>{{property.description}}</p>
         </div>
         <div class="separator">
             <hr>
@@ -51,8 +50,8 @@
         </div>
         <div class="owner-info">
             <h2>Ιδιοκτήτης</h2>
-            <p><strong>Όνομα:</strong></p>
-            <p><strong>Τηλέφωνο:</strong></p>
+            <p><strong>Όνομα: {{user.fName}} {{user.lName}}</strong></p>
+            <p><strong>Τηλέφωνο: {{user.phone}}</strong></p>
         </div>
     </div>
 

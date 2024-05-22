@@ -190,11 +190,19 @@ and change flex direction */
 
 
 
-.homes-listing, .land-listing{
+.sale-listings, .rent-listings {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.sale-listings a, .rent-listings a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    display: block;
+}
+
 .property-listing {
     border: 1px solid #ccc;
     border-radius: 4em;

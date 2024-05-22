@@ -1,35 +1,15 @@
 import express from 'express';
 import { loginUserHandler, authenticateUserHandler } from './controllers/userController.mjs';
 import { checkUserExists, signupUserHandler} from './controllers/userController.mjs';
-import { createPropertyHandler, getPropertiesHandler } from './controllers/propertyController.mjs';
+import { createPropertyHandler, getPropertiesHandler, showHomePropertiesHandler, showPropertyPageHandler } from './controllers/propertyController.mjs';
 import authMiddleware from './middleware/authMiddleware.mjs';
 
 const router = express.Router();
 
 // Home Page
-router.get('/', (req, res) => {
-    try{
-        const properties = getPropertiesHandler(req, res);
-        res.render('home', { title: 'Property Finder', catchphrase: "Όλα τα ακίνητα ενα κλικ μακριά", properties: properties });
-    } catch (error) {
-        console.error('Error loading home page:', error);
-        res.status(500).json({ message: 'Error loading home page' });
-    }
-});
+router.get('/', showHomePropertiesHandler);
 
-router.get('/property/:id', (req, res) => {
-    try {
-        console.log('Property ID:', req.params.id)
-        res.render('property', { address: 'dieuthinsi', price: '5 eurw', surface: '100 metros cuadrados' })
-        // const property = await Property.findById(req.params.id);
-        // if (!property) {
-        //     return res.status(404).send('Property not found');
-        // }
-        // res.render('property', { property });
-    } catch (err) {
-        res.status(500).send('Server Error');
-    }
-  });
+router.get('/property/:id', showPropertyPageHandler);
 
 // About Us Page
 router.get('/about-us', (req, res) => {

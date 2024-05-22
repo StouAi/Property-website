@@ -7,6 +7,7 @@ db.exec(`
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         locationId INTEGER NOT NULL,
         userId INTEGER NOT NULL,
+        type TEXT NOT NULL CHECK (type IN ('residential', 'commercial', 'land')),
         address TEXT NOT NULL,
         description TEXT NOT NULL,
         surface REAL NOT NULL CHECK (surface > 0),
@@ -120,8 +121,8 @@ export const createProperty = (userID, property, location) => {
         }
 
         // Add property to the database
-        let stmt = db.prepare('INSERT INTO Properties (locationId, userId, address, description, surface, price, constructionYear, forRent) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-        const { lastInsertRowid } = stmt.run(locationId, userID, property.address, property.description, property.surface, property.price, property.constructionYear, property.forRent);
+        let stmt = db.prepare('INSERT INTO Properties (locationId, userId, type, address, description, surface, price, constructionYear, forRent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        const { lastInsertRowid } = stmt.run(locationId, userID, property.type, property.address, property.description, property.surface, property.price, property.constructionYear, property.forRent);
 
         // Add property type to the database
         try {
@@ -196,6 +197,41 @@ export const getAllProperties = () => {
 //         throw error;
 //     }
 // };
+
+export const getPropertyFromID = (propertyID) => {
+    try {
+        const propertyStmt = db.prepare('SELECT * FROM Properties WHERE id = ?');
+        let property = propertyStmt.get(propertyID);
+
+        if (!property) {
+            throw new Error('Property not found');
+        }
+
+        let details;
+        switch (property.type) {
+            case 'residential':
+                const residentialStmt = db.prepare('SELECT * FROM Residential WHERE propertyId = ?');
+                details = residentialStmt.get(propertyID);
+                break;
+            case 'commercial':
+                const commercialStmt = db.prepare('SELECT * FROM Commercial WHERE propertyId = ?');
+                details = residentialStmt.get(propertyID);
+                break;
+            case 'land':
+                const landStmt = db.prepare('SELECT * FROM Land WHERE propertyId = ?');
+                details = residentialStmt.get(propertyID);
+                break;
+            default:
+                throw new Error('Invalid property type');
+        }
+
+        return { ...property, ...details };
+
+    } catch (error) {
+        console.error('Error getting property from ID:', error);
+        throw error;
+    }
+}
 
 export const getPropertiesForRent = () => {
     try {

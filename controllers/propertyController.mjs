@@ -1,4 +1,7 @@
 import { createProperty, getAllProperties, getPropertiesWithFilters } from '../models/property.mjs';
+import { getPropertiesForRent, getPropertiesForSale } from '../models/property.mjs';
+import { getPropertyFromID } from '../models/property.mjs';
+import { findUserByID } from '../models/user.mjs';
 
 // Create a new property
 export const createPropertyHandler = (req, res) => {
@@ -28,11 +31,12 @@ export const getPropertiesHandler = (req, res) => {
     try {
         let { locationQuery, propertyFilters } = req.body;
 
-        for (let key in propertyFilters) {
-            if (propertyFilters[key] === '') {
-                propertyFilters[key] = null;
-            } else if (!isNaN(propertyFilters[key])) {
-                propertyFilters[key] = parseInt(propertyFilters[key]);
+        if (propertyFilters !== undefined ) {
+            for (let key in propertyFilters) {
+                if (propertyFilters[key] === '')
+                    propertyFilters[key] = null;
+                else if (!isNaN(propertyFilters[key]))
+                    propertyFilters[key] = parseInt(propertyFilters[key]);
             }
         }
 
@@ -77,4 +81,39 @@ export const getPropertiesHandler = (req, res) => {
     }
 };
 
+// Show home page properties
+export const showHomePropertiesHandler = (req, res) => {
+    try {
+        const propertiesForSale = getPropertiesForSale();
+        const propertiesForRent = getPropertiesForRent();
+        res.render('home', {
+            title: 'Property Finder',
+            catchphrase: "Ακίνητα προς Αγορά",
+            propertiesForSale: propertiesForSale,
+            propertiesForRent: propertiesForRent
+        });
+    } catch (error) {
+        console.error('Error loading home page:', error);
+        res.status(500).json({ message: 'Error loading home page' });
+    }
+};
 
+export const showPropertyPageHandler = (req, res) => {
+    try {
+        const property = getPropertyFromID(parseInt(req.params.id));
+        console.log(property.userId)
+        const user = findUserByID(property.userId);
+
+        console.log('Property: ', property);
+        console.log('User: ', user);
+
+        res.render('property', { property, user });
+        // const property = await Property.findById(req.params.id);
+        // if (!property) {
+        //     return res.status(404).send('Property not found');
+        // }
+        // res.render('property', { property });
+    } catch (err) {
+        res.status(500).send('Server Error');
+    }
+  };
