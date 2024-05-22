@@ -14,6 +14,7 @@ db.exec(`
         pricePerSquare REAL GENERATED ALWAYS AS (price / surface) VIRTUAL,
         constructionYear INTEGER NOT NULL CHECK (constructionYear >= 1000 AND constructionYear <= CAST(strftime('%Y', CURRENT_TIMESTAMP) AS INTEGER)),
         publishedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        forRent BOOLEAN NOT NULL,
         FOREIGN KEY (locationId) REFERENCES Locations (id),
         FOREIGN KEY (userId) REFERENCES Users (id)
     )
@@ -65,39 +66,33 @@ db.exec(`
 `);
 
 
-// Get location IDs that match the provided filters
-const getLocationIds = (locationFilters) => {
+// Get location IDs that match the user's input query
+const getLocationsFromSearchQuery = (locationQuery) => {
     try {
-        let query = 'SELECT id FROM Locations WHERE 1=1';
-        const queryParams = [];
-
-        // Add filters based on provided params
-        if (locationFilters.country) {
-            query += ' AND country = ?';
-            queryParams.push(locationFilters.country);
-        }
-        if (locationFilters.city) {
-            query += ' AND city = ?';
-            queryParams.push(locationFilters.city);
-        }
-        if (locationFilters.zip) {
-            query += ' AND zip = ?';
-            queryParams.push(locationFilters.zip);
-        }
-        if (locationFilters.neighborhood) {
-            query += ' AND neighborhood = ?';
-            queryParams.push(locationFilters.neighborhood);
-        }
-
-        const stmt = db.prepare(query);
-        const rows = stmt.all(...queryParams);
-
+        const stmt = db.prepare(`SELECT id FROM Locations WHERE
+                                LOWER(country) GLOB '*' || LOWER(?) || '*'
+                                OR LOWER(city) GLOB '*' || LOWER(?) || '*'
+                                OR LOWER(zip) GLOB '*' || LOWER(?) || '*'
+                                OR LOWER(neighborhood) GLOB '*' || LOWER(?) || '*'`);
+        const rows = stmt.all(locationQuery, locationQuery, locationQuery, locationQuery);
         return rows.map(row => row.id);
     } catch (error) {
         console.error('Error getting location IDs:', error);
         throw error;
     }
 };
+
+// Get location ID
+const getLocationID = (location) => {
+    try {
+        const stmt = db.prepare('SELECT id FROM Locations WHERE country = ? AND city = ? AND zip = ? AND neighborhood = ?');
+        const row = stmt.get(location.country, location.city, location.zip, location.neighborhood);
+        return row ? row.id : null;
+    } catch (error) {
+        console.error('Error getting location ID:', error);
+        throw error;
+    }
+}
 
 // Create a new location
 const createLocation = (location) => {
@@ -113,16 +108,20 @@ const createLocation = (location) => {
 
 // Create a new property
 export const createProperty = (userID, property, location) => {
+
+    property.forRent = 1; // Hardcoded for now
+
+
     try {
         // Get location ID
-        let locationId = getLocationIds(location);
+        let locationId = getLocationID(location);
         if (!locationId) {
             locationId = createLocation(location);
         }
 
         // Add property to the database
-        let stmt = db.prepare('INSERT INTO Properties (locationId, userId, address, description, surface, price, constructionYear) VALUES (?, ?, ?, ?, ?, ?, ?)');
-        const { lastInsertRowid } = stmt.run(locationId, userID, property.address, property.description, property.surface, property.price, property.constructionYear);
+        let stmt = db.prepare('INSERT INTO Properties (locationId, userId, address, description, surface, price, constructionYear, forRent) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        const { lastInsertRowid } = stmt.run(locationId, userID, property.address, property.description, property.surface, property.price, property.constructionYear, property.forRent);
 
         // Add property type to the database
         try {
@@ -198,14 +197,32 @@ export const getAllProperties = () => {
 //     }
 // };
 
+export const getPropertiesForRent = () => {
+    try {
+        const stmt = db.prepare('SELECT * FROM Properties WHERE forRent = 1');
+        return stmt.all();
+    } catch (error) {
+        console.error('Error getting properties for rent:', error);
+        throw error;
+    }
+}
 
-export const getPropertiesWithFilters = (propertyFilters, locationFilters) => {
+export const getPropertiesForSale = () => {
+    try {
+        const stmt = db.prepare('SELECT * FROM Properties WHERE forRent = 0');
+        return stmt.all();
+    } catch (error) {
+        console.error('Error getting properties for sale:', error);
+        throw error;
+    }
+}
+
+export const getPropertiesWithFilters = (propertyFilters, locationQuery) => {
     console.log('Property filters:', propertyFilters);
-    console.log('Location filters:', locationFilters);
+    console.log('Location Query:', locationQuery ? locationQuery : '--');
     try {
         let query = 'SELECT * FROM Properties';
         const queryParams = [];
-
         // Property type filters
         if (propertyFilters.type) {
 
@@ -221,48 +238,48 @@ export const getPropertiesWithFilters = (propertyFilters, locationFilters) => {
 
             if (propertyFilters.type === 'residential' || propertyFilters.type === 'commercial') {
                 // Subtype
-                if (propertyFilters.subtype !== null) {
+                if (!!propertyFilters.subtype) {
                     query += ' AND subtype = ?';
                     queryParams.push(propertyFilters.subtype);
                 }
 
                 // Floor
-                if (propertyFilters.minFloor !== null) {
+                if (!!propertyFilters.minFloor) {
                     query += ' AND floor >= ?';
                     queryParams.push(propertyFilters.minFloor);
                 }
-                if (propertyFilters.maxFloor !== null) {
+                if (!!propertyFilters.maxFloor) {
                     query += ' AND floor <= ?';
                     queryParams.push(propertyFilters.maxFloor);
                 }
 
                 // Levels
-                if (propertyFilters.minLevels !== null) {
+                if (!!propertyFilters.minLevels) {
                     query += ' AND levels >= ?';
                     queryParams.push(propertyFilters.minLevels);
                 }
-                if (propertyFilters.maxLevels !== null) {
+                if (!!propertyFilters.maxLevels) {
                     query += ' AND levels <= ?';
                     queryParams.push(propertyFilters.maxLevels);
                 }
 
                 // Bathrooms
-                if (propertyFilters.minBathrooms !== null) {
+                if (!!propertyFilters.minBathrooms) {
                     query += ' AND bathrooms >= ?';
                     queryParams.push(propertyFilters.minBathrooms);
                 }
-                if (propertyFilters.maxBathrooms !== null) {
+                if (!!propertyFilters.maxBathrooms) {
                     query += ' AND bathrooms <= ?';
                     queryParams.push(propertyFilters.maxBathrooms);
                 }
 
                 // Bedrooms
                 if (propertyFilters.type === 'residential') {
-                    if (propertyFilters.minBedrooms !== null) {
+                    if (!!propertyFilters.minBedrooms) {
                         query += ' AND bedrooms >= ?';
                         queryParams.push(propertyFilters.minBedrooms);
                     }
-                    if (propertyFilters.maxBedrooms !== null) {
+                    if (!!propertyFilters.maxBedrooms) {
                         query += ' AND bedrooms <= ?';
                         queryParams.push(propertyFilters.maxBedrooms);
                     }
@@ -270,14 +287,14 @@ export const getPropertiesWithFilters = (propertyFilters, locationFilters) => {
                 
                 // Parking
                 if (propertyFilters.type === 'commercial') {
-                    if (propertyFilters.parking !== null) {
+                    if (!!propertyFilters.parking) {
                         query += ' AND parking = ?';
                         queryParams.push(propertyFilters.parking);
                     }
                 }
             } else if (propertyFilters.type === 'land') {
                 // Buildable
-                if (propertyFilters.buildable !== null) {
+                if (!!propertyFilters.buildablefined) {
                     query += ' AND buildable = ?';
                     queryParams.push(propertyFilters.buildable);
                 }
@@ -289,34 +306,38 @@ export const getPropertiesWithFilters = (propertyFilters, locationFilters) => {
         query += ' WHERE 1=1';
 
         // General property filters
-        if (propertyFilters.minSurface !== null) {
+        if (!!propertyFilters.forRent) {
+            query += ' AND forRent = ?';
+            queryParams.push(propertyFilters.forRent);
+        }
+        if (!!propertyFilters.minSurface) {
             query += ' AND surface >= ?';
             queryParams.push(propertyFilters.minSurface);
         }
-        if (propertyFilters.maxSurface !== null) {
+        if (!!propertyFilters.maxSurface) {
             query += ' AND surface <= ?';
             queryParams.push(propertyFilters.maxSurface);
         }
-        if (propertyFilters.minPrice !== null) {
+        if (!!propertyFilters.minPrice) {
             query += ' AND price >= ?';
             queryParams.push(propertyFilters.minPrice);
         }
-        if (propertyFilters.maxPrice !== null) {
+        if (!!propertyFilters.maxPrice) {
             query += ' AND price <= ?';
             queryParams.push(propertyFilters.maxPrice);
         }
-        if (propertyFilters.minConstructionYear !== null) {
+        if (!!propertyFilters.minConstructionYear) {
             query += ' AND constructionYear >= ?';
             queryParams.push(propertyFilters.minConstructionYear);
         }
-        if (propertyFilters.maxConstructionYear !== null) {
+        if (!!propertyFilters.maxConstructionYear) {
             query += ' AND constructionYear <= ?';
             queryParams.push(propertyFilters.maxConstructionYear);
         }
 
-        // Location filters
-        if (locationFilters) {
-            const locationIds = getLocationIds(locationFilters);
+        // Location filtering
+        if (locationQuery) {
+            const locationIds = getLocationsFromSearchQuery(locationQuery);
             if (locationIds.length > 0) {
                 query += ' AND locationId IN (' + locationIds.map(() => '?').join(', ') + ')';
                 queryParams.push(...locationIds);
@@ -324,6 +345,7 @@ export const getPropertiesWithFilters = (propertyFilters, locationFilters) => {
         }
 
         console.log('Query:', query);
+        console.log('Query params:', queryParams);
         const stmt = db.prepare(query);
         return stmt.all(...queryParams);
     } catch (error) {

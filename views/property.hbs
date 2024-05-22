@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="/styles/property.css">
+
+ <section class="property-photos">
+    <div class="photos">
+        <div class="main-photo">
+            <img src="/images/greece_map.png" alt="property photo 1">
+        </div>
+        <div class="secondary-photos">
+            <div class="second-photo">
+                <img src="/images/lighbulb.jpg" alt="property photo 2">
+            </div>
+            <div class="third-photo">    
+                <img src="/images/lighbulb.jpg" alt="property photo 3">
+            </div>
+        </div>
+    </div>
+
+    <div class="add-fav">
+        <label for="fav">Προσθήκη στα αγαπημένα</label>
+        <input type="checkbox" id="fav">
+
+    </div>
+</section>
+
+<section class="property-content">
+    <div class="property-info">
+        <div class="Adress-and-price">
+            <h2 class="adress">{{address}}</h2>
+            <div class="price">
+                <p>{{price}}</p>
+                <p>{{area}}</p>
+            </div>
+        </div>
+        <div class="separator">
+            <hr>
+        </div>
+        <div class="property-descrip">
+            <h2>Περιγραφή</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit maxime voluptate quas, consectetur quia accusamus quasi assumenda ullam blanditiis 
+                dolor consequatur delectus natus facere aspernatur deleniti quisquam officia aliquam magnam.</p>
+        </div>
+        <div class="separator">
+            <hr>
+        </div>
+        <div class="property-map">
+            <h2>Τοποθεσία</h2>
+            
+        </div>
+        <div class="separator">
+            <hr>
+        </div>
+        <div class="owner-info">
+            <h2>Ιδιοκτήτης</h2>
+            <p><strong>Όνομα:</strong></p>
+            <p><strong>Τηλέφωνο:</strong></p>
+        </div>
+    </div>
+
+    <div class="property-side">
+        <div class="interest-form">
+            <h3>Ενδιαφέρομαι</h3>
+            <form action="">
+                <div class="name">
+                    <input type="text" name="FirstName"  placeholder="Όνομα">
+                    <input type="text" name="LastName" placeholder="Επώνυμο">
+                </div>
+                <input type="email" name ="email" placeholder="Email">
+                <input type="tel" name="phone" placeholder="Τηλέφωνο">
+                <textarea name="comments" id="" cols="30" rows="10" placeholder="Σχόλια"></textarea>
+                <button type="submit" class="property-interest">Αποστολή</button>
+            </form>
+        </div>
+    </div>
+</section>

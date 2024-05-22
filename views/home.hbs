@@ -30,6 +30,19 @@
         <h2>Νεες Αγγελιες Κατοικιων</h2>
     </div>
     <div class="homes-listing">
+        <a href="http://example.com">
+            <figure class="property-listing">
+                <img src="images/bgr-photo-main.jpg" alt="House Image">
+                <figcaption>
+                    <h2>Κατοικία</h2>
+                    <p>Πατρα,Αγίου Νικολαου</p>
+                    <p>Price: €300,000</p>
+                    <p>Κρεβατοκάμαρες: 3 Μπάνια: 2</p>
+                    <p>2000τ.μ</p>
+                </figcaption>
+            </figure>
+        </a>
+        
         <figure class="property-listing">
             <img src="images/bgr-photo-main.jpg" alt="House Image">
             <figcaption>
@@ -79,45 +92,29 @@
         <h2>Νεες Αγγελιες Οικοπέδων</h2>
     </div>
     <div class="land-listing">
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Οικόπεδο</h2>
-                <p>Πατρα,Αγυια</p>
-                <p>Price: €160,000</p>
-                <p>680τ.μ</p>
-            </figcaption>
-        </figure>
-
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Οικόπεδο</h2>
-                <p>Πατρα,Εγλυκάδα</p>
-                <p>Price: €115,000</p>
-                <p>440τ.μ</p>
-            </figcaption>
-        </figure>
-
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Οικόπεδο</h2>
-                <p>Θεσσαλονικη,Άνω πολη </p>
-                <p>Price: €111,000</p>
-                <p>82τ.μ</p>
-            </figcaption>
-        </figure>
-
-        <figure class="property-listing">
-            <img src="images/bgr-photo-main.jpg" alt="House Image">
-            <figcaption>
-                <h2>Οικόπεδο</h2>
-                <p>Πειραιάς,λιμάνι</p>
-                <p>Price: €1,300,000</p>
-                <p>500τ.μ</p>
-            </figcaption>
-        </figure>
+        {{#each properties}}
+            {{!-- <a href="/property/{{this.property.id}}">
+                <figure class="property-listing">
+                    <img src="images/bgr-photo-main.jpg" alt="House Image">
+                    <figcaption>
+                        <h2>{{this.property.type}}</h2>
+                        <p>{{this.location.city}}, {{this.location.neighborhood}}</p>
+                        <p>Price: €{{this.property.price}}</p>
+                        <p>{{this.property.surface}}τ.μ</p>
+                    </figcaption>
+                </figure>
+            </a> --}}
+            <a href="/property/{{this.id}}">
+                <figure class="property-listing">
+                    <img src="images/bgr-photo-main.jpg" alt="House Image">
+                    <figcaption>
+                        <h2>{{this.type}}</h2>
+                        <p>Price: €{{this.price}}</p>
+                        <p>{{this.surface}}τ.μ</p>
+                    </figcaption>
+                </figure>
+            </a>
+        {{/each}}
 
     </div>
 </section>

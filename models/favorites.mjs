@@ -6,29 +6,31 @@ db.exec(`
     CREATE TABLE IF NOT EXISTS Favorites (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         userId INTEGER NOT NULL,
-        propertyId INTEGER NOT NULL 
+        propertyId INTEGER NOT NULL,
+        FOREIGN KEY (userId) REFERENCES Users (id),
+        FOREIGN KEY (propertyId) REFERENCES Properties (id)
     )
 `);
 
-// Create a new property
-export const createProperty = (property) => {
+// Create a new favorite
+export const createFavorite = (userId, propertyId) => {
     try {
-        const stmt = db.prepare('INSERT INTO Properties (title, description, price, location) VALUES (?, ?, ?, ?)');
-        const { lastInsertRowid } = stmt.run(title, description, price, location);
+        const stmt = db.prepare('INSERT INTO Favorites (userId, propertyId) VALUES (?, ?)');
+        const { lastInsertRowid } = stmt.run(userId, propertyId);
         return lastInsertRowid;
     } catch (error) {
-        console.error('Error creating property:', error);
+        console.error('Error creating favorite:', error);
         throw error;
     }
 };
 
-// Get all properties
-export const getProperties = () => {
+// Get all favorites for a user
+export const getFavoritesByUser = (userId) => {
     try {
-        const stmt = db.prepare('SELECT * FROM Properties');
-        return stmt.all();
+        const stmt = db.prepare('SELECT * FROM Favorites WHERE userId = ?');
+        return stmt.all(userId);
     } catch (error) {
-        console.error('Error getting properties:', error);
+        console.error('Error fetching favorites:', error);
         throw error;
     }
 };

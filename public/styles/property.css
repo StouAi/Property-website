@@ -1,0 +1,131 @@
+:root{
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.add-fav{
+    
+    color: black;
+    text-align: center;
+}
+
+.add-fav label{
+    font-size: 20px;
+}
+
+.property-photos{
+    width: fit-content;
+    margin: 0 auto;
+
+}
+
+.photos {
+    display: flex;
+    justify-content: center; /* Center the flex items horizontally */
+    gap: 1em; /* Add a gap between flex items */
+    margin-top: 2em;
+    margin: 1em 4em; /* Add space around the photos */
+    border-radius: 1em;
+}
+
+.main-photo {
+    flex: 0 1 70%; /* Take 70% of available space, don't grow or shrink */
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.main-photo img {
+    width: 100%; /* Ensure image fills the available width */
+}
+
+.secondary-photos {
+    flex: 0 1 30%; /* Take 30% of available space, don't grow or shrink */
+    display: flex;
+    flex-direction: column; /* Stack secondary photos vertically */
+    justify-content: flex-end; /* Align photos at the top */
+
+}
+
+.second-photo,
+.third-photo {
+    flex: 1; /* Take equal space within the secondary photos container */
+}
+
+.second-photo img,
+.third-photo img {
+    width: 100%; /* Ensure images fill the available width */
+    height: auto; /* Maintain aspect ratio */
+     /* Add spacing between secondary photos */
+}
+
+
+
+.property-content{
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.property-info{
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    box-sizing: border-box;
+    text-size-adjust: auto;    
+}
+
+.property-info p, .property-info h2{
+    font-size: 20px;
+
+}
+
+.interest-form{
+    flex: 0 1 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border: 0.2em solid rgb(0, 0, 0);
+    border-radius: 1em;
+    align-items: center;
+    padding: 1em;
+}
+.interest-form form{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.interest-form h3{
+    text-align: center;
+    font-size: 2em;
+}
+
+.interest-form input, .interest-form textarea{
+    padding: 0.5em;
+    border-radius: 1em;
+    border: 0.1em solid rgb(0, 0, 0);
+    
+}
+.interest-form button{
+    padding: 0.5em 1em;
+    border-radius: 1em;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-size: 1.5em;
+    flex: 1 0 100%;
+}
+
+.interest-form .name{
+    display: flex;
+    gap: 1em;
+}

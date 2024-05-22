@@ -9,12 +9,27 @@ const router = express.Router();
 // Home Page
 router.get('/', (req, res) => {
     try{
-        res.render('home', { title: 'Property Finder', catchphrase: "Όλα τα ακίνητα ενα κλικ μακριά", properties: [] });
+        const properties = getPropertiesHandler(req, res);
+        res.render('home', { title: 'Property Finder', catchphrase: "Όλα τα ακίνητα ενα κλικ μακριά", properties: properties });
     } catch (error) {
         console.error('Error loading home page:', error);
         res.status(500).json({ message: 'Error loading home page' });
     }
 });
+
+router.get('/property/:id', (req, res) => {
+    try {
+        console.log('Property ID:', req.params.id)
+        res.render('property', { address: 'dieuthinsi', price: '5 eurw', surface: '100 metros cuadrados' })
+        // const property = await Property.findById(req.params.id);
+        // if (!property) {
+        //     return res.status(404).send('Property not found');
+        // }
+        // res.render('property', { property });
+    } catch (err) {
+        res.status(500).send('Server Error');
+    }
+  });
 
 // About Us Page
 router.get('/about-us', (req, res) => {
@@ -60,7 +75,7 @@ router.get('/rent', (req, res) => {
 // Create property page
 router.get('/createProperty', (req, res) => {
     try{
-        res.render('add-property-2', { title: 'Add property' });
+        res.render('add-property', { title: 'Add property' });
     } catch (error) {
         console.error('Error loading add property page:', error);
         res.status(500).json({ message: 'Error loading add property page' });
@@ -72,7 +87,7 @@ router.post('/createProperty', createPropertyHandler);
 
 router.get('/search', (req, res) => {
     try{
-        res.render('filters', { title: 'Search' });
+        res.render('filters', { title: 'Search', properties: []});
     } catch (error) {
         console.error('Error loading search page:', error);
         res.status(500).json({ message: 'Error loading search page' });
