@@ -27,9 +27,17 @@ export const createPropertyHandler = (req, res) => {
 };
 
 // Get all properties
-export const getPropertiesHandler = (req, res) => {
+export const searchPropertiesHandler = (req, res) => {
     try {
-        let { locationQuery, propertyFilters } = req.body;
+        let locationQuery;
+        let propertyFilters = {};
+        if (req.body.tabs !== undefined) {
+            locationQuery = req.body.locationQuery;
+            propertyFilters.forRent = ((req.body.tabs === 'rent') ? 1 : 0);
+        } else {
+            locationQuery = req.body.locationQuery;
+            propertyFilters = req.body.propertyFilters;
+        }
 
         if (propertyFilters !== undefined ) {
             for (let key in propertyFilters) {
@@ -69,12 +77,8 @@ export const getPropertiesHandler = (req, res) => {
             if (propertyFilters.minBathrooms > propertyFilters.maxBathrooms)
                 res.status(400).json({ message: 'Minimum bathrooms cannot be greater than maximum bathrooms' });
 
-        //
         const properties = getPropertiesWithFilters(propertyFilters, locationQuery);
-        // const properties = getAllProperties();
-        console.log('Properties: ', properties);
         res.render('filters', { title: 'Search', properties: properties});
-        // res.json(properties);
     } catch (error) {
         console.error('Error fetching properties:', error);
         res.status(500).json({ message: 'Error fetching properties' });
@@ -104,7 +108,6 @@ export const showHomePropertiesHandler = (req, res) => {
 export const showPropertyPageHandler = (req, res) => {
     try {
         const property = getPropertyFromID(parseInt(req.params.id));
-        console.log(property.userId)
         const user = findUserByID(property.userId);
 
         console.log('Property: ', property);

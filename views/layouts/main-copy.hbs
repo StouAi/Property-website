@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+    <nav class="nav-bar">
+        <div class="header">
+            <div class="logo-part">
+                <img src="images/logo.png" alt="logo">
+                <h1>Property Finder</h1>
+            </div>
+
+            <div class="buy-rent-links">
+                <ul>
+                <li><a href="/buy">Αγορά</a></li>
+                <li><a href="/rent">Ενοικίαση</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-part">
+                <ul>
+                    <li><a href="/">Αρχική</a></li>
+                    <li><a href="/about-us">Εμείς</a></li>
+                    <li><a href="/contact">Επικοινωνία</a></li>                  
+                    <li>
+                    {{#if userId}}
+                        <a href="/logout">Αποσύνδεση</a>
+                    {{else}}
+                        <a href="/login">Είσοδος</a>
+                    {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content-container">
+        <main class="main-content">
+            {{{body}}}
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="logo-part">
+                <img src="images/logo.png" alt="logo">
+                <h1>Property Finder</h1>
+            </div>
+            <div class="footer-list">
+                <ul>
+                    <li><a href="/about-us">Εμείς</a></li>
+                    <li><a href="/contact">Επικοινωνία</a></li>
+                    <li><a href="/contact">Όροι &amp; Συνθήκες</a></li>
+                    <li><a href="/contact">Privacy Policy</a></li>
+                    <li><a href="/contact">Cookies</a></li>
+                </ul>
+            
+            </div>
+
+            <p class="copyright">@2007 Property Finder.All rights reserved </p>
+        </div>
+    </footer>
+
+</body>
+</html>

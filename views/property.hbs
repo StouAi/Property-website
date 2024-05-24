@@ -17,7 +17,7 @@
     </div>
 
     <div class="add-fav">
-        <label for="fav">Προσθήκη στα αγαπημένα</label>
+        <label for="fav">Add to favorites</label>
         <input type="checkbox" id="fav">
 
     </div>
@@ -36,38 +36,40 @@
             <hr>
         </div>
         <div class="property-descrip">
-            <h2>Περιγραφή</h2>
+            <h2>Description</h2>
             <p>{{property.description}}</p>
         </div>
         <div class="separator">
             <hr>
         </div>
         <div class="property-map">
-            <h2>Τοποθεσία</h2>
+            <h2>Location</h2>
             
         </div>
         <div class="separator">
             <hr>
         </div>
         <div class="owner-info">
-            <h2>Ιδιοκτήτης</h2>
-            <p><strong>Όνομα: {{user.fName}} {{user.lName}}</strong></p>
-            <p><strong>Τηλέφωνο: {{user.phone}}</strong></p>
+            <h2>Owner</h2>
+            <p><strong>Name: {{user.fName}} {{user.lName}}</strong></p>
+            <p><strong>Phone number: {{user.phone}}</strong></p>
         </div>
     </div>
 
     <div class="property-side">
         <div class="interest-form">
-            <h3>Ενδιαφέρομαι</h3>
-            <form action="">
+            <h3>I'm Interested</h3>
+            <form action="/inquiry" method="POST">
                 <div class="name">
-                    <input type="text" name="FirstName"  placeholder="Όνομα">
-                    <input type="text" name="LastName" placeholder="Επώνυμο">
+                    <input type="text" placeholder="First name">
+                    <input type="text" placeholder="Last name">
                 </div>
-                <input type="email" name ="email" placeholder="Email">
-                <input type="tel" name="phone" placeholder="Τηλέφωνο">
-                <textarea name="comments" id="" cols="30" rows="10" placeholder="Σχόλια"></textarea>
-                <button type="submit" class="property-interest">Αποστολή</button>
+                <input type="email" placeholder="Email">
+                <input type="tel" placeholder="Phone number">
+                <textarea name="message" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                <input type="hidden" name="propertyId" value="{{property.id}}">
+                <input type="hidden" name="fromId" value="{{userId}}">
+                <button type="submit" class="property-interest">SEND MESSAGE</button>
             </form>
         </div>
     </div>

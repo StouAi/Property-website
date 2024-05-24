@@ -5,63 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
 
-    <header class="nav-bar">
-        <div class="header">
-            <div class="logo-part">
-                <img src="images/logo.png" alt="logo">
-                <h1>Property Finder</h1>
-            </div>
-
-            <div class="buy-rent-links">
-                <ul>
-                <li><a href="/buy">Αγορά</a></li>
-                <li><a href="/rent">Ενοικίαση</a></li>
-                </ul>
-            </div>
-
+    <nav>
+        <div class="navbar">
+            <a class="logo" href="/">Property Finder</a>
             <div class="nav-part">
                 <ul>
-                    <li><a href="/">Αρχική</a></li>
-                    <li><a href="/about-us">Εμείς</a></li>
-                    <li><a href="/contact">Επικοινωνία</a></li>                  
-                    <li>
+                    <li><a class="page-buttons" href="/">Home</a></li>
+                    <li><a class="page-buttons" href="/about-us">About us</a></li>
+                    <li><a class="page-buttons" href="/contact">Contact us</a></li>                  
+                    <li class="profile">
                     {{#if userId}}
-                        <a href="/logout">Αποσύνδεση</a>
+                        <a href="/logout">Profile</a>
+                        <ul class="dropdown">
+                            <li><a href="/list-your-property"><i class="fas fa-house-medical"></i> List your property</a></li>
+                            <li><a href="#"><i class="fas fa-house"></i> My listings</a></li>
+                            <li><a href="#"><i class="fas fa-heart"></i> My favorites</a></li>
+                            <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                        </ul>
                     {{else}}
-                        <a href="/login">Είσοδος</a>
+                        <a href="/login">Sign in</a>
                     {{/if}}
                     </li>
                 </ul>
             </div>
         </div>
-    </header>
+    </nav>
 
     <main>
         {{{body}}}
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="logo-part">
-                <img src="images/logo.png" alt="logo">
-                <h1>Property Finder</h1>
-            </div>
-            <div class="footer-list">
-                <ul>
-                    <li><a href="/about-us">Εμείς</a></li>
-                    <li><a href="/contact">Επικοινωνία</a></li>
-                    <li><a href="/contact">Όροι &amp; Συνθήκες</a></li>
-                    <li><a href="/contact">Privacy Policy</a></li>
-                    <li><a href="/contact">Cookies</a></li>
-                </ul>
-            
-            </div>
+    <footer>
+        <a class="logo" href="/">Property Finder</a>
 
-            <p class="copyright">@2007 Property Finder.All rights reserved </p>
+        <div class="social-icons">
+            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-x"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-pinterest-p"></i></a>
         </div>
+
+        <div class="nav-buttons">
+            <ul>
+                <li><a href="/about-us">About us</a></li>
+                <li><a href="/contact">Contact us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Terms &amp; Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Cookies</a></li>
+            </ul>
+        </div>
+
+        <p class="app-links-title">Get the app</p>
+
+        <div class="app-links">
+            <a href="#"><img src="images/google-play-logo.png" alt="google play"></a>
+            <a href="#"><img src="images/app-store-logo.png" alt="app store"></a>
+        </div>
+
+        <p>&copy; 2024 Property Finder. All rights reserved </p> 
     </footer>
 
 </body>

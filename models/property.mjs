@@ -165,39 +165,7 @@ export const getAllProperties = () => {
     }
 };
 
-// export const getResidentialProperties = () => {
-//     try {
-//         const stmt = db.prepare(`SELECT (id, address, description, surface, price, pricePerSquare, constructionYear, publishedAt, floor, levels, bedrooms, bathrooms)
-//                                  FROM Properties JOIN Residential ON Properties.id = Residential.propertyId`);
-//         return stmt.all();
-//     } catch (error) {
-//         console.error('Error getting residential properties:', error);
-//         throw error;
-//     }
-// };
-
-// export const getCommercialProperties = () => {
-//     try {
-//         const stmt = db.prepare(`SELECT (id, address, description, surface, price, pricePerSquare, constructionYear, publishedAt, floor, levels, bathrooms)
-//                                  FROM Properties JOIN Commercial ON Properties.id = Commercial.propertyId`);
-//         return stmt.all();
-//     } catch (error) {
-//         console.error('Error getting commercial properties:', error);
-//         throw error;
-//     }
-// };
-
-// const getLandProperties = () => {
-//     try {
-//         const stmt = db.prepare(`SELECT (id, address, description, surface, price, pricePerSquare, constructionYear, publishedAt, buildable)
-//                                  FROM Properties JOIN Land ON Properties.id = Land.propertyId`);
-//         return stmt.all();
-//     } catch (error) {
-//         console.error('Error getting land properties:', error);
-//         throw error;
-//     }
-// };
-
+// Get property from ID
 export const getPropertyFromID = (propertyID) => {
     try {
         const propertyStmt = db.prepare('SELECT * FROM Properties WHERE id = ?');
@@ -374,10 +342,8 @@ export const getPropertiesWithFilters = (propertyFilters, locationQuery) => {
         // Location filtering
         if (locationQuery) {
             const locationIds = getLocationsFromSearchQuery(locationQuery);
-            if (locationIds.length > 0) {
-                query += ' AND locationId IN (' + locationIds.map(() => '?').join(', ') + ')';
-                queryParams.push(...locationIds);
-            } 
+            query += ' AND locationId IN (' + locationIds.map(() => '?').join(', ') + ')';
+            queryParams.push(...locationIds);
         }
 
         console.log('Query:', query);

@@ -1,31 +1,36 @@
 /* Search section */
 .search-container {
+    min-height: 50em;
+    background-image: url("../images/top-down-hood.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 55em;
-    background-image: url("../images/top-down-hood.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;  
+    padding: 25px 20%;
 }
 
 /* Main text*/
-.catchphrase{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 40%;
-}
-
-.catchphrase h1{
+.search-container h1 {
     color: white;
     font-size: 6em;
     font-family: 'Archivo Black', sans-serif;
     font-weight: 900;
     text-align: center;
     text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 100px;
+}
+
+/* Search form */
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* Buy/Rent button */
@@ -49,9 +54,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 45px;
-    width: 120px;
-    font-size: 1.5em;
+    height: 40px;
+    width: 80px;
+    font-size: 2em;
     font-weight: 400;
     border-radius: 99px;
     cursor: pointer;
@@ -73,8 +78,8 @@
 .buy-rent .glider {
     position: absolute;
     display: flex;
-    height: 45px;
-    width: 120px;
+    height: 40px;
+    width: 80px;
     background-color: black;
     color: white;
     z-index: 1;
@@ -84,9 +89,9 @@
 
 /* Search bar */
 .search-bar {
-    width: 100%;
+    width: 130%;
     max-width: 700px;
-    height: 50px;
+    height: 40px;
     background: white;
     display: flex;
     align-items: center;
@@ -102,80 +107,114 @@
     outline: none;
     padding: 24px 20px;
     font-size: 20px;
-    color: #cac7ff;
+    color: black;
 }
 
-.search-bar button img {
-    width: 30px;
-    height: 30px;
+.search-bar input::placeholder {
+    color: #b8b8b8;
+    font-size: 0.9em;
 }
 
 .search-bar button {
     border: 0;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: rgb(0, 0, 0);
     cursor: pointer;
 }
 
+.search-bar button img {
+    width: 20px;
+    height: 20px;
+}
+
+
 
 /* Property listings */
 .listings {
-    padding: 0px 250px;
+    padding: 0px 20%;
+    margin-bottom: 50px;
 }
 
-.sale-listings, .rent-listings {
+.listings .title {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5em;
+    margin-top: 40px;
+}
+
+.listings .title h2 {
+    margin-bottom: 5px;
+}
+
+.listings .title a {
+    color: black;
+    font-size: 1em;
+}
+
+.listings .properties {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-
+    margin: 20px 0;
 }
 
-.sale-listings a, .rent-listings a {
+.listings .properties a {
     text-decoration: none;
     cursor: pointer;
     color: inherit;
     display: block;
 }
 
-.property-listing {
-    border: 1px solid #ccc;
-    border-radius: 4em;
-    margin: 20px;
-    overflow: hidden;
-    width: 250px;
-    height: 300px;
+.listings .properties p {
+    line-height: 0.8em;
 }
 
-.property-listing img {
+.listings .properties .property {
+    border-radius: 20px;
+    overflow: hidden;
+    width: 230px;
+    height: 290px;
+    margin: 0;
+    transition: box-shadow 0.2s ease-in-out;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.listings .properties .property:hover {
+    transition: box-shadow 0.2s ease-in-out;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.listings .properties .property img {
     width: 100%;
     height: 60%;
     display: block;
 }
 
-.property-info {
-    padding: 0px 10px;
+.property .details {
     display: flex;
     flex-direction: column;
+    gap: 0px;
+    padding: 0px 10px;
+    font-size: 12px;
 }
 
-.property-info .type {
-    font-size: 1.2em;
+.property .details p {
     margin: 6px 0;
 }
 
-.property-info .price {
+.property .details .type {
+    font-size: 1.1em;
+}
+
+.property .details .price {
     font-size: 2em;
-    margin: 4px 0;
 }
 
-.property-info .info {
-    font-size: 1.4em;
-    margin: 3px 0;
+.property .details .info {
+    font-size: 1.1em;
 }
 
-.property-info .address {
+.property .details .address {
     font-size: 1.4em;
-    margin: 2px 0;
 }

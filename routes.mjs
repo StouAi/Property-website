@@ -1,7 +1,8 @@
 import express from 'express';
 import { loginUserHandler, logoutUserHandler, checkAuthenticated } from './controllers/userController.mjs';
-import { createPropertyHandler, getPropertiesHandler, showHomePropertiesHandler, showPropertyPageHandler } from './controllers/propertyController.mjs';
+import { createPropertyHandler, searchPropertiesHandler, showHomePropertiesHandler, showPropertyPageHandler } from './controllers/propertyController.mjs';
 import authMiddleware from './middleware/authMiddleware.mjs';
+import { addFavoriteHandler, showFavoritesHandler } from './controllers/favoriteInquiryController.mjs';
 
 const router = express.Router();
 
@@ -9,6 +10,8 @@ const router = express.Router();
 router.get('/', showHomePropertiesHandler);
 
 router.get('/property/:id', showPropertyPageHandler);
+
+
 
 // About Us Page
 router.get('/about-us', (req, res) => {
@@ -30,39 +33,18 @@ router.get('/contact', (req, res) => {
     }
 });
 
-// Buy / Rent Page
-router.get('/buy', (req, res) => {
-    try{
-        res.render('home', { title: 'Property Finder', catchphrase: "Ακίνητα προς Αγορά", properties: [] });
-    } catch (error) {
-        console.error('Error loading home page:', error);
-        res.status(500).json({ message: 'Error loading home page' });
-    }
-});
-
-router.get('/rent', (req, res) => {
-    try{
-        res.render('home', { title: 'Property Finder', catchphrase: "Ακίνητα προς Ενοικίαση", properties: [] });
-    } catch (error) {
-        console.error('Error loading home page:', error);
-        res.status(500).json({ message: 'Error loading home page' });
-    }
-});
-
-
 
 // Create property page
-router.get('/add', (req, res) => {
+router.get('/list-your-property', (req, res) => {
     try{
-        res.render('add-property-2', { title: 'Add property' });
+        res.render('add-property-new', { title: 'Add property' });
     } catch (error) {
         console.error('Error loading add property page:', error);
         res.status(500).json({ message: 'Error loading add property page' });
     }
 });
 
-router.get('/getProperties', getPropertiesHandler);
-router.post('/add', createPropertyHandler);
+// router.post('/list-your-property', createPropertyHandler);
 
 router.get('/search', (req, res) => {
     try{
@@ -73,7 +55,7 @@ router.get('/search', (req, res) => {
     }
 });
 
-router.post('/search', checkAuthenticated, getPropertiesHandler);
+router.post('/search', searchPropertiesHandler);
 
 
 // Login / Logout
@@ -87,5 +69,21 @@ router.get('/login', (req, res) => {
 });
 router.post('/login', loginUserHandler);
 router.get('/logout', logoutUserHandler);
+
+// Favorites
+router.get('/favorites', checkAuthenticated, showFavoritesHandler);
+router.get('/favorite/:id', checkAuthenticated, addFavoriteHandler);
+
+
+// Inquiry
+router.post('/inquiry', checkAuthenticated, (req, res) => {
+    try{
+        console.log(req.body)
+        // res.render('inquiry', { title: 'Inquiry' });
+    } catch (error) {
+        console.error('Error loading inquiry page:', error);
+        res.status(500).json({ message: 'Error loading inquiry page' });
+    }
+});
 
 export default router;

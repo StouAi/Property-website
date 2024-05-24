@@ -1,0 +1,204 @@
+/*/////////////////////////////////////////////////*/
+/* General layout for search filters */
+
+
+.search-filters {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.search-filters input[type="text"] {
+    border: 1px solid #000000;
+    border-radius: 8px;
+    width: 20%;
+    height: 25px;
+    padding: 5px;
+}
+
+
+.search {
+    background-color: #000000;
+    color: white;
+    
+}
+
+.price-cont,.surface-cont,.property-type,.subtype-type,.sale-type,.moreFilters,.additional-filters {
+    display: inline-block;
+    position: relative;
+    margin: 20px 0 20px 0px;
+}
+
+.additional-filters {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+
+}
+
+/* Adjusting select elements to match the button styles */
+select,.search-filters input[type="text"] ,#price-btn,#surface-btn,#filtersBtn,#floor-btn,#levels-btn,
+#bathrooms-btn,#bedrooms-btn,#parking-btn,#year-btn,#buildable-btn {
+    background-color: hsl(0, 0%, 100%);
+    color: rgb(0, 0, 0);
+    padding: 10px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 0.1em solid #000000;
+    
+}
+
+#filtersBtn{
+    background-color: #000000;
+    color: white;
+    
+}
+.search-filters input[type="text"]{
+    margin: 20px 0 20px 20px;
+    padding: 5px 10px;
+}
+
+select:focus,.search-filters input[type="text"]:focus {
+    outline: none;
+    border: 0.1em solid #000000;
+}
+
+select option {
+    background-color: white;
+    color: black;
+}
+
+/* Menu item styles */
+.type-menu li, .sale-menu li, .subtype-menu li {
+    border-bottom: 1px solid #ddd;
+}
+
+.type-menu li:last-child, .sale-menu li:last-child, .subtype-menu li:last-child {
+    border-bottom: none;
+}
+
+/* Menu links */
+.type-menu li a, .sale-menu li a, .subtype-menu li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+.type-menu li a:hover, .sale-menu li a:hover, .subtype-menu li a:hover {
+    background-color: #000000;
+    color: white;
+}
+
+
+
+
+
+#price-menu , #surface-menu,#bathrooms-menu,#bedrooms-menu,#bathrooms-menu,#parking-menu,#year-menu,#levels-menu,#floor-menu,#buildable-menu {
+    display:none; /* Hide the dropdown menu initially */
+    position: absolute; /* Position the dropdown absolutely within the container */
+    top: 100%; /* Position the dropdown below the button */
+    left: 0;
+    background-color: #f9f9f9;
+    min-width: 160px; /* Set a minimum width for the dropdown */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Add a shadow effect */
+    z-index: 1; /* Ensure the dropdown appears above other elements */
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#buildable-menu,#parking-menu{
+    min-width: 80px;
+}
+
+
+#additionalFilters input[type=number]::-webkit-inner-spin-button,
+#additionalFilters input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#year-menu input[type="number"],#levels-menu input[type="number"],#floor-menu input[type="number"],
+#bathrooms-menu input[type="number"],#bedrooms-menu input[type="number"]{
+    
+    background-color: hsl(0, 0%, 100%);
+    color: rgb(0, 0, 0);
+    /* padding: 10px 20px; */
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 0.1em solid #000000;
+    max-width: 50px;
+    padding: 10px;
+
+}
+
+
+
+
+/* .searchFilter{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #000000;
+} */
+/* Search button styles */
+#searchBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+}
+.search img {
+    width: 25px;
+    height: auto;
+   
+}
+
+hr {
+    border: 1px solid #000000;
+    margin: 3px 0;
+
+}
+
+/* Search results */
+.homes-listing, .land-listing {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.property-listing {
+    border: 1px solid #ccc;
+    border-radius: 4em;
+    margin: 20px;
+    overflow: hidden;
+    width: 200px; 
+}
+
+.property-listing img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.property-listing figcaption {
+    padding: 10px;
+}
+
+.property-listing h2 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.property-listing p {
+    font-size: 0.9em;
+    margin: 3px 0;
+    text-align: center;
+}
