@@ -202,10 +202,10 @@ hr {
     margin-bottom: 5px;
 }
 
-.listings .title a {
+.listings .title p {
     color: black;
     font-size: 1em;
-    text-decoration: none;
+    margin-top: 0;
 }
 
 .listings .properties {

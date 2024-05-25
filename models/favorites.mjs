@@ -24,6 +24,17 @@ export const createFavorite = (userId, propertyId) => {
     }
 };
 
+// Check if a property is a favorite
+export const isFavorite = (userId, propertyId) => {
+    try {
+        const stmt = db.prepare('SELECT * FROM Favorites WHERE userId = ? AND propertyId = ?');
+        return !!stmt.get(userId, propertyId);
+    } catch (error) {
+        console.error('Error checking favorite:', error);
+        throw error;
+    }
+};
+
 // Get all favorites for a user
 export const getFavoritesByUser = (userId) => {
     try {

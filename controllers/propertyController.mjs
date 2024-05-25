@@ -1,18 +1,43 @@
-import { createProperty, getAllProperties, getPropertiesWithFilters } from '../models/property.mjs';
+import { createProperty, getPropertiesWithFilters } from '../models/property.mjs';
 import { getPropertiesForRent, getPropertiesForSale } from '../models/property.mjs';
-import { getPropertyFromID } from '../models/property.mjs';
+import { getPropertyFromID, getLocationFromID } from '../models/property.mjs';
 import { findUserByID } from '../models/user.mjs';
+import { isFavorite } from '../models/favorites.mjs';
 
 // Create a new property
 export const createPropertyHandler = (req, res) => {
     // let { userID, property, location } = req.body;
     let { property, location } = req.body;
+    console.log(req.body)
 
-    let userID = 1; // Hardcoded for now
+    const userID = req.session.loggedUserId;
+    console.log('Logged in user:', userID);
 
     property.surface = parseInt(property.surface);
     property.price = parseInt(property.price);
     property.constructionYear = parseInt(property.constructionYear);
+    property.forRent = parseInt(property.forRent);
+
+    if (property.floor !== undefined)
+        property.floor = parseInt(property.floor);
+
+    if (property.levels !== undefined)
+        property.levels = parseInt(property.levels);
+
+    if (property.bedrooms !== undefined)
+        property.bedrooms = parseInt(property.bedrooms);
+
+    if (property.bathrooms !== undefined)
+        property.bathrooms = parseInt(property.bathrooms);
+
+    if (property.parking !== undefined)
+        property.parking = parseInt(property.parking);
+
+    if (property.buildable !== undefined)
+        property.buildable = parseInt(property.buildable);
+
+    console.log('Property:', property);
+    console.log('Location:', location);
 
     try {
         const propertyId = createProperty(userID, property, location);
@@ -26,14 +51,14 @@ export const createPropertyHandler = (req, res) => {
     }
 };
 
-// Get all properties
+// Search properties
 export const searchPropertiesHandler = (req, res) => {
     try {
         let locationQuery;
         let propertyFilters = {};
         if (req.body.tabs !== undefined) {
             locationQuery = req.body.locationQuery;
-            propertyFilters.forRent = ((req.body.tabs === 'rent') ? 1 : 0);
+            propertyFilters.forRent = parseInt(req.body.tabs);
         } else {
             locationQuery = req.body.locationQuery;
             propertyFilters = req.body.propertyFilters;
@@ -78,7 +103,8 @@ export const searchPropertiesHandler = (req, res) => {
                 res.status(400).json({ message: 'Minimum bathrooms cannot be greater than maximum bathrooms' });
 
         const properties = getPropertiesWithFilters(propertyFilters, locationQuery);
-        res.render('filters', { title: 'Search', properties: properties, numOfResults: properties.length});
+        console.log('Properties:', properties);
+        res.render('filters', { title: 'Search properties', properties: properties, numOfResults: properties.length});
     } catch (error) {
         console.error('Error fetching properties:', error);
         res.status(500).json({ message: 'Error fetching properties' });
@@ -88,8 +114,8 @@ export const searchPropertiesHandler = (req, res) => {
 // Show home page properties
 export const showHomePropertiesHandler = (req, res) => {
     try {
-        let propertiesForSale = getPropertiesForSale().slice(0, 10);
-        let propertiesForRent = getPropertiesForRent().slice(0, 10);
+        let propertiesForSale = getPropertiesForSale();
+        let propertiesForRent = getPropertiesForRent();
         propertiesForSale = propertiesForSale.map(property => getPropertyFromID(property.id));
         propertiesForRent = propertiesForRent.map(property => getPropertyFromID(property.id));
 
@@ -105,16 +131,25 @@ export const showHomePropertiesHandler = (req, res) => {
     }
 };
 
+// Show property page
 export const showPropertyPageHandler = (req, res) => {
     try {
         const property = getPropertyFromID(parseInt(req.params.id));
+        const location = getLocationFromID(property.locationId);
         const user = findUserByID(property.userId);
 
-        console.log('Property: ', property);
-        console.log('User: ', user);
-
-        res.render('property', { property, user });
+        let propertyIsFavorite = false;
+        if (req.session.loggedUserId !== undefined)
+            propertyIsFavorite = isFavorite(req.session.loggedUserId, property.id);
+        console.log(res.locals.userId);
+        res.render('property', {
+            property: property,
+            location: location,
+            listedBy: user,
+            isFavorite: propertyIsFavorite
+        });
     } catch (err) {
+        console.error('Error loading property page:', err);
         res.status(500).send('Server Error');
     }
   };

@@ -35,16 +35,15 @@ router.get('/contact', (req, res) => {
 
 
 // Create property page
-router.get('/list-your-property', (req, res) => {
+router.get('/list-your-property', checkAuthenticated, (req, res) => {
     try{
-        res.render('add-property-new', { title: 'Add property' });
+        res.render('add-property', { title: 'Add property' });
     } catch (error) {
         console.error('Error loading add property page:', error);
         res.status(500).json({ message: 'Error loading add property page' });
     }
 });
-
-// router.post('/list-your-property', createPropertyHandler);
+router.post('/list-your-property', createPropertyHandler);
 
 router.get('/search', (req, res) => {
     try{

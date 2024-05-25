@@ -18,6 +18,7 @@ export const loginUserHandler = async (req, res) => {
 
             if (authenticated) {
                 req.session.loggedUserId = findUserByUsername(username).id;
+                req.session.user = findUserByUsername(username);
                 return res.json({ success: true, message: 'User authenticated.', redirect: req.session.originalUrl || '/' });
             } else {
                 return res.json({ success: false, message: 'Invalid email or password.' });

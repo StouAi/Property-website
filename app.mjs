@@ -32,9 +32,11 @@ app.use(session);
 app.use((req, res, next) => {
     if (req.session) {
         res.locals.userId = req.session.loggedUserId;
+        res.locals.user = req.session.user;
      } else {
-        res.locals.userId = 'επισκέπτης';
+        res.locals.userId = none;
      }
+     console.log('Session: ', req.session.loggedUserId);
      next();
 });
 app.use('/', routes);

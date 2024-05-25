@@ -6,9 +6,9 @@
         <form action="/search" method="POST">
             <div class="buy-rent">
                 <div class="tabs">
-                    <input type="radio" name="tabs" value="rent" id="buy" checked>
+                    <input type="radio" name="tabs" value="0" id="buy" checked>
                     <label class="tab" for="buy">Buy</label>
-                    <input type="radio" name="tabs" value="buy" id="rent">
+                    <input type="radio" name="tabs" value="1" id="rent">
                     <label class="tab" for="rent">Rent</label>
                     <span class="glider"></span>
                 </div>
@@ -34,9 +34,35 @@
                     <figure class="property">
                         <img src="images/appartment.jpg" alt="House Image">
                         <div class="details">
-                            <p class="type">{{this.type}} / {{#if this.subtype}}{{this.subtype}}{{else}}{{#if this.buildable}}Plot{{else}}Parcel{{/if}}{{/if}}</p>
-                            <p class="price"><b>€{{this.price}}</b></p>
-                            <p class="info">{{#if this.subtype}}{{#if this.bedrooms}}<b>{{this.bedrooms}}</b> bed  {{/if}}<b>{{this.bathrooms}}</b> bath  {{/if}}<b>{{this.surface}}</b> m2</p>
+                            <p class="type">{{this.type}} /
+                                {{#if this.subtype}}
+                                    {{this.subtype}}
+                                {{else}}
+                                    {{#if this.buildable}}
+                                        Plot
+                                    {{else}}
+                                        Parcel
+                                    {{/if}}
+                                {{/if}}
+                            </p>
+                            <p class="price"><b>
+                                <script>
+                                    if ({{this.forRent}}) {
+                                        document.write('€' + ({{this.price}}).toLocaleString() + '/mo');
+                                    } else {
+                                        document.write('€' + ({{this.price}}).toLocaleString());
+                                    }
+                                </script></b>
+                            </p>
+                            <p class="info">
+                                {{#if this.subtype}}
+                                    {{#if this.bedrooms}}
+                                        <b>{{this.bedrooms}}</b> bed 
+                                    {{/if}}
+                                    <b>{{this.bathrooms}}</b> bath 
+                                {{/if}}
+                                    <b>{{this.surface}}</b> m&sup2
+                            </p>
                             <p class="address">{{this.address}}</p>
                         </div>
                     </figure>
@@ -51,14 +77,42 @@
         </div>
 
         <div class="properties">
-            {{#each propertiesForSale}}
+            {{#each propertiesForRent}}
                 <a href="/property/{{this.id}}">
                     <figure class="property">
                         <img src="images/appartment.jpg" alt="House Image">
                         <div class="details">
-                            <p class="type">{{this.type}} / {{#if this.subtype}}{{this.subtype}}{{else}}{{#if this.buildable}}Plot{{else}}Parcel{{/if}}{{/if}}</p>
-                            <p class="price"><b>€{{this.price}}</b></p>
-                            <p class="info">{{#if this.subtype}}{{#if this.bedrooms}}<b>{{this.bedrooms}}</b> bed  {{/if}}<b>{{this.bathrooms}}</b> bath  {{/if}}<b>{{this.surface}}</b> m2</p>
+                            <p class="type">{{this.type}} / 
+                                {{#if this.subtype}}
+                                    {{this.subtype}}
+                                {{else}}
+                                    {{#if this.buildable}}
+                                        Plot
+                                    {{else}}
+                                        Parcel
+                                    {{/if}}
+                                {{/if}}
+                                </p>
+                            <p class="price">
+                                <b>
+                                    <script>
+                                        if ({{this.forRent}}) {
+                                            document.write('€' + ({{this.price}}).toLocaleString() + '/mo');
+                                        } else {
+                                            document.write('€' + ({{this.price}}).toLocaleString());
+                                        }
+                                    </script>
+                                </b>
+                            </p>
+                            <p class="info">
+                                {{#if this.subtype}}
+                                    {{#if this.bedrooms}}
+                                        <b>{{this.bedrooms}}</b> bed 
+                                    {{/if}}
+                                    <b>{{this.bathrooms}}</b> bath 
+                                {{/if}}
+                                    <b>{{this.surface}}</b> m&sup2
+                            </p>
                             <p class="address">{{this.address}}</p>
                         </div>
                     </figure>
