@@ -131,9 +131,9 @@ form {
 
 
 
-/* Property listings */
+/* Property Listings */
 .listings {
-    padding: 0px 20%;
+    padding: 0px 19.5%;
     margin-bottom: 50px;
 }
 
@@ -142,6 +142,7 @@ form {
     flex-direction: column;
     font-size: 1.5em;
     margin-top: 40px;
+    margin-left: 10px;
 }
 
 .listings .title h2 {
@@ -156,7 +157,12 @@ form {
 .listings .properties {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     margin: 20px 0;
+    padding: 10px;
+    gap: 0 20px;
+    height: 320px;
+    overflow: hidden;
 }
 
 .listings .properties a {
@@ -175,7 +181,7 @@ form {
     overflow: hidden;
     width: 230px;
     height: 290px;
-    margin: 0;
+    margin: 20px 0;
     transition: box-shadow 0.2s ease-in-out;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
 }

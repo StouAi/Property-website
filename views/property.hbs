@@ -1,62 +1,81 @@
 <link rel="stylesheet" href="/styles/property.css">
 <link rel="stylesheet" href="/styles/main.css">
 
- <section class="property-photos">
+<div class="content">
+
     <div class="photos">
         <div class="main-photo">
-            <img src="/images/greece_map.png" alt="property photo 1">
+            <img src="/images/appartment.jpg" alt="property-photo">
         </div>
         <div class="secondary-photos">
             <div class="second-photo">
-                <img src="/images/lighbulb.jpg" alt="property photo 2">
+                <img src="/images/appartment.jpg" alt="property-photo">
             </div>
             <div class="third-photo">    
-                <img src="/images/lighbulb.jpg" alt="property photo 3">
+                <img src="/images/appartment.jpg" alt="property-photo">
             </div>
         </div>
     </div>
 
-    <div class="add-fav">
-        <label for="fav">Add to favorites</label>
-        <input type="checkbox" id="fav">
+    <div class="info-interest-container">
+        <div class="property-info">
+            <div class="address-and-type">
+                <p class="address">{{property.address}}</p>
+                <p class="type">{{property.type}} / {{property.subtype}} </p>
+            </div>
 
-    </div>
-</section>
-
-<section class="property-content">
-    <div class="property-info">
-        <div class="Adress-and-price">
-            <h2 class="adress">{{property.address}}</h2>
             <div class="price">
-                <p>{{property.price}}</p>
-                <p>{{property.surface}}</p>
+                <p class="total-price">€
+                    <script>
+                        document.write(({{property.price}}).toLocaleString());
+                    </script>
+                </p>
+                <p class="price-per-square">€
+                    <script>
+                        document.write(Number(parseFloat({{property.pricePerSquare}}).toFixed(2)).toLocaleString('en-US'));
+                    </script>/m2</p>
             </div>
-        </div>
-        <div class="separator">
-            <hr>
-        </div>
-        <div class="property-descrip">
-            <h2>Description</h2>
-            <p>{{property.description}}</p>
-        </div>
-        <div class="separator">
-            <hr>
-        </div>
-        <div class="property-map">
-            <h2>Location</h2>
-            
-        </div>
-        <div class="separator">
-            <hr>
-        </div>
-        <div class="owner-info">
-            <h2>Owner</h2>
-            <p><strong>Name: {{user.fName}} {{user.lName}}</strong></p>
-            <p><strong>Phone number: {{user.phone}}</strong></p>
-        </div>
-    </div>
 
-    <div class="property-side">
+            <hr>
+
+            <div class="details">
+                <div class="surface">
+                    <p>Surface</p>
+                    <p><b>{{property.surface}} m2</b></p>
+                </div>
+                <div class="bedrooms">
+                    <p>Bedrooms</p>
+                    <p><b>{{property.bedrooms}}</b></p>
+                </div>
+                <div class="bathrooms">
+                    <p>Bathrooms</p>
+                    <p><b>{{property.bathrooms}}</b></p>
+                </div>
+            </div>
+
+            <hr>
+        
+            <div class="description">
+                <h2>Description</h2>
+                <p>{{property.description}}</p>
+            </div>
+
+            <hr>
+
+            <div class="location">
+                <h2>Location</h2>
+            </div>
+
+            <hr>
+
+            <div class="owner">
+                <h2>Owner</h2>
+                <p><strong>Name: {{user.fName}} {{user.lName}}</strong></p>
+                <p><strong>Phone number: {{user.phone}}</strong></p>
+            </div>
+
+        </div>
+
         <div class="interest-form">
             <h3>I'm Interested</h3>
             <form action="/inquiry" method="POST">
@@ -73,4 +92,82 @@
             </form>
         </div>
     </div>
-</section>
+    
+</div>
+
+
+
+
+    {{!-- <section class="property-photos">
+        <div class="photos">
+            <div class="main-photo">
+                <img src="/images/greece_map.png" alt="property photo 1">
+            </div>
+            <div class="secondary-photos">
+                <div class="second-photo">
+                    <img src="/images/lighbulb.jpg" alt="property photo 2">
+                </div>
+                <div class="third-photo">    
+                    <img src="/images/lighbulb.jpg" alt="property photo 3">
+                </div>
+            </div>
+        </div>
+
+        <div class="add-fav">
+            <label for="fav">Add to favorites</label>
+            <input type="checkbox" id="fav">
+
+        </div>
+    </section>
+
+    <section class="property-content">
+        <div class="property-info">
+            <div class="Adress-and-price">
+                <h2 class="adress">{{property.address}}</h2>
+                <div class="price">
+                    <p>{{property.price}}</p>
+                    <p>{{property.surface}}</p>
+                </div>
+            </div>
+            <div class="separator">
+                <hr>
+            </div>
+            <div class="property-descrip">
+                <h2>Description</h2>
+                <p>{{property.description}}</p>
+            </div>
+            <div class="separator">
+                <hr>
+            </div>
+            <div class="property-map">
+                <h2>Location</h2>
+                
+            </div>
+            <div class="separator">
+                <hr>
+            </div>
+            <div class="owner-info">
+                <h2>Owner</h2>
+                <p><strong>Name: {{user.fName}} {{user.lName}}</strong></p>
+                <p><strong>Phone number: {{user.phone}}</strong></p>
+            </div>
+        </div>
+
+        <div class="property-side">
+            <div class="interest-form">
+                <h3>I'm Interested</h3>
+                <form action="/inquiry" method="POST">
+                    <div class="name">
+                        <input type="text" placeholder="First name">
+                        <input type="text" placeholder="Last name">
+                    </div>
+                    <input type="email" placeholder="Email">
+                    <input type="tel" placeholder="Phone number">
+                    <textarea name="message" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                    <input type="hidden" name="propertyId" value="{{property.id}}">
+                    <input type="hidden" name="fromId" value="{{userId}}">
+                    <button type="submit" class="property-interest">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </section> --}}

@@ -78,7 +78,7 @@ export const searchPropertiesHandler = (req, res) => {
                 res.status(400).json({ message: 'Minimum bathrooms cannot be greater than maximum bathrooms' });
 
         const properties = getPropertiesWithFilters(propertyFilters, locationQuery);
-        res.render('filters', { title: 'Search', properties: properties});
+        res.render('filters', { title: 'Search', properties: properties, numOfResults: properties.length});
     } catch (error) {
         console.error('Error fetching properties:', error);
         res.status(500).json({ message: 'Error fetching properties' });
@@ -88,8 +88,8 @@ export const searchPropertiesHandler = (req, res) => {
 // Show home page properties
 export const showHomePropertiesHandler = (req, res) => {
     try {
-        let propertiesForSale = getPropertiesForSale();
-        let propertiesForRent = getPropertiesForRent();
+        let propertiesForSale = getPropertiesForSale().slice(0, 10);
+        let propertiesForRent = getPropertiesForRent().slice(0, 10);
         propertiesForSale = propertiesForSale.map(property => getPropertyFromID(property.id));
         propertiesForRent = propertiesForRent.map(property => getPropertyFromID(property.id));
 

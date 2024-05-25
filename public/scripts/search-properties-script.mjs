@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Define additional filter options
     const additionalFilterOptions = {
-        'residential': `
+        'Residential': `
             <div class="filter-group">
                 <button id="floor-btn">Floor</button>
                 <div id="floor-menu">
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         </div>
         `,
-        'commercial': `
+        'Commercial': `
             <div class="filter-group">
                 <button id="floor-btn">Floor</button>
                 <div id="floor-menu">
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
         `,
-        'land': `
+        'Land': `
             <div class="filter-group">
                 <button id = "buildable-btn"> Buildable </button>
                 <div id = "parking-menu">
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const type = typeSelect.value;
         subtypeSelect.innerHTML = ''; // Clear existing options
         
-        if (type === 'residential') {
+        if (type === 'Residential') {
             subtypeSelect.innerHTML = `
                 <option value="null">All</option>
                 <option value="Μονοκατοικία">House</option>
@@ -134,14 +134,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 <option value="Στούντιο">Studio</option>
                 <option value="Μεζονέτα">Maisonette</option>
             `;
-        } else if (type === 'commercial') {
+        } else if (type === 'Commercial') {
             subtypeSelect.innerHTML = `
                 <option value="null">All</option>
                 <option value="Κατάστημα">Store</option>
                 <option value="Γραφείο">Office</option>
                 <option value="Αποθήκη">Warehouse</option>
             `;
-        } else if (type === 'land') {
+        } else if (type === 'Land') {
             subtypeSelect.innerHTML = `
                 <option value="null">All</option>
                 <option value="Οικόπεδο">Land</option>

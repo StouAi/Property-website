@@ -7,7 +7,7 @@ db.exec(`
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         locationId INTEGER NOT NULL,
         userId INTEGER NOT NULL,
-        type TEXT NOT NULL CHECK (type IN ('residential', 'commercial', 'land')),
+        type TEXT NOT NULL CHECK (type IN ('Residential', 'Commercial', 'Land')),
         address TEXT NOT NULL,
         description TEXT NOT NULL,
         surface REAL NOT NULL CHECK (surface > 0),
@@ -96,10 +96,13 @@ const getLocationID = (location) => {
 }
 
 // Create a new location
-const createLocation = (location) => {
+export const createLocation = (location) => {
     try {
+        db.exec('BEGIN TRANSACTION');
         const stmt = db.prepare('INSERT INTO Locations (country, city, zip, neighborhood) VALUES (?, ?, ?, ?)');
         const { lastInsertRowid } = stmt.run(location.country, location.city, location.zip, location.neighborhood);
+        // stmt.finalize();
+        db.exec('COMMIT');
         return lastInsertRowid;
     } catch (error) {
         console.error('Error creating location:', error);
@@ -110,9 +113,6 @@ const createLocation = (location) => {
 // Create a new property
 export const createProperty = (userID, property, location) => {
 
-    property.forRent = 1; // Hardcoded for now
-
-
     try {
         // Get location ID
         let locationId = getLocationID(location);
@@ -121,27 +121,34 @@ export const createProperty = (userID, property, location) => {
         }
 
         // Add property to the database
+        db.exec('BEGIN TRANSACTION');
         let stmt = db.prepare('INSERT INTO Properties (locationId, userId, type, address, description, surface, price, constructionYear, forRent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
         const { lastInsertRowid } = stmt.run(locationId, userID, property.type, property.address, property.description, property.surface, property.price, property.constructionYear, property.forRent);
-
+        // stmt.finalize();
+        db.exec('COMMIT');
         // Add property type to the database
         try {
+            db.exec('BEGIN TRANSACTION');
             switch (property.type) {
-                case 'residential':
+                case 'Residential':
                     stmt = db.prepare('INSERT INTO Residential (propertyId, subtype, floor, levels, bedrooms, bathrooms) VALUES (?, ?, ?, ?, ?, ?)');
                     stmt.run(lastInsertRowid, property.subtype, property.floor, property.levels, property.bedrooms, property.bathrooms);
+                    // stmt.finalize();
                     break;
-                case 'commercial':
+                case 'Commercial':
                     stmt = db.prepare('INSERT INTO Commercial (propertyId, subtype, floor, levels, bathrooms, parking) VALUES (?, ?, ?, ?, ?, ?)');
                     stmt.run(lastInsertRowid, property.subtype, property.floor, property.levels, property.bathrooms, property.parking);
+                    // stmt.finalize();
                     break;
-                case 'land':
+                case 'Land':
                     stmt = db.prepare('INSERT INTO Land (propertyId, buildable) VALUES (?, ?)');
                     stmt.run(lastInsertRowid, property.buildable);
+                    // stmt.finalize();
                     break;
                 default:
                     throw new Error('Invalid property type');
             }
+            db.exec('COMMIT');
         } catch (error) {
             console.error('Error creating property type:', error);
             throw error;
@@ -177,15 +184,15 @@ export const getPropertyFromID = (propertyID) => {
 
         let details;
         switch (property.type) {
-            case 'residential':
+            case 'Residential':
                 const residentialStmt = db.prepare('SELECT * FROM Residential WHERE propertyId = ?');
                 details = residentialStmt.get(propertyID);
                 break;
-            case 'commercial':
+            case 'Commercial':
                 const commercialStmt = db.prepare('SELECT * FROM Commercial WHERE propertyId = ?');
                 details = commercialStmt.get(propertyID);
                 break;
-            case 'land':
+            case 'Land':
                 const landStmt = db.prepare('SELECT * FROM Land WHERE propertyId = ?');
                 details = landStmt.get(propertyID);
                 break;
@@ -230,17 +237,17 @@ export const getPropertiesWithFilters = (propertyFilters, locationQuery) => {
         // Property type filters
         if (propertyFilters.type) {
 
-            if (propertyFilters.type === 'residential') {
+            if (propertyFilters.type === 'Residential') {
                 query += ' JOIN (SELECT * FROM Residential WHERE 1=1';
-            } else if (propertyFilters.type === 'commercial') {
+            } else if (propertyFilters.type === 'Commercial') {
                 query += ' JOIN (SELECT * FROM Commercial WHERE 1=1';
-            } else if (propertyFilters.type === 'land') {
+            } else if (propertyFilters.type === 'Land') {
                 query += ' JOIN (SELECT * FROM Land WHERE 1=1';
             } else {
                 throw new Error('Invalid property type');
             }
 
-            if (propertyFilters.type === 'residential' || propertyFilters.type === 'commercial') {
+            if (propertyFilters.type === 'Residential' || propertyFilters.type === 'Commercial') {
                 // Subtype
                 if (!!propertyFilters.subtype) {
                     query += ' AND subtype = ?';
@@ -278,7 +285,7 @@ export const getPropertiesWithFilters = (propertyFilters, locationQuery) => {
                 }
 
                 // Bedrooms
-                if (propertyFilters.type === 'residential') {
+                if (propertyFilters.type === 'Residential') {
                     if (!!propertyFilters.minBedrooms) {
                         query += ' AND bedrooms >= ?';
                         queryParams.push(propertyFilters.minBedrooms);
@@ -290,13 +297,13 @@ export const getPropertiesWithFilters = (propertyFilters, locationQuery) => {
                 }
                 
                 // Parking
-                if (propertyFilters.type === 'commercial') {
+                if (propertyFilters.type === 'Commercial') {
                     if (!!propertyFilters.parking) {
                         query += ' AND parking = ?';
                         queryParams.push(propertyFilters.parking);
                     }
                 }
-            } else if (propertyFilters.type === 'land') {
+            } else if (propertyFilters.type === 'Land') {
                 // Buildable
                 if (!!propertyFilters.buildablefined) {
                     query += ' AND buildable = ?';

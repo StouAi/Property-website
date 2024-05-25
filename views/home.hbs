@@ -34,9 +34,9 @@
                     <figure class="property">
                         <img src="images/appartment.jpg" alt="House Image">
                         <div class="details">
-                            <p class="type">{{this.type}} / {{this.subtype}}</p>
+                            <p class="type">{{this.type}} / {{#if this.subtype}}{{this.subtype}}{{else}}{{#if this.buildable}}Plot{{else}}Parcel{{/if}}{{/if}}</p>
                             <p class="price"><b>€{{this.price}}</b></p>
-                            <p class="info"><b>{{this.bedrooms}}</b> bed  <b>{{this.bathrooms}}</b> bath  <b>{{this.surface}}</b> m2</p>
+                            <p class="info">{{#if this.subtype}}{{#if this.bedrooms}}<b>{{this.bedrooms}}</b> bed  {{/if}}<b>{{this.bathrooms}}</b> bath  {{/if}}<b>{{this.surface}}</b> m2</p>
                             <p class="address">{{this.address}}</p>
                         </div>
                     </figure>
@@ -45,21 +45,22 @@
         </div>
     {{/if}}
     {{#if propertiesForRent}}
-        <div>
+        <div class="title">
             <h2>New listings for rent</h2>
-            <p><a href="#">View all for rent</a></p>
+            <a href="#">View all for rent</a>
         </div>
 
         <div class="properties">
-            {{#each propertiesForRent}}
+            {{#each propertiesForSale}}
                 <a href="/property/{{this.id}}">
-                    <figure class="property-listing">
+                    <figure class="property">
                         <img src="images/appartment.jpg" alt="House Image">
-                        <figcaption>
-                            <h2>{{this.type}}</h2>
-                            <p>Price: €{{this.price}}</p>
-                            <p>{{this.surface}}τ.μ</p>
-                        </figcaption>
+                        <div class="details">
+                            <p class="type">{{this.type}} / {{#if this.subtype}}{{this.subtype}}{{else}}{{#if this.buildable}}Plot{{else}}Parcel{{/if}}{{/if}}</p>
+                            <p class="price"><b>€{{this.price}}</b></p>
+                            <p class="info">{{#if this.subtype}}{{#if this.bedrooms}}<b>{{this.bedrooms}}</b> bed  {{/if}}<b>{{this.bathrooms}}</b> bath  {{/if}}<b>{{this.surface}}</b> m2</p>
+                            <p class="address">{{this.address}}</p>
+                        </div>
                     </figure>
                 </a>
             {{/each}}

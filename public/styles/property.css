@@ -1,14 +1,5 @@
-/* :root{
-    font-size: 10px;
-    font-family: 'Times New Roman', Times, serif;
-}
 
-body{
-    display: flex;
-    flex-direction: column;
-} */
-
-.add-fav{
+/* .add-fav{
     
     color: black;
     text-align: center;
@@ -26,42 +17,42 @@ body{
 
 .photos {
     display: flex;
-    justify-content: center; /* Center the flex items horizontally */
-    gap: 1em; /* Add a gap between flex items */
+    justify-content: center;
+    gap: 1em; 
     margin-top: 2em;
-    margin: 1em 4em; /* Add space around the photos */
+    margin: 1em 4em; 
     border-radius: 1em;
 }
 
 .main-photo {
-    flex: 0 1 70%; /* Take 70% of available space, don't grow or shrink */
+    flex: 0 1 70%;
     display: flex;
     justify-content: flex-end;
 
 }
 
 .main-photo img {
-    width: 100%; /* Ensure image fills the available width */
+    width: 100%;
 }
 
 .secondary-photos {
-    flex: 0 1 30%; /* Take 30% of available space, don't grow or shrink */
+    flex: 0 1 30%;
     display: flex;
-    flex-direction: column; /* Stack secondary photos vertically */
-    justify-content: flex-end; /* Align photos at the top */
+    flex-direction: column;
+    justify-content: flex-end;
 
 }
 
 .second-photo,
 .third-photo {
-    flex: 1; /* Take equal space within the secondary photos container */
+    flex: 1;
 }
 
 .second-photo img,
 .third-photo img {
-    width: 100%; /* Ensure images fill the available width */
-    height: auto; /* Maintain aspect ratio */
-     /* Add spacing between secondary photos */
+    width: 100%;
+    height: auto;
+    
 }
 
 .property-content{
@@ -126,4 +117,153 @@ body{
 .interest-form .name{
     display: flex;
     gap: 1em;
+} */
+
+
+/* NEW STYLES HERE */
+.content {
+    padding: 0 20%;
 }
+
+.photos {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1em; 
+    margin-top: 2em;
+    border-radius: 1em;
+    width: 100%;
+}
+
+.main-photo {
+    flex: 2;
+    width: 100%;
+}
+
+.main-photo img {
+    width: 100%;
+}
+
+.secondary-photos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1em;
+}
+
+.second-photo img,
+.third-photo img {
+    width: 100%;
+    height: auto;
+}
+
+
+/* Property content */
+.info-interest-container {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+}
+
+
+/* Info */
+
+hr {
+    margin: 18px 0;
+}
+
+.property-info {
+    font-size: 20px;
+}
+
+.property-info .address-and-type .address {
+    font-size: 2em;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.property-info .address-and-type .type {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.property-info .price {
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+    height: 50px;
+}
+
+.property-info .price .total-price {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.property-info .price .price-per-square {
+    font-weight: 600;
+}
+
+.property-info .details {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    margin: 0;
+}
+
+.property-info .details p {
+    margin: 5px 0;
+}
+
+.property-info .description * {
+    margin: 10px 0;
+}
+
+.property-info .description p {
+    text-align: justify;
+}
+
+
+
+/* Interest form */
+.interest-form{
+    flex: 0 1 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border: 0.2em solid rgb(0, 0, 0);
+    border-radius: 1em;
+    align-items: center;
+    padding: 1em;
+}
+.interest-form form{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.interest-form h3{
+    text-align: center;
+    font-size: 2em;
+}
+
+.interest-form input, .interest-form textarea{
+    padding: 0.5em;
+    border-radius: 1em;
+    border: 0.1em solid rgb(0, 0, 0);
+    
+}
+.interest-form button{
+    padding: 0.5em 1em;
+    border-radius: 1em;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-size: 1.5em;
+    flex: 1 0 100%;
+}
+
+.interest-form .name{
+    display: flex;
+    gap: 1em;
+}
+
