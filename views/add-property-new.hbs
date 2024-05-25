@@ -125,6 +125,9 @@ function FinalInfo() {
             '<input type="number" id="floor" name="floor" placeholder="Floor" required>' +
             '<input type="number" id="year" name="year" placeholder="Year" required>' +
             '<input type="text" id="description" name="description" placeholder="Description" required>'+
+            '</div>'+
+            '<div>'+
+            '<button type="submit" id="add-property">ADD PROPERTY</button>'+
             '</div>';
     } else if ((office && office.checked) || 
         (store && store.checked) || (warehouse && warehouse.checked)) {
@@ -149,6 +152,9 @@ function FinalInfo() {
                 '<option value="1">Yes</option>' +
             '</select>' +
             '<input type="text" id="description" name="description" placeholder="Description" required>';
+            '</div>'+
+            '<div>'+
+            '<button type="submit" id="add-property">ADD PROPERTY</button>'+
             '</div>';
     } else if (land && land.checked) {
         console.log('land');
@@ -168,6 +174,9 @@ function FinalInfo() {
                 '<option value="1">Yes</option>' +
             '</select>' +
             '<input type="text" id="description" name="description" placeholder="Description" required>';
+            '</div>'+
+            '<div>'+
+            '<button type="submit" id="add-property">ADD PROPERTY</button>'+
             '</div>';
     } else {
         document.getElementById('details').innerHTML = '';
