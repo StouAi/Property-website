@@ -36,7 +36,6 @@ app.use((req, res, next) => {
      } else {
         res.locals.userId = none;
      }
-     console.log('Session: ', req.session.loggedUserId);
      next();
 });
 app.use('/', routes);

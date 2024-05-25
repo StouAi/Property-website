@@ -62,7 +62,6 @@
 
 
 /* Info */
-
 hr {
     margin: 18px 0;
 }
@@ -147,14 +146,14 @@ hr {
     font-weight: 600;
 }
 
-.property-info .details {
+.property-info .overview {
     display: flex;
     gap: 2em;
     align-items: center;
     margin: 0;
 }
 
-.property-info .details p {
+.property-info .overview p {
     margin: 5px 0;
 }
 
@@ -166,10 +165,21 @@ hr {
     text-align: justify;
 }
 
+.property-info .details div {
+    display: flex;
+}
+
+.property-info .details div p {
+    margin: 10px 0;
+}
+
+.property-info .details div > p {
+    width: 220px;
+}
 
 
 /* Interest form */
-.interest-form {
+.interest-form  {
     display: flex;
     flex-direction: column;
     align-items: stretch;

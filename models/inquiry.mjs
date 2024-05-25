@@ -27,11 +27,15 @@ export const createInquiry = (inquiry) => {
     }
 };
 
-// Get all inquiries for a property
-export const getInquiriesByProperty = (propertyId) => {
+// Get all inquiries for a user
+export const getInquiriesForUser = (userId) => {
     try {
-        const stmt = db.prepare('SELECT * FROM Inquiries WHERE propertyId = ?');
-        const inquiries = stmt.all(propertyId);
+        const propertyStmt = db.prepare('SELECT * FROM Properties WHERE userId = ?');
+        const propertyIds = propertyStmt.all(userId).map(property => property.id);
+
+        const inquiryStmt = db.prepare('SELECT * FROM Inquiries WHERE propertyId IN (' + propertyIds.map(() => '?').join(', ') + ')');
+        const inquiries = inquiryStmt.all(...propertyIds);
+        
         return inquiries;
     } catch (error) {
         console.error('Error fetching inquiries:', error);
@@ -39,8 +43,8 @@ export const getInquiriesByProperty = (propertyId) => {
     }
 };
 
-// Get all inquiries for a user
-export const getInquiriesByUser = (userId) => {
+// Get all inquiries sent by a user
+export const getInquiriesSentFromUser = (userId) => {
     try {
         const stmt = db.prepare('SELECT * FROM Inquiries WHERE fromId = ?');
         const inquiries = stmt.all(userId);

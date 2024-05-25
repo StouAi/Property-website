@@ -6,12 +6,9 @@ import { isFavorite } from '../models/favorites.mjs';
 
 // Create a new property
 export const createPropertyHandler = (req, res) => {
-    // let { userID, property, location } = req.body;
     let { property, location } = req.body;
-    console.log(req.body)
 
     const userID = req.session.loggedUserId;
-    console.log('Logged in user:', userID);
 
     property.surface = parseInt(property.surface);
     property.price = parseInt(property.price);
@@ -141,7 +138,7 @@ export const showPropertyPageHandler = (req, res) => {
         let propertyIsFavorite = false;
         if (req.session.loggedUserId !== undefined)
             propertyIsFavorite = isFavorite(req.session.loggedUserId, property.id);
-        console.log(res.locals.userId);
+
         res.render('property', {
             property: property,
             location: location,

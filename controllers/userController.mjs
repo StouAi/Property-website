@@ -61,7 +61,6 @@ export const logoutUserHandler = async (req, res) => {
 // Authenticate User
 export const checkAuthenticated = async (req, res, next) => {
     try {
-        console.log(req.session.loggedUserId)
         if (req.session.loggedUserId) {
             console.log("user is authenticated", req.originalUrl);
             next();
