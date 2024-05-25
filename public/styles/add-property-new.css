@@ -31,7 +31,7 @@ hr {
     font-size: 1.6em;
 }
 
-.form .type {
+.form #type , .form #subtype {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +52,7 @@ hr {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
 }
 
-.form label {
+.form label ,#details input[type="text"],#details input[type="number"],#details select{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -68,6 +68,27 @@ hr {
     padding: 10px;
     margin: 10px 15px;
     cursor: pointer;
+}
+
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+#details{
+    display: flex;
+    flex-direction: column;
+}
+
+#details div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+#details input[type="text"],#details input[type="number"] {
+    width: 100%;
+    
+
+
 }
 
 .form label i {
