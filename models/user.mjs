@@ -18,8 +18,11 @@ db.exec(`
 export const registerUser = async (username, password, fName, lName, phone) => {
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
+        db.exec('BEGIN TRANSACTION');
         const stmt = db.prepare('INSERT INTO Users (username, password, fName, lName, phone) VALUES (?, ?, ?, ?, ?)');
         const { lastInsertRowid } = stmt.run(username, hashedPassword, fName, lName, phone);
+        // stmt.finalize();
+        db.exec('COMMIT');
         return lastInsertRowid;
     } catch (error) {
         console.error('Error registering user:', error);

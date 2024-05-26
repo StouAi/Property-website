@@ -1,45 +1,75 @@
-import { createProperty, getAllProperties, getPropertiesWithFilters } from '../models/property.mjs';
+import { createProperty, getPropertiesFromUserID, getPropertiesWithFilters } from '../models/property.mjs';
 import { getPropertiesForRent, getPropertiesForSale } from '../models/property.mjs';
-import { getPropertyFromID } from '../models/property.mjs';
+import { getPropertyFromID, getLocationFromID} from '../models/property.mjs';
 import { findUserByID } from '../models/user.mjs';
+import { isFavorite } from '../models/favorites.mjs';
 
 // Create a new property
 export const createPropertyHandler = (req, res) => {
-    // let { userID, property, location } = req.body;
     let { property, location } = req.body;
 
-    let userID = 1; // Hardcoded for now
+    const userID = req.session.loggedUserId;
+    
 
     property.surface = parseInt(property.surface);
     property.price = parseInt(property.price);
     property.constructionYear = parseInt(property.constructionYear);
+    property.forRent = parseInt(property.forRent);
+
+    if (property.floor !== undefined)
+        property.floor = parseInt(property.floor);
+
+    if (property.levels !== undefined)
+        property.levels = parseInt(property.levels);
+
+    if (property.bedrooms !== undefined)
+        property.bedrooms = parseInt(property.bedrooms);
+
+    if (property.bathrooms !== undefined)
+        property.bathrooms = parseInt(property.bathrooms);
+
+    if (property.parking !== undefined)
+        property.parking = parseInt(property.parking);
+
+    if (property.buildable !== undefined)
+        property.buildable = parseInt(property.buildable);
+
+   
 
     try {
         const propertyId = createProperty(userID, property, location);
         if (propertyId) {
-            res.status(201).json({ propertyId });
+            res.redirect("/my-listings");
         } else {
-            res.status(500).json({ message: 'Property creation failed' });
+            throw new Error('Property creation failed.')
         }
     } catch (error) {
         res.status(500).json({ message: 'Property creation failed' });
     }
 };
 
-// Get all properties
-export const getPropertiesHandler = (req, res) => {
+// Search properties
+export const searchPropertiesHandler = (req, res) => {
     try {
-        let { locationQuery, propertyFilters } = req.body;
+        let locationQuery;
+        let propertyFilters = {};
+        if (req.body.tabs !== undefined) {
+            locationQuery = req.body.locationQuery;
+            propertyFilters.forRent = parseInt(req.body.tabs);
+        } else {
+            locationQuery = req.body.locationQuery;
+            propertyFilters = req.body.propertyFilters;
+        }
 
         if (propertyFilters !== undefined ) {
             for (let key in propertyFilters) {
-                if (propertyFilters[key] === '')
+                if (propertyFilters[key] === 'null' || propertyFilters[key] === '')
                     propertyFilters[key] = null;
                 else if (!isNaN(propertyFilters[key]))
                     propertyFilters[key] = parseInt(propertyFilters[key]);
             }
         }
-
+        
         // Check for invalid filter values
         if (!!propertyFilters.minPrice && !!propertyFilters.maxPrice)
             if (propertyFilters.minPrice > propertyFilters.maxPrice)
@@ -69,12 +99,9 @@ export const getPropertiesHandler = (req, res) => {
             if (propertyFilters.minBathrooms > propertyFilters.maxBathrooms)
                 res.status(400).json({ message: 'Minimum bathrooms cannot be greater than maximum bathrooms' });
 
-        //
         const properties = getPropertiesWithFilters(propertyFilters, locationQuery);
-        // const properties = getAllProperties();
-        console.log('Properties: ', properties);
-        res.render('filters', { title: 'Search', properties: properties});
-        // res.json(properties);
+        
+        res.render('filters', { title: 'Search properties', properties: properties, numOfResults: properties.length});
     } catch (error) {
         console.error('Error fetching properties:', error);
         res.status(500).json({ message: 'Error fetching properties' });
@@ -84,8 +111,11 @@ export const getPropertiesHandler = (req, res) => {
 // Show home page properties
 export const showHomePropertiesHandler = (req, res) => {
     try {
-        const propertiesForSale = getPropertiesForSale();
-        const propertiesForRent = getPropertiesForRent();
+        let propertiesForSale = getPropertiesForSale();
+        let propertiesForRent = getPropertiesForRent();
+        propertiesForSale = propertiesForSale.map(property => getPropertyFromID(property.id));
+        propertiesForRent = propertiesForRent.map(property => getPropertyFromID(property.id));
+
         res.render('home', {
             title: 'Property Finder',
             catchphrase: "Ακίνητα προς Αγορά",
@@ -98,22 +128,39 @@ export const showHomePropertiesHandler = (req, res) => {
     }
 };
 
+// Show property page
 export const showPropertyPageHandler = (req, res) => {
     try {
         const property = getPropertyFromID(parseInt(req.params.id));
-        console.log(property.userId)
+        const location = getLocationFromID(property.locationId);
         const user = findUserByID(property.userId);
 
-        console.log('Property: ', property);
-        console.log('User: ', user);
+        let propertyIsFavorite = false;
+        if (req.session.loggedUserId !== undefined)
+            propertyIsFavorite = isFavorite(req.session.loggedUserId, property.id);
 
-        res.render('property', { property, user });
-        // const property = await Property.findById(req.params.id);
-        // if (!property) {
-        //     return res.status(404).send('Property not found');
-        // }
-        // res.render('property', { property });
+        res.render('property', {
+            property: property,
+            location: location,
+            listedBy: user,
+            isFavorite: propertyIsFavorite
+        });
     } catch (err) {
+        console.error('Error loading property page:', err);
         res.status(500).send('Server Error');
     }
   };
+
+export const showUserPropertiesHandler = (req, res) => {
+    const userId = req.session.loggedUserId;
+    try {
+        let properties = getPropertiesFromUserID(userId);
+        properties = properties.map(property => getPropertyFromID(property.id));
+        res.render('my-listings', { title: 'My Listings', properties: properties, numOfResults: properties.length});
+    }
+    catch (error) {
+        console.error('Error loading my listings page:', error);
+        res.status(500).json({ message: 'Error loading my listings page' });
+    }
+};
+

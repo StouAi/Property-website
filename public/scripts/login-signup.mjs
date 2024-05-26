@@ -4,12 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginBtn = document.getElementById('login');
 
     registerBtn.addEventListener('click', () => {
-        console.log('register clicked');
         container.classList.add("active");
     });
 
     loginBtn.addEventListener('click', () => {
-        console.log('login clicked');
         container.classList.remove("active");
     });
 

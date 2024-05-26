@@ -1,35 +1,43 @@
 import express from 'express';
-import { loginUserHandler, authenticateUserHandler } from './controllers/userController.mjs';
-import { checkUserExists, signupUserHandler} from './controllers/userController.mjs';
-import { createPropertyHandler, getPropertiesHandler } from './controllers/propertyController.mjs';
+import { loginUserHandler, logoutUserHandler, checkAuthenticated } from './controllers/userController.mjs';
+import { createPropertyHandler, searchPropertiesHandler, showHomePropertiesHandler} from './controllers/propertyController.mjs';
+import{ showPropertyPageHandler, showUserPropertiesHandler } from './controllers/propertyController.mjs';
 import authMiddleware from './middleware/authMiddleware.mjs';
+import { toggleFavoriteHandler, showFavoritesHandler,showUserInquiriesHandler ,createInquiryHandler} from './controllers/favoriteInquiryController.mjs';
+
 
 const router = express.Router();
 
-// Home Page
-router.get('/', (req, res) => {
+
+// Login / Logout
+router.get('/login', (req, res) => {
     try{
-        const properties = getPropertiesHandler(req, res);
-        res.render('home', { title: 'Property Finder', catchphrase: "Όλα τα ακίνητα ενα κλικ μακριά", properties: properties });
+        res.render('auth/login-signup', { layout: 'login-signup'});
     } catch (error) {
-        console.error('Error loading home page:', error);
-        res.status(500).json({ message: 'Error loading home page' });
+        console.error('Error loading login page:', error);
+        res.status(500).json({ message: 'Error loading login page' });
     }
 });
+router.post('/login', loginUserHandler);
+router.get('/logout', logoutUserHandler);
 
-router.get('/property/:id', (req, res) => {
-    try {
-        console.log('Property ID:', req.params.id)
-        res.render('property', { address: 'dieuthinsi', price: '5 eurw', surface: '100 metros cuadrados' })
-        // const property = await Property.findById(req.params.id);
-        // if (!property) {
-        //     return res.status(404).send('Property not found');
-        // }
-        // res.render('property', { property });
-    } catch (err) {
-        res.status(500).send('Server Error');
+// Home Page
+router.get('/', showHomePropertiesHandler);
+router.get('/home', (req, res) => {res.redirect('/')});
+
+// Search Page
+router.get('/search', (req, res) => {
+    try{
+        res.render('filters', { title: 'Search', properties: []});
+    } catch (error) {
+        console.error('Error loading search page:', error);
+        res.status(500).json({ message: 'Error loading search page' });
     }
-  });
+});
+router.post('/search', searchPropertiesHandler);
+
+// Property Page
+router.get('/property/:id', showPropertyPageHandler);
 
 // About Us Page
 router.get('/about-us', (req, res) => {
@@ -51,53 +59,29 @@ router.get('/contact', (req, res) => {
     }
 });
 
-// Buy / Rent Page
-router.get('/buy', (req, res) => {
+
+
+// List your property Page
+
+router.get('/list-your-property', checkAuthenticated, (req, res) => {
     try{
-        res.render('home', { title: 'Property Finder', catchphrase: "Ακίνητα προς Αγορά", properties: [] });
-    } catch (error) {
-        console.error('Error loading home page:', error);
-        res.status(500).json({ message: 'Error loading home page' });
-    }
-});
-
-router.get('/rent', (req, res) => {
-    try{
-        res.render('home', { title: 'Property Finder', catchphrase: "Ακίνητα προς Ενοικίαση", properties: [] });
-    } catch (error) {
-        console.error('Error loading home page:', error);
-        res.status(500).json({ message: 'Error loading home page' });
-    }
-});
-
-
-
-// Create property page
-router.get('/createProperty', (req, res) => {
-    try{
-        res.render('add-property-2', { title: 'Add property' });
+        res.render('add-property', { title: 'Add property' });
     } catch (error) {
         console.error('Error loading add property page:', error);
         res.status(500).json({ message: 'Error loading add property page' });
     }
 });
-
-router.get('/getProperties', getPropertiesHandler);
-router.post('/createProperty', createPropertyHandler);
-
-router.get('/search', (req, res) => {
-    try{
-        res.render('filters', { title: 'Search', properties: []});
-    } catch (error) {
-        console.error('Error loading search page:', error);
-        res.status(500).json({ message: 'Error loading search page' });
-    }
-});
-
-router.post('/search', getPropertiesHandler);
+router.post('/list-your-property', createPropertyHandler);
 
 
-// Login
+
+router.post('/search', searchPropertiesHandler);
+
+
+
+
+
+// Login / Logout
 router.get('/login', (req, res) => {
     try{
         res.render('auth/login-signup', { layout: 'login-signup'});
@@ -106,9 +90,25 @@ router.get('/login', (req, res) => {
         res.status(500).json({ message: 'Error loading login page' });
     }
 });
-
 router.post('/login', loginUserHandler);
-// router.post('/authUser', authenticateUserHandler);
-// router.post('/signupUser', signupUserHandler);
+router.get('/logout', logoutUserHandler);
+
+
+// My Listings
+router.get('/my-listings', checkAuthenticated,showUserPropertiesHandler);
+
+
+// Favorites Page
+router.get('/favorites', checkAuthenticated, showFavoritesHandler);
+router.get('/favorite/:propertyId', checkAuthenticated, toggleFavoriteHandler);
+
+// Inquiry Page
+router.post('/inquiry/:propertyId', checkAuthenticated, createInquiryHandler);
+
+
+// My-inquires page
+
+router.get('/my-inquiries', checkAuthenticated,showUserInquiriesHandler);
+
 
 export default router;

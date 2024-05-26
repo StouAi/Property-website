@@ -1,105 +1,207 @@
-<style>
-    /* Style the container for the custom select */
-    #subtype {
-    position: relative;
-    width: 200px; /* Adjust width as needed */
+<link rel="stylesheet" href="/styles/add-property.css">
+
+<section class="content">
+    <div class="title">
+        <h1>Listing your property has never been easier</h1>
+        <p>Just fill in the form below and you're good to go!</p>
+        <hr>
+    </div>
+
+    <form action="/list-your-property" method="POST" class="form">
+        <h2>Are you selling or renting your property?</h2>
+        <div id="renting-div">
+            <input type="radio" id="Selling" name="property[forRent]" value="0" onclick ="changeSubtype()">
+            <label for="Selling">
+                <i class="fas fa-dollar-sign"></i>
+                SELLING
+            </label>
+            <input type="radio" id="Renting" name="property[forRent]" value="1" onclick ="changeSubtype()">
+            <label for="Renting">
+                <i class="fas fa-money-bill"></i>
+                RENTING
+            </label>
+
+        </div>
+
+        <h2>Choose property category</h2>
+        <div id="type-div">
+            <input type="radio" id="Residential" name="property[type]" value="Residential" onclick="changeSubtype()">
+            <label for="Residential">
+                <i class="fas fa-home"></i>
+                RESIDENTIAL
+            </label>
+            <input type="radio" id="Commercial" name="property[type]" value="Commercial" onclick="changeSubtype()">
+            <label for="Commercial">
+                <i class="fas fa-building"></i>
+                COMMERCIAL
+            </label>
+            <input type="radio" id="Landd" name="property[type]" value="Land" onclick ="changeSubtype()">
+            <label for="Landd">
+                <i class="fas fa-tree"></i>
+                LAND
+            </label>
+        </div>
+
+        <h2>Choose property type</h2>
+        <div id="subtype-div">
+            
+        </div>
+
+        <h2>Property details</h2>
+        <div id="details">
+            
+
+
+
+    </div>
+
+
+
+
+
+</section>
+
+<script>
+    function changeSubtype() {
+        if (document.getElementById('Residential').checked) {
+            document.getElementById('subtype-div').innerHTML = 
+                '<input type="radio" id="Detached-House" name="property[subtype]" value="Detached House" onclick="FinalInfo()">' +
+                '<label for="Detached-House">' +
+                    '<i class="fas fa-home"></i>' +
+                    ' DETACHED HOUSE' +
+                '</label>' +
+                '<input type="radio" id="Studio" name="property[subtype]" value="Studio" onclick="FinalInfo()">' +
+                '<label for="Studio">' +
+                    '<i class="fas fa-building"></i>' +
+                    ' STUDIO' +
+                '</label>' +
+                '<input type="radio" id="Apartment" name="property[subtype]" value="Apartment" onclick="FinalInfo()">' +
+                '<label for="Apartment">' +
+                    '<i class="fas fa-building"></i>' +
+                    ' APARTMENT' +
+                '</label>' +
+                '<input type="radio" id="Maisonette" name="property[subtype]" value="Maisonette" onclick="FinalInfo()">' +
+                '<label for="Maisonette">' +
+                    '<i class="fas fa-building"></i>' +
+                    ' MAISONETTE' +
+                '</label>';
+        } else if (document.getElementById('Commercial').checked) {
+            document.getElementById('subtype-div').innerHTML = 
+                '<input type="radio" id="Office" name="property[subtype]" value="Office" onclick="FinalInfo()">' +
+                '<label for="Office">' +
+                    '<i class="fa-solid fa-briefcase"></i>' +
+                    ' OFFICE' +
+                '</label>' +
+                '<input type="radio" id="Store" name="property[subtype]" value="Store" onclick="FinalInfo()">' +
+                '<label for="Store">' +
+                    '<i class="fa-solid fa-store"></i>' +
+                    ' STORE' +
+                '</label>' +
+                '<input type="radio" id="Warehouse" name="property[subtype]" value="Warehouse" onclick="FinalInfo()">' +
+                '<label for="Warehouse">' +
+                    '<i class="fa-solid fa-warehouse"></i>' +
+                    ' WAREHOUSE' +
+                '</label>';
+        } else if (document.getElementById('Landd').checked) {
+            document.getElementById('subtype-div').innerHTML = 
+                '<input type="radio" id="Land" name="property[subtype]" value="Land" onclick="FinalInfo()">' +
+                '<label for="Land"> NO SUBTYPES </label>';
+        } else {
+            document.getElementById('subtype-div').innerHTML = '';
+        }
     }
 
-    /* Hide the original select element */
-    #subtype select {
-    display: none;
+function FinalInfo() {
+    const detachedHouse = document.getElementById('Detached-House');
+    const studio = document.getElementById('Studio');
+    const apartment = document.getElementById('Apartment');
+    const maisonette = document.getElementById('Maisonette');
+    const office = document.getElementById('Office');
+    const store = document.getElementById('Store');
+    const warehouse = document.getElementById('Warehouse');
+    const land = document.getElementById('Land');
+
+    if ((detachedHouse && detachedHouse.checked) || (studio && studio.checked) || 
+        (apartment && apartment.checked) || (maisonette && maisonette.checked)) {
+        document.getElementById('details').innerHTML = 
+            '<div>'+
+            '<input type="text" id="Country" name="location[country]" placeholder="Country" required>' +
+            '<input type="text" id="City" name="location[city]" placeholder="City" required>' +
+            '<input type="text" id="Neighborhood" name="location[neighborhood]" placeholder="Neighborhood" required>' +
+            '<input type="text" id="zip" name="location[zip]" placeholder="Zip code" required>' +
+            '<input type="text" id="address" name="property[address]" placeholder="Address" required>' +
+            '</div>'+
+            '<div>'+
+            '<input type="number" id="price" name="property[price]" placeholder="Price" required>' +
+            '<input type="number" id="surface" name="property[surface]" placeholder="Surface" required>' +
+            '<input type="number" id="floor" name="property[floor]" placeholder="Floor" required>' +
+            '<input type="number" id="levels" name="property[levels]" placeholder="Levels" required>' +
+            '<input type="number" id="year" name="property[constructionYear]" placeholder="Construction Year" required>' +
+            '</div>'+
+            '<div>'+
+            '<input type="number" id="bathrooms" name="property[bathrooms]" placeholder="Bathrooms" required>' +
+            '<input type="number" id="bedrooms" name="property[bedrooms]" placeholder="Bedrooms" required>' +
+            '<input type="text" id="description" name="property[description]" placeholder="Description" required>'+
+            '</div>'+
+            '<div>'+
+            '<button type="submit" id="add-property">ADD PROPERTY</button>'+
+            '</div>';
+    } else if ((office && office.checked) || 
+        (store && store.checked) || (warehouse && warehouse.checked)) {
+        document.getElementById('details').innerHTML = 
+            '<div>'+
+            '<input type="text" id="country" name="location[country]" placeholder="Country" required>' +
+            '<input type="text" id="city" name="location[city]" placeholder="City" required>' +
+            '<input type="text" id="neightborhood" name="location[neighborhood]" placeholder="Neighborhood" required>' +
+            '<input type="text" id="zip" name="location[zip]" placeholder="Zip code" required>' +
+            '<input type="text" id="address" name="property[address]" placeholder="Address" required>' +
+            '</div>'+
+            '<div>'+
+            '<input type="number" id="price" name="property[price]" placeholder="Price" required>' +
+            '<input type="number" id="surface" name="property[surface]" placeholder="Surface" required>' +
+            '<input type="number" id="bathrooms" name="property[bathrooms]" placeholder="Bathrooms" required>' +
+            '<input type="number" id="floor" name="property[floor]" placeholder="Floor" required>' +
+            '</div>'+
+            '<div>'+
+            '<input type="number" id="levels" name="property[levels]" placeholder="Levels" required>' +
+            '<input type="number" id="year" name="property[constructionYear]" placeholder="Construction year" required>' +
+            '<label for="parking">Parking:</label>' +
+            '<select id="parking" name="parking" required>' +
+                '<option value="0">No</option>' +
+                '<option value="1">Yes</option>' +
+            '</select>' +
+            '<input type="text" id="description" name="property[description]" placeholder="Description" required>'+
+            '</div>'+
+            '<div>'+
+            '<button type="submit" id="add-property">ADD PROPERTY</button>'+
+            '</div>';
+    } else if (land && land.checked) {
+        document.getElementById('details').innerHTML = 
+            '<div>'+
+            '<input type="text" id="Country" name="location[country]" placeholder="Country" required>' +
+            '<input type="text" id="City" name="location[city]" placeholder="City" required>' +
+            '<input type="text" id="Neighborhood" name="location[neighborhood]" placeholder="Neighborhood" required>' +
+            '<input type="text" id="zip" name="location[zip]" placeholder="Zip code" required>' +
+            '<input type="text" id="address" name="property[address]" placeholder="Address" required>' +
+            '</div>'+
+            '<div>'+
+            '<input type="number" id="price" name="property[price]" placeholder="Price" required>' +
+            '<input type="number" id="surface" name="property[surface]" placeholder="Surface" required>' +
+            '<label for="buildable">Buildable:</label>' +
+            '<select id="buildable" name="buildable" required>' +
+                '<option value="0">No</option>' +
+                '<option value="1">Yes</option>' +
+            '</select>' +
+            '<input type="number" id="year" name="property[constructionYear]" placeholder="Construction year" required>' +
+            '<input type="text" id="description" name="property[description]" placeholder="Description" required>'+
+            '</div>'+
+            '<div>'+
+            '<button type="submit" id="add-property">ADD PROPERTY</button>'+
+            '</div>';
+    } else {
+        document.getElementById('details').innerHTML = '';
     }
+}
 
-    /* Style the custom dropdown arrow */
-    #subtype::after {
-    content: '\25BC'; /* Unicode character for down arrow */
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none; /* Prevent click events on the pseudo-element */
-    }
 
-    /* Style the dropdown menu */
-    #subtype select {
-    appearance: none;
-    outline: none;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    padding: 8px 16px;
-    font-size: 16px;
-    font-family: Arial, sans-serif;
-    cursor: pointer;
-    }
-
-    /* Style the options */
-    #subtype select option {
-    background-color: #fff;
-    color: #333;
-    }
-
-    /* Style when the select box is open */
-    #subtype select:focus {
-    border-color: #666;
-    }
-
-    /* Style when an option is hovered */
-    #subtype select option:hover {
-    background-color: #f2f2f2;
-    }
-</style>
-
-<form action="/createProperty" method="POST">
-    <label for="address">Address:</label>
-    <input type="text" id="address" name="property[address]" required>
-
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="property[description]" required>
-
-    <label for="type">Property Type:</label>
-    <select id="type" name="property[type]" required>
-        <option value="residential">Residential</option>
-    </select>
-
-    <label for="subtype">Property Subtype:</label>
-    <select id="subtype" name="property[subtype]" required>
-        <option value="house">House</option>
-        <option value="apartment">Apartment</option>
-        <option value="condo">Condo</option>
-    </select>
-
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="property[price]" required>
-
-    <label for="surface">Surface:</label>
-    <input type="number" id="surface" name="property[surface]" required>
-
-    <label for="floor">Floor:</label>
-    <input type="number" id="floor" name="property[floor]" required>
-
-    <label for="levels">Levels:</label>
-    <input type="number" id="levels" name="property[levels]" required>
-
-    <label for="bedrooms">Bedrooms:</label>
-    <input type="number" id="bedrooms" name="property[bedrooms]" required>
-
-    <label for="bathrooms">Bathrooms:</label>
-    <input type="number" id="bathrooms" name="property[bathrooms]" required>
-
-    <label for="constructionYear">Construction year:</label>
-    <input type="number" id="constructionYear" name="property[constructionYear]" required>
-
-    <label for="country">Country:</label>
-    <input type="text" id="country" name="location[country]" required>
-
-    <label for="city">City:</label>
-    <input type="text" id="city" name="location[city]" required>
-
-    <label for="zip">Zip:</label>
-    <input type="text" id="zip" name="location[zip]" required>
-
-    <label for="neighborhood">Neighborhood:</label>
-    <input type="text" id="neighborhood" name="location[neighborhood]" required>
-
-    <button type="submit">Submit</button>
-</form>
+    </script>

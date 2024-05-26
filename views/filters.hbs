@@ -1,300 +1,123 @@
-<style>
-    /*/////////////////////////////////////////////////*/
-    /* General layout for search filters */
-    .search-filters {
-        display: flex;
-        gap: 0.5em;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    /* Search bar input styles */
-    .search-bar input {
-        flex: 0 1 auto;
-        padding: 0.4em;
-        font-size: 16px;
-        width: 250px;
-        border-radius: 0.3em;
-        border: 0.1em solid #000000;
-    }
-
-    /* Property type, sale type, and other buttons */
-    .property-type, .sale-type, .subtype-type, .price-range, .area-range, .search {
-        position: relative;
-    }
-
-    /* General button styles */
-    .type, .sale, .price, .area, .subtype, .search {
-        background-color: #000000;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-size: 16px;
-        border-radius: 0.3em;
-    }
-
-    /* Dropdown menu styles */
-    .type-menu, .sale-menu, .price-menu, .area-menu, .subtype-menu {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        min-width: 150px;
-        background-color: white;
-        border: 1px solid #ccc;
-        display: none;  /* Hidden by default */
-        z-index: 1000;
-        text-align: center;
-    }
-
-    select, .search {
-        background-color: #000000;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-size: 16px;
-        border-radius: 0.3em;
-    }
-
-    /* Adjusting select elements to match the button styles */
-    select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-color: #000000;
-        color: white;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-size: 16px;
-        border-radius: 0.3em;
-        border: 0.1em solid #000000;
-        text-align: center;
-    }
-
-    select:focus {
-        outline: none;
-        border: 0.1em solid #fff;
-    }
-
-    select option {
-        background-color: white;
-        color: black;
-    }
-
-    /* Menu item styles */
-    .type-menu li, .sale-menu li, .subtype-menu li {
-        border-bottom: 1px solid #ddd;
-    }
-
-    .type-menu li:last-child, .sale-menu li:last-child, .subtype-menu li:last-child {
-        border-bottom: none;
-    }
-
-    /* Menu links */
-    .type-menu li a, .sale-menu li a, .subtype-menu li a {
-        text-decoration: none;
-        color: black;
-        display: block;
-        padding: 10px;
-        font-size: 1.2em;
-    }
-
-    .type-menu li a:hover, .sale-menu li a:hover, .subtype-menu li a:hover {
-        background-color: #000000;
-        color: white;
-    }
-
-    /* Price and area menu styles */
-    .price-menu, .area-menu {
-        min-width: 300px;
-        width: auto;
-        border-radius: 0.8em;
-        border: solid 0.1em #000000;
-    }
-
-    /* Input field styles */
-    .field input {
-        width: 60%;
-        height: 100%;
-        outline: none;
-        font-size: 19px;
-        margin-left: 12px;
-        border-radius: 5px;
-        text-align: center;
-        border: 1px solid #999;
-    }
-
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-    }
-
-    /* Compact range styles */
-    .compact-range {
-        display: flex;
-        align-items: center;
-        gap: 0.5em;
-    }
-
-    .compact-range label {
-        margin-right: 0.5em;
-        font-weight: bold;
-    }
-
-    .compact-range input[type="number"] {
-        width: 80px;
-        padding: 0.4em;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 0.3em;
-    }
-
-    .compact-range span {
-        font-size: 1.2em;
-    }
-
-    .filters-btn {
-        background-color: #000000;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-size: 16px;
-        border-radius: 0.3em;
-    }
-
-
-
-    /* Search button styles */
-    .search img {
-        width: 25px;
-        height: auto;
-    }
-
-    .search {
-        border: 0;
-        border-radius: 25%;
-        width: auto;
-        height: 45px;
-        background: rgb(0, 0, 0);
-        cursor: pointer;
-    }
-
-
-    /* Search results */
-    .homes-listing, .land-listing{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    }
-    .property-listing {
-        border: 1px solid #ccc;
-        border-radius: 4em;
-        margin: 20px;
-        overflow: hidden;
-        width: 200px; 
-    }
-
-    .property-listing img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    .property-listing figcaption {
-        padding: 10px;
-    }
-
-    .property-listing h2 {
-        font-size: 1.2em;
-        margin-bottom: 5px;
-        text-align: center;
-    }
-
-    .property-listing p {
-        font-size: 0.9em;
-        margin: 3px 0;
-        text-align: center;
-    }
-</style>
+<link rel="stylesheet" href="/styles/filters.css">
 
 <form action="/search" method="POST" class="search-filters">
-    <div class="search-bar">
         <input type="text" name="locationQuery" placeholder="Country, City, ZIP Code, Neighborhood etc">
-    </div>
-
+    
     <div class="property-type">
         <select name="propertyFilters[type]" id="typeSelect">
-            <option value="residential">Κατοικία</option>
-            <option value="commercial">Επαγγελματικό</option>
-            <option value="land">Γη</option>
+            <option value="Residential">Residential</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Land">Land</option>
         </select>
     </div>
 
     <div class="subtype-type">
         <select name="propertyFilters[subtype]" id="subtypeSelect">
-            <option value="">Επιλέξτε Υποκατηγορία</option>
+            <option value="">Subtype</option>
             <!-- Subtype options will be populated dynamically based on property type selection -->
         </select>
     </div>
 
     <div class="sale-type">
         <select name="propertyFilters[forRent]" id="saleSelect">
-            <option value="1">Ενοικίαση</option>
-            <option value="0">Πώληση</option>
+            <option value="1">Rent</option>
+            <option value="0">Sale</option>
         </select>
     </div>
 
-    <div class="price-range compact-range">
-        <label for="priceMin">Τιμή</label>
-        <input type="number" id="priceMin" name="propertyFilters[minPrice]" value="null" placeholder="Ελάχιστη">
-        <span>-</span>
-        <input type="number" id="priceMax" name="propertyFilters[maxPrice]" value="null" placeholder="Μέγιστη">
+    <div class="price-cont">
+        <button id="price-btn">Price</button>
+        <div id="price-menu">
+           <div class="price-min">
+                <input type="number" name="propertyFilters[minPrice]" value="null" placeholder="MinPrice" id="priceMin">
+        </div>
+        <div class="price-max">
+            <input type="number" name="propertyFilters[maxPrice]" placeholder="MaxPrice" value="null" id="priceMax">
+                
+        </div>
     </div>
-    
-    <div class="area-range compact-range">
-        <label for="areaMin">Εμβαδόν</label>
-        <input type="number" id="areaMin" name="propertyFilters[minSurface]" value="null" placeholder="Ελάχιστο">
-        <span>-</span>
-        <input type="number" id="areaMax" name="propertyFilters[maxSurface]" value="null" placeholder="Μέγιστο">
-    </div>
-
-
-    <div class="searchFilter">
-        <button type="button" class="filters-btn" id="filtersBtn">Φίλτρα</button>
     </div>
 
-    <div class="additional-filters compact-range" id="additionalFilters" style="display: none;">
+    <div class="surface-cont">
+        <button id="surface-btn">Surface</button>
+        <div id="surface-menu">
+                <div class="surface-min">
+                    <input type="number" name="propertyFilters[minSurface]" placeholder="MinArea" value=" null" id="surfaceMin">
+                       
+                </div>
+                <div class="surface-max">
+                    <input type="number" name="propertyFilters[maxSurface]" placeholder="MaxArea" value=" null" id="surfaceMax">
+                </div>
+        </div>
+    </div>
+    <div class="moreFilters">
+        <button type="button"  id="filtersBtn">More</button>
+    </div>
+
+    <div class="additional-filters" id="additionalFilters" >
         <!-- Additional filters will be added here based on the property type -->
     </div>
 
-
     <div class="searchFilter">
         <button type="submit" class="search" id="searchBtn">
-            <img src="images/search-icon.png" alt="Search">
+            {{!-- <img src="images/search-icon.png" alt="Search"> --}}
+            Search
         </button>
     </div>
 </form>
+<hr>
 
-<div class="search_results">
-    {{#each properties}}
-        <a href="/property/{{this.id}}">
-            <figure class="property-listing">
-                <img src="images/bgr-photo-main.jpg" alt="House Image">
-                <figcaption>
-                    <h2>{{this.type}}</h2>
-                    <p>Price: €{{this.price}}</p>
-                    <p>{{this.surface}}τ.μ</p>
-                </figcaption>
-            </figure>
-        </a>
-    {{/each}}
-</div>
+<section class="listings">
+    {{#if properties}}
+        <div class="title">
+            <h2>Search results</h2>
+            <p>Showing {{numOfResults}} results</p>
+        </div>
+        
+        <div class="properties">
+            {{#each properties}}
+                <a href="/property/{{this.id}}">
+                    <figure class="property">
+                        <img src="images/appartment.jpg" alt="House Image">
+                        <div class="details">
+                            <p class="type">
+                                    {{#if this.subtype}}
+                                        {{this.type}} / {{this.subtype}}
+                                    {{else}}
+                                        {{#if this.buildable}}
+                                            {{this.type}} / Plot
+                                        {{else}}
+                                            {{this.type}} / Parcel
+                                        {{/if}}
+                                    {{/if}}
+                            </p>
+                            <p class="price"><b>
+                                <script>
+                                    if ({{this.forRent}}) {
+                                        document.write('€' + ({{this.price}}).toLocaleString() + '/mo');
+                                    } else {
+                                        document.write('€' + ({{this.price}}).toLocaleString());
+                                    }
+                                </script></b>
+                            </p>
+                            <p class="info">
+                                {{#if this.subtype}}
+                                    {{#if this.bedrooms}}
+                                        <b>{{this.bedrooms}}</b> bed 
+                                    {{/if}}
+                                    <b>{{this.bathrooms}}</b> bath 
+                                {{/if}}
+                                    <b>{{this.surface}}</b> m&sup2
+                            </p>
+                            <p class="address">{{this.address}}</p>
+                        </div>
+                    </figure>
+                </a>
+            {{/each}}
+        </div>
+    {{/if}}
+    
+</section>
 
 <script src="scripts/search-properties-script.mjs" defer></script>
+<script src="scripts/button.js" defer></script>
