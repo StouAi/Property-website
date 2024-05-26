@@ -23,9 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const surfaceMenu = document.getElementById('surface-menu');
     
     // Helper function to toggle display
-    const toggleDisplay = (menu) => {
-        if (menu.style.display === 'none' || !menu.style.display) {
-            menu.style.display = 'flex';
+    const toggleDisplay = (menu_show) => {
+        if (menu_show.style.display === 'none' || !menu_show.style.display) {
+            menu_show.style.display = 'flex';
+            
+
         } else {
             menu.style.display = 'none';
         }
@@ -33,16 +35,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     priceBtn.addEventListener('click', (event) => {
         event.preventDefault();
+        event.stopPropagation();
+    
         
         toggleDisplay(priceMenu);
     });
 
     surfaceBtn.addEventListener('click', (event) => {
         event.preventDefault();
-        
+        event.stopPropagation();
+    
+    
         toggleDisplay(surfaceMenu);
     });
+
+
+
+    document.addEventListener('click', (event) => {
+        // Hide the menu if the click is outside the menu and the button
+        if (surfaceMenu.style.display === 'flex' && !surfaceMenu.contains(event.target) && !surfaceBtn.contains(event.target)) {
+          surfaceMenu.style.display = 'none';
+        }
+        if (priceMenu.style.display === 'flex' && !priceMenu.contains(event.target) && !priceBtn.contains(event.target)) {
+            priceMenu.style.display = 'none';
+          }
+      });
+    
+      
+    
+    
+
 
   
 
 });
+
+
+
+
+
+

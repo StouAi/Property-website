@@ -1,6 +1,6 @@
-import { createProperty, getPropertiesWithFilters } from '../models/property.mjs';
+import { createProperty, getPropertiesFromUserID, getPropertiesWithFilters } from '../models/property.mjs';
 import { getPropertiesForRent, getPropertiesForSale } from '../models/property.mjs';
-import { getPropertyFromID, getLocationFromID } from '../models/property.mjs';
+import { getPropertyFromID, getLocationFromID} from '../models/property.mjs';
 import { findUserByID } from '../models/user.mjs';
 import { isFavorite } from '../models/favorites.mjs';
 
@@ -9,6 +9,7 @@ export const createPropertyHandler = (req, res) => {
     let { property, location } = req.body;
 
     const userID = req.session.loggedUserId;
+    
 
     property.surface = parseInt(property.surface);
     property.price = parseInt(property.price);
@@ -33,8 +34,7 @@ export const createPropertyHandler = (req, res) => {
     if (property.buildable !== undefined)
         property.buildable = parseInt(property.buildable);
 
-    console.log('Property:', property);
-    console.log('Location:', location);
+   
 
     try {
         const propertyId = createProperty(userID, property, location);
@@ -63,13 +63,14 @@ export const searchPropertiesHandler = (req, res) => {
 
         if (propertyFilters !== undefined ) {
             for (let key in propertyFilters) {
-                if (propertyFilters[key] === '')
+                if (propertyFilters[key] === 'null' || propertyFilters[key] === '')
                     propertyFilters[key] = null;
                 else if (!isNaN(propertyFilters[key]))
                     propertyFilters[key] = parseInt(propertyFilters[key]);
             }
         }
-
+        console.log('Property filters:', propertyFilters);
+        console.log('Location query:', locationQuery);
         // Check for invalid filter values
         if (!!propertyFilters.minPrice && !!propertyFilters.maxPrice)
             if (propertyFilters.minPrice > propertyFilters.maxPrice)
@@ -100,7 +101,7 @@ export const searchPropertiesHandler = (req, res) => {
                 res.status(400).json({ message: 'Minimum bathrooms cannot be greater than maximum bathrooms' });
 
         const properties = getPropertiesWithFilters(propertyFilters, locationQuery);
-        console.log('Properties:', properties);
+        
         res.render('filters', { title: 'Search properties', properties: properties, numOfResults: properties.length});
     } catch (error) {
         console.error('Error fetching properties:', error);
@@ -150,3 +151,19 @@ export const showPropertyPageHandler = (req, res) => {
         res.status(500).send('Server Error');
     }
   };
+
+export const showUserPropertiesHandler = (req, res) => {
+    const userId = req.session.loggedUserId;
+    try {
+        let properties = getPropertiesFromUserID(userId);
+        console.log('Properties1:', properties);
+        properties = properties.map(property => getPropertyFromID(property.id));
+        console.log('Properties2:', properties);
+        res.render('my-listings', { title: 'My Listings', properties: properties, numOfResults: properties.length});
+    }
+    catch (error) {
+        console.error('Error loading my listings page:', error);
+        res.status(500).json({ message: 'Error loading my listings page' });
+    }
+};
+

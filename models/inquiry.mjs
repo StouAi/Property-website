@@ -35,7 +35,8 @@ export const getInquiriesForUser = (userId) => {
 
         const inquiryStmt = db.prepare('SELECT * FROM Inquiries WHERE propertyId IN (' + propertyIds.map(() => '?').join(', ') + ')');
         const inquiries = inquiryStmt.all(...propertyIds);
-        
+        console.log('Inquiries22:', inquiries);
+
         return inquiries;
     } catch (error) {
         console.error('Error fetching inquiries:', error);

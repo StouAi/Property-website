@@ -1,5 +1,7 @@
 import { createFavorite, deleteFavorite, getFavoritesByUser, isFavorite } from '../models/favorites.mjs';
-import { createInquiry } from '../models/inquiry.mjs';
+import { createInquiry, getInquiriesForUser } from '../models/inquiry.mjs';
+import { getPropertyFromID } from '../models/property.mjs';
+import { findUserByID } from '../models/user.mjs';
 
 
 // Add a favorite
@@ -49,3 +51,26 @@ export const createInquiryHandler = (req, res) => {
         res.status(500).json({ message: 'Error creating inquiry' });
     }
 };
+
+
+export const showUserInquiriesHandler = (req, res) => {
+    const userId = req.session.loggedUserId;
+    
+    try {
+        
+        let inquiries = getInquiriesForUser(userId);
+        let senders = inquiries.map(inquiry => findUserByID(inquiry.fromId))
+        let properties = inquiries.map(inquiry => getPropertyFromID(inquiry.propertyId));
+        let extendedInquiries = inquiries.map((item, index) => {
+            return {...item, ...senders[index],...properties[index]};
+        });
+        console.log('Inquiries:', extendedInquiries);
+        res.render('my-inquiries', { title: 'My Inquiries', inquiries: extendedInquiries});
+
+    } catch (error) {
+        console.error('Error loading my inquiries page:', error);
+        res.status(500).json({ message: 'Error loading my inquiries page' });
+    }
+
+}
+

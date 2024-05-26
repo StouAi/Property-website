@@ -137,11 +137,11 @@ function FinalInfo() {
             '<input type="number" id="floor" name="property[floor]" placeholder="Floor" required>' +
             '<input type="number" id="levels" name="property[levels]" placeholder="Levels" required>' +
             '<input type="number" id="year" name="property[constructionYear]" placeholder="Construction Year" required>' +
-            '<input type="text" id="description" name="property[description]" placeholder="Description" required>'+
             '</div>'+
             '<div>'+
             '<input type="number" id="bathrooms" name="property[bathrooms]" placeholder="Bathrooms" required>' +
             '<input type="number" id="bedrooms" name="property[bedrooms]" placeholder="Bedrooms" required>' +
+            '<input type="text" id="description" name="property[description]" placeholder="Description" required>'+
             '</div>'+
             '<div>'+
             '<button type="submit" id="add-property">ADD PROPERTY</button>'+
@@ -154,7 +154,7 @@ function FinalInfo() {
             '<input type="text" id="city" name="location[city]" placeholder="City" required>' +
             '<input type="text" id="neightborhood" name="location[neighborhood]" placeholder="Neighborhood" required>' +
             '<input type="text" id="zip" name="location[zip]" placeholder="Zip code" required>' +
-            '<input type="text" id="address" name="location[address]" placeholder="Address" required>' +
+            '<input type="text" id="address" name="property[address]" placeholder="Address" required>' +
             '</div>'+
             '<div>'+
             '<input type="number" id="price" name="property[price]" placeholder="Price" required>' +
@@ -163,13 +163,14 @@ function FinalInfo() {
             '<input type="number" id="floor" name="property[floor]" placeholder="Floor" required>' +
             '</div>'+
             '<div>'+
-            '<input type="number" id="year" name="property[constructionYear]" placeholder="Year" required>' +
+            '<input type="number" id="levels" name="property[levels]" placeholder="Levels" required>' +
+            '<input type="number" id="year" name="property[constructionYear]" placeholder="Construction year" required>' +
             '<label for="parking">Parking:</label>' +
             '<select id="parking" name="parking" required>' +
                 '<option value="0">No</option>' +
                 '<option value="1">Yes</option>' +
             '</select>' +
-            '<input type="text" id="description" name="description" placeholder="Description" required>';
+            '<input type="text" id="description" name="description" placeholder="Description" required>'+
             '</div>'+
             '<div>'+
             '<button type="submit" id="add-property">ADD PROPERTY</button>'+
@@ -181,7 +182,7 @@ function FinalInfo() {
             '<input type="text" id="City" name="location[city]" placeholder="City" required>' +
             '<input type="text" id="Neighborhood" name="location[neighborhood]" placeholder="Neighborhood" required>' +
             '<input type="text" id="zip" name="location[zip]" placeholder="Zip code" required>' +
-            '<input type="text" id="address" name="location[address]" placeholder="Address" required>' +
+            '<input type="text" id="address" name="property[address]" placeholder="Address" required>' +
             '</div>'+
             '<div>'+
             '<input type="number" id="price" name="property[price]" placeholder="Price" required>' +
@@ -191,7 +192,8 @@ function FinalInfo() {
                 '<option value="0">No</option>' +
                 '<option value="1">Yes</option>' +
             '</select>' +
-            '<input type="text" id="description" name="property[description]" placeholder="Description" required>';
+            '<input type="number" id="year" name="property[constructionYear]" placeholder="Construction year" required>' +
+            '<input type="text" id="description" name="property[description]" placeholder="Description" required>'+
             '</div>'+
             '<div>'+
             '<button type="submit" id="add-property">ADD PROPERTY</button>'+
