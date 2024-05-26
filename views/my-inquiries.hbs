@@ -1,0 +1,19 @@
+<section class="My-inquiries">
+    <h1>My Inquiries</h1>
+    <div class="inquiries">
+        {{#each inquiries}}
+        <div class="inquiry">
+            <div class="inquiry-info">
+                <p><span>Property:</span> {{inquiries.address}}</p>
+                <p><span>Interest shown by:</span> {{this.inquiry_user.fName}} {{this.inquiry_user.lName}}</p>
+                <p><span>Email:</span> {{this.inquiry_user.email}}</p>
+                <p><span>Phone:</span> {{this.inquiry_user.phone}}</p>
+                <p><span>Message:</span>{{this.inquiries.message}}</p>
+                <p><span>Date:</span> {{this.inquiry.createdAt}}</p>
+                
+            </div>
+            
+        </div>
+        {{/each}}
+    </div>
+</section>

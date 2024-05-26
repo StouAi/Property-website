@@ -19,11 +19,12 @@
                     <li><a class="page-buttons" href="/contact">Contact us</a></li>                  
                     <li class="profile">
                     {{#if userId}}
-                        <a href="/logout">Profile</a>
+                        <a href="/">Profile</a>
                         <ul class="dropdown">
                             <li><a href="/list-your-property"><i class="fas fa-house-medical"></i> List your property</a></li>
-                            <li><a href="#"><i class="fas fa-house"></i> My listings</a></li>
-                            <li><a href="#"><i class="fas fa-heart"></i> My favorites</a></li>
+                            <li><a href="/my-listings"><i class="fas fa-house"></i> My listings</a></li>
+                            <li><a href="/my-inquiries"><i class="fas fa-envelope"></i> My inquires</a></li>
+                            <li><a href="/favorites"><i class="fas fa-heart"></i> My favorites</a></li>
                             <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
                         </ul>
                     {{else}}

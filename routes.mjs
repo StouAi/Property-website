@@ -1,8 +1,10 @@
 import express from 'express';
 import { loginUserHandler, logoutUserHandler, checkAuthenticated } from './controllers/userController.mjs';
-import { createPropertyHandler, searchPropertiesHandler, showHomePropertiesHandler, showPropertyPageHandler } from './controllers/propertyController.mjs';
+import { createPropertyHandler, searchPropertiesHandler, showHomePropertiesHandler} from './controllers/propertyController.mjs';
+import{ showPropertyPageHandler, showUserPropertiesHandler } from './controllers/propertyController.mjs';
 import authMiddleware from './middleware/authMiddleware.mjs';
-import { addFavoriteHandler, showFavoritesHandler } from './controllers/favoriteInquiryController.mjs';
+import { toggleFavoriteHandler, showFavoritesHandler,showUserInquiriesHandler } from './controllers/favoriteInquiryController.mjs';
+import { createInquiryHandler } from './controllers/favoriteInquiryController.mjs';
 
 const router = express.Router();
 
@@ -34,7 +36,7 @@ router.get('/contact', (req, res) => {
 });
 
 
-// Create property page
+// List property page
 router.get('/list-your-property', checkAuthenticated, (req, res) => {
     try{
         res.render('add-property', { title: 'Add property' });
@@ -45,16 +47,12 @@ router.get('/list-your-property', checkAuthenticated, (req, res) => {
 });
 router.post('/list-your-property', createPropertyHandler);
 
-router.get('/search', (req, res) => {
-    try{
-        res.render('filters', { title: 'Search', properties: []});
-    } catch (error) {
-        console.error('Error loading search page:', error);
-        res.status(500).json({ message: 'Error loading search page' });
-    }
-});
+
 
 router.post('/search', searchPropertiesHandler);
+
+
+
 
 
 // Login / Logout
@@ -69,20 +67,19 @@ router.get('/login', (req, res) => {
 router.post('/login', loginUserHandler);
 router.get('/logout', logoutUserHandler);
 
-// Favorites
+
+// My Listings
+router.get('/my-listings', checkAuthenticated,showUserPropertiesHandler);
+
+// Favorites Page
 router.get('/favorites', checkAuthenticated, showFavoritesHandler);
-router.get('/favorite/:id', checkAuthenticated, addFavoriteHandler);
+router.get('/favorite/:propertyId', checkAuthenticated, toggleFavoriteHandler);
 
+// Inquiry Page
+router.post('/inquiry/:propertyId', checkAuthenticated, createInquiryHandler);
 
-// Inquiry
-router.post('/inquiry', checkAuthenticated, (req, res) => {
-    try{
-        console.log(req.body)
-        // res.render('inquiry', { title: 'Inquiry' });
-    } catch (error) {
-        console.error('Error loading inquiry page:', error);
-        res.status(500).json({ message: 'Error loading inquiry page' });
-    }
-});
+// My-inquires page
+
+router.get('/my-inquiries', checkAuthenticated,showUserInquiriesHandler);
 
 export default router;

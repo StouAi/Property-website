@@ -367,3 +367,13 @@ export const getPropertiesWithFilters = (propertyFilters, locationQuery) => {
         throw error;
     }
 }
+
+export const getPropertiesFromUserID = (userID) => {
+    try {
+        const stmt = db.prepare('SELECT * FROM Properties WHERE userId = ?');
+        return stmt.all(userID);
+    } catch (error) {
+        console.error('Error getting properties from user ID:', error);
+        throw error;
+    }
+}

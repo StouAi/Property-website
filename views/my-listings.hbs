@@ -1,4 +1,9 @@
+<link rel="stylesheet" href="/styles/my-listings.css">
+
 <section class="show-my-listings">
+    <div class="title">
+        <h2>My listings</h2>
+        <p>You have {{this.numOfResults}} properties listed</p>
     <div class="properties">
             {{#each properties}}
                 <a href="/property/{{this.id}}">
