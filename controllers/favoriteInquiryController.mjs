@@ -5,7 +5,7 @@ import { findUserByID } from '../models/user.mjs';
 
 
 // Add a favorite
-export const toggleFavoriteHandler = (req, res) => {
+export const toggleFavoriteHandler = (req, res, next) => {
     try {
         const propertyId = req.params.propertyId;
         const userId = req.session.loggedUserId;
@@ -18,26 +18,28 @@ export const toggleFavoriteHandler = (req, res) => {
         
         res.redirect(`/property/${propertyId}`);
     } catch (error) {
-        console.error('Error adding favorite:', error);
-        res.status(500).json({ message: 'Error adding favorite' });
+        next(error);
+        // console.error('Error adding favorite:', error);
+        // res.status(500).json({ message: 'Error adding favorite' });
     }
 };
 
 // Show favorites
-export const showFavoritesHandler = (req, res) => {
+export const showFavoritesHandler = (req, res, next) => {
     try {
         const userId = req.session.loggedUserId;
         const favorites = getFavoritesByUser(userId);
 
         res.render('my-favorites', { title: 'Favorites', favorites: favorites, numOfFavorites: favorites.length, oneFavorite: favorites.length === 1});
     } catch (error) {
-        console.error('Error showing favorites:', error);
-        res.status(500).json({ message: 'Error showing favorites' });
+        next(error);
+        // console.error('Error showing favorites:', error);
+        // res.status(500).json({ message: 'Error showing favorites' });
     }
 }
 
 // Create a new inquiry
-export const createInquiryHandler = (req, res) => {
+export const createInquiryHandler = (req, res, next) => {
     try {
         const message = req.body.message;
         const propertyId = parseInt(req.params.propertyId);
@@ -45,15 +47,15 @@ export const createInquiryHandler = (req, res) => {
 
         const inquiryId = createInquiry({ fromId, propertyId, message });
         res.redirect(`/property/${propertyId}`);
-        // res.json({ success: true, message: 'Inquiry created.', inquiryId });
     } catch (error) {
-        console.error('Error creating inquiry:', error);
-        res.status(500).json({ message: 'Error creating inquiry' });
+        next(error);
+        // console.error('Error creating inquiry:', error);
+        // res.status(500).json({ message: 'Error creating inquiry' });
     }
 };
 
 
-export const showUserInquiriesHandler = (req, res) => {
+export const showUserInquiriesHandler = (req, res, next) => {
     const userId = req.session.loggedUserId;
     
     try {
@@ -68,8 +70,9 @@ export const showUserInquiriesHandler = (req, res) => {
         res.render('my-inquiries', { title: 'My Inquiries', inquiries: extendedInquiries});
 
     } catch (error) {
-        console.error('Error loading my inquiries page:', error);
-        res.status(500).json({ message: 'Error loading my inquiries page' });
+        next(error);
+        // console.error('Error loading my inquiries page:', error);
+        // res.status(500).json({ message: 'Error loading my inquiries page' });
     }
 
 }

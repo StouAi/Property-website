@@ -5,7 +5,7 @@ import { findUserByID } from '../models/user.mjs';
 import { isFavorite } from '../models/favorites.mjs';
 
 // Create a new property
-export const createPropertyHandler = (req, res) => {
+export const createPropertyHandler = (req, res, next) => {
     let { property, location } = req.body;
 
     const userID = req.session.loggedUserId;
@@ -34,22 +34,20 @@ export const createPropertyHandler = (req, res) => {
     if (property.buildable !== undefined)
         property.buildable = parseInt(property.buildable);
 
-   
-
     try {
         const propertyId = createProperty(userID, property, location);
         if (propertyId) {
-            res.status(201).json({ propertyId });
+            res.redirect('/my-listings');
         } else {
-            res.status(500).json({ message: 'Property creation failed' });
+            throw new Error('Property creation failed');
         }
     } catch (error) {
-        res.status(500).json({ message: 'Property creation failed' });
+        next(error);
     }
 };
 
 // Search properties
-export const searchPropertiesHandler = (req, res) => {
+export const searchPropertiesHandler = (req, res, next) => {
     try {
         let locationQuery;
         let propertyFilters = {};
@@ -104,13 +102,14 @@ export const searchPropertiesHandler = (req, res) => {
         
         res.render('filters', { title: 'Search properties', properties: properties, numOfResults: properties.length});
     } catch (error) {
-        console.error('Error fetching properties:', error);
-        res.status(500).json({ message: 'Error fetching properties' });
+        next(error);
+        // console.error('Error fetching properties:', error);
+        // res.status(500).json({ message: 'Error fetching properties' });
     }
 };
 
 // Show home page properties
-export const showHomePropertiesHandler = (req, res) => {
+export const showHomePropertiesHandler = (req, res, next) => {
     try {
         let propertiesForSale = getPropertiesForSale();
         let propertiesForRent = getPropertiesForRent();
@@ -124,13 +123,14 @@ export const showHomePropertiesHandler = (req, res) => {
             propertiesForRent: propertiesForRent
         });
     } catch (error) {
-        console.error('Error loading home page:', error);
-        res.status(500).json({ message: 'Error loading home page' });
+        next(error);
+        // console.error('Error loading home page:', error);
+        // res.status(500).json({ message: 'Error loading home page' });
     }
 };
 
 // Show property page
-export const showPropertyPageHandler = (req, res) => {
+export const showPropertyPageHandler = (req, res, next) => {
     try {
         const property = getPropertyFromID(parseInt(req.params.id));
         const location = getLocationFromID(property.locationId);
@@ -146,13 +146,14 @@ export const showPropertyPageHandler = (req, res) => {
             listedBy: user,
             isFavorite: propertyIsFavorite
         });
-    } catch (err) {
-        console.error('Error loading property page:', err);
-        res.status(500).send('Server Error');
+    } catch (error) {
+        next(error)
+        // console.error('Error loading property page:', err);
+        // res.status(500).send('Server Error');
     }
   };
 
-export const showUserPropertiesHandler = (req, res) => {
+export const showUserPropertiesHandler = (req, res, next) => {
     const userId = req.session.loggedUserId;
     try {
         let properties = getPropertiesFromUserID(userId);
@@ -162,8 +163,9 @@ export const showUserPropertiesHandler = (req, res) => {
         res.render('my-listings', { title: 'My Listings', properties: properties, numOfResults: properties.length});
     }
     catch (error) {
-        console.error('Error loading my listings page:', error);
-        res.status(500).json({ message: 'Error loading my listings page' });
+        next(error);
+        // console.error('Error loading my listings page:', error);
+        // res.status(500).json({ message: 'Error loading my listings page' });
     }
 };
 

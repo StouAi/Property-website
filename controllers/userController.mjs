@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Register a new user
-export const loginUserHandler = async (req, res) => {
+export const loginUserHandler = async (req, res, next) => {
     try {
         let { formType, username, password, alsoPassword, fName, lName, phone} = req.body;
         phone = parseInt(phone);
@@ -42,19 +42,19 @@ export const loginUserHandler = async (req, res) => {
             }
         }
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'User registration failed' });
+        next(error);
+        // res.status(500).json({ message: 'User registration failed' });
     }
 };
 
 // Logout User
-export const logoutUserHandler = async (req, res) => {
+export const logoutUserHandler = async (req, res, next) => {
     try {
         req.session.destroy();
         res.redirect('/');
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'User logout failed' });
+        next(error);
+        // res.status(500).json({ message: 'User logout failed' });
     }
 };
 
@@ -73,7 +73,16 @@ export const checkAuthenticated = async (req, res, next) => {
             }
         }
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'User authentication failed' });
+        next(error);
+        // res.status(500).json({ message: 'User authentication failed' });
+    }
+};
+
+// Show Login / Signup Page
+export const showLoginScreenHandler = (req, res, next) => {
+    try{
+        res.render('auth/login-signup', { layout: 'empty', title: 'Login / Signup'});
+    } catch (error) {
+        next(error);
     }
 };
