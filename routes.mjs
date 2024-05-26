@@ -1,16 +1,10 @@
 import express from 'express';
 import { loginUserHandler, logoutUserHandler, checkAuthenticated } from './controllers/userController.mjs';
-<<<<<<< HEAD
 import { createPropertyHandler, searchPropertiesHandler, showHomePropertiesHandler} from './controllers/propertyController.mjs';
 import{ showPropertyPageHandler, showUserPropertiesHandler } from './controllers/propertyController.mjs';
 import authMiddleware from './middleware/authMiddleware.mjs';
-import { toggleFavoriteHandler, showFavoritesHandler,showUserInquiriesHandler } from './controllers/favoriteInquiryController.mjs';
-=======
-import { createPropertyHandler, searchPropertiesHandler } from './controllers/propertyController.mjs';
-import { showHomePropertiesHandler, showPropertyPageHandler } from './controllers/propertyController.mjs';
-import { toggleFavoriteHandler, showFavoritesHandler } from './controllers/favoriteInquiryController.mjs';
->>>>>>> c18fb1bc5eb307f6993741725297800fd5792cb6
-import { createInquiryHandler } from './controllers/favoriteInquiryController.mjs';
+import { toggleFavoriteHandler, showFavoritesHandler,showUserInquiriesHandler ,createInquiryHandler} from './controllers/favoriteInquiryController.mjs';
+
 
 const router = express.Router();
 
@@ -65,12 +59,10 @@ router.get('/contact', (req, res) => {
     }
 });
 
-<<<<<<< HEAD
 
-// List property page
-=======
+
 // List your property Page
->>>>>>> c18fb1bc5eb307f6993741725297800fd5792cb6
+
 router.get('/list-your-property', checkAuthenticated, (req, res) => {
     try{
         res.render('add-property', { title: 'Add property' });
@@ -81,7 +73,6 @@ router.get('/list-your-property', checkAuthenticated, (req, res) => {
 });
 router.post('/list-your-property', createPropertyHandler);
 
-<<<<<<< HEAD
 
 
 router.post('/search', searchPropertiesHandler);
@@ -106,8 +97,7 @@ router.get('/logout', logoutUserHandler);
 // My Listings
 router.get('/my-listings', checkAuthenticated,showUserPropertiesHandler);
 
-=======
->>>>>>> c18fb1bc5eb307f6993741725297800fd5792cb6
+
 // Favorites Page
 router.get('/favorites', checkAuthenticated, showFavoritesHandler);
 router.get('/favorite/:propertyId', checkAuthenticated, toggleFavoriteHandler);
@@ -115,11 +105,10 @@ router.get('/favorite/:propertyId', checkAuthenticated, toggleFavoriteHandler);
 // Inquiry Page
 router.post('/inquiry/:propertyId', checkAuthenticated, createInquiryHandler);
 
-<<<<<<< HEAD
+
 // My-inquires page
 
 router.get('/my-inquiries', checkAuthenticated,showUserInquiriesHandler);
-=======
->>>>>>> c18fb1bc5eb307f6993741725297800fd5792cb6
+
 
 export default router;

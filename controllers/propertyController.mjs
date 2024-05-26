@@ -7,15 +7,9 @@ import { isFavorite } from '../models/favorites.mjs';
 // Create a new property
 export const createPropertyHandler = (req, res) => {
     let { property, location } = req.body;
-<<<<<<< HEAD
-    
 
     const userID = req.session.loggedUserId;
     
-=======
-
-    const userID = req.session.loggedUserId;
->>>>>>> c18fb1bc5eb307f6993741725297800fd5792cb6
 
     property.surface = parseInt(property.surface);
     property.price = parseInt(property.price);

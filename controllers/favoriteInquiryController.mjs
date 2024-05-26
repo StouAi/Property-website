@@ -1,10 +1,6 @@
 import { createFavorite, deleteFavorite, getFavoritesByUser, isFavorite } from '../models/favorites.mjs';
-<<<<<<< HEAD
-import { createInquiry, getInquiriesForUser, getInquiriesSentFromUser } from '../models/inquiry.mjs';
+import { createInquiry, getInquiriesForUser } from '../models/inquiry.mjs';
 import { findUserByID } from '../models/user.mjs';
-=======
-import { createInquiry } from '../models/inquiry.mjs';
->>>>>>> c18fb1bc5eb307f6993741725297800fd5792cb6
 
 
 // Add a favorite
@@ -54,7 +50,6 @@ export const createInquiryHandler = (req, res) => {
         res.status(500).json({ message: 'Error creating inquiry' });
     }
 };
-<<<<<<< HEAD
 
 
 export const showUserInquiriesHandler = (req, res) => {
@@ -74,5 +69,4 @@ export const showUserInquiriesHandler = (req, res) => {
     }
 
 }
-=======
->>>>>>> c18fb1bc5eb307f6993741725297800fd5792cb6
+
