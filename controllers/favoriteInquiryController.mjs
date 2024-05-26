@@ -19,7 +19,7 @@ export const toggleFavoriteHandler = (req, res) => {
         res.redirect(`/property/${propertyId}`);
     } catch (error) {
         console.error('Error adding favorite:', error);
-        res.status(500).json({ message: 'Error adding favorite' });
+        next(error)
     }
 };
 
@@ -32,7 +32,7 @@ export const showFavoritesHandler = (req, res) => {
         res.render('my-favorites', { title: 'Favorites', favorites: favorites, numOfFavorites: favorites.length, oneFavorite: favorites.length === 1});
     } catch (error) {
         console.error('Error showing favorites:', error);
-        res.status(500).json({ message: 'Error showing favorites' });
+        next(error)
     }
 }
 
@@ -48,7 +48,7 @@ export const createInquiryHandler = (req, res) => {
         // res.json({ success: true, message: 'Inquiry created.', inquiryId });
     } catch (error) {
         console.error('Error creating inquiry:', error);
-        res.status(500).json({ message: 'Error creating inquiry' });
+        next(error)
     }
 };
 
@@ -68,7 +68,7 @@ export const showUserInquiriesHandler = (req, res) => {
 
     } catch (error) {
         console.error('Error loading my inquiries page:', error);
-        res.status(500).json({ message: 'Error loading my inquiries page' });
+        next(error)
     }
 
 }

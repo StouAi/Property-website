@@ -44,7 +44,7 @@ export const createPropertyHandler = (req, res) => {
             throw new Error('Property creation failed.')
         }
     } catch (error) {
-        res.status(500).json({ message: 'Property creation failed' });
+        next(error);
     }
 };
 
@@ -104,7 +104,7 @@ export const searchPropertiesHandler = (req, res) => {
         res.render('filters', { title: 'Search properties', properties: properties, numOfResults: properties.length});
     } catch (error) {
         console.error('Error fetching properties:', error);
-        res.status(500).json({ message: 'Error fetching properties' });
+        next(error);
     }
 };
 
@@ -124,8 +124,8 @@ export const showHomePropertiesHandler = (req, res) => {
         });
     } catch (error) {
         console.error('Error loading home page:', error);
-        res.status(500).json({ message: 'Error loading home page' });
-    }
+        next(error);
+        }
 };
 
 // Show property page
@@ -145,9 +145,8 @@ export const showPropertyPageHandler = (req, res) => {
             listedBy: user,
             isFavorite: propertyIsFavorite
         });
-    } catch (err) {
-        console.error('Error loading property page:', err);
-        res.status(500).send('Server Error');
+    } catch (error) {
+        next(error);
     }
   };
 
@@ -160,7 +159,7 @@ export const showUserPropertiesHandler = (req, res) => {
     }
     catch (error) {
         console.error('Error loading my listings page:', error);
-        res.status(500).json({ message: 'Error loading my listings page' });
-    }
+        next(error);   
+     }
 };
 

@@ -42,7 +42,7 @@ export const loginUserHandler = async (req, res) => {
             }
         }
     } catch (error) {
-        res.status(500).json({ message: 'User registration failed' });
+        next(error);
     }
 };
 
@@ -52,7 +52,7 @@ export const logoutUserHandler = async (req, res) => {
         req.session.destroy();
         res.redirect('/');
     } catch (error) {
-        res.status(500).json({ message: 'User logout failed' });
+        next(error);
     }
 };
 
@@ -72,6 +72,16 @@ export const checkAuthenticated = async (req, res, next) => {
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'User authentication failed' });
+        next(error);
+    }
+};
+
+
+// Show Login / Signup Page
+export const showLoginScreenHandler = (req, res, next) => {
+    try{
+        res.render('auth/login-signup', { layout: 'empty', title: 'Login / Signup'});
+    } catch (error) {
+        next(error);
     }
 };

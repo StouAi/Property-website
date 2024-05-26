@@ -39,5 +39,11 @@ app.use((req, res, next) => {
      next();
 });
 app.use('/', routes);
+app.use((err, req, res, next) => {
+    if (res.headersSent) {
+       return next(err)
+    }
+    res.status(500).render('error', { layout: 'empty', title: 'An error has occured' });
+});
 
 export default app;
