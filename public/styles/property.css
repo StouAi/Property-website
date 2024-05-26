@@ -57,7 +57,7 @@
 .info-interest-container {
     display: flex;
     gap: 2em;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 

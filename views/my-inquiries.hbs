@@ -4,12 +4,12 @@
         {{#each inquiries}}
         <div class="inquiry">
             <div class="inquiry-info">
-                <p><span>Property:</span> {{inquiries.address}}</p>
-                <p><span>Interest shown by:</span> {{this.inquiry_user.fName}} {{this.inquiry_user.lName}}</p>
-                <p><span>Email:</span> {{this.inquiry_user.email}}</p>
-                <p><span>Phone:</span> {{this.inquiry_user.phone}}</p>
-                <p><span>Message:</span>{{this.inquiries.message}}</p>
-                <p><span>Date:</span> {{this.inquiry.createdAt}}</p>
+                <p><span>Property:</span> <a href="/property/{{this.id}}">{{this.address}}</a> </p>
+                <p><span>Interest shown by:</span> {{this.fName}} {{this.lName}}</p>
+                <p><span>Email:</span> {{this.username}}</p>
+                <p><span>Phone:</span> {{this.phone}}</p>
+                <p><span>Message:</span>{{this.message}}</p>
+                <p><span>Date:</span> {{this.createdAt}}</p>
                 
             </div>
             

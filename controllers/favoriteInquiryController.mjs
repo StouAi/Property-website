@@ -1,5 +1,6 @@
 import { createFavorite, deleteFavorite, getFavoritesByUser, isFavorite } from '../models/favorites.mjs';
 import { createInquiry, getInquiriesForUser } from '../models/inquiry.mjs';
+import { getPropertyFromID } from '../models/property.mjs';
 import { findUserByID } from '../models/user.mjs';
 
 
@@ -58,10 +59,13 @@ export const showUserInquiriesHandler = (req, res) => {
     try {
         
         let inquiries = getInquiriesForUser(userId);
-        let inquiry_user = findUserByID(inquiries[0].fromId);
-        console.log('Inquiries:', inquiries);
-        console.log('Inquiries:2', inquiry_user);
-        res.render('my-inquiries', { title: 'My Inquiries', inquiries: inquiries,inquiry_user:inquiry_user});
+        let senders = inquiries.map(inquiry => findUserByID(inquiry.fromId))
+        let properties = inquiries.map(inquiry => getPropertyFromID(inquiry.propertyId));
+        let extendedInquiries = inquiries.map((item, index) => {
+            return {...item, ...senders[index],...properties[index]};
+        });
+        console.log('Inquiries:', extendedInquiries);
+        res.render('my-inquiries', { title: 'My Inquiries', inquiries: extendedInquiries});
 
     } catch (error) {
         console.error('Error loading my inquiries page:', error);

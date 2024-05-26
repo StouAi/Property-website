@@ -63,13 +63,14 @@ export const searchPropertiesHandler = (req, res) => {
 
         if (propertyFilters !== undefined ) {
             for (let key in propertyFilters) {
-                if (propertyFilters[key] === '')
+                if (propertyFilters[key] === 'null' || propertyFilters[key] === '')
                     propertyFilters[key] = null;
                 else if (!isNaN(propertyFilters[key]))
                     propertyFilters[key] = parseInt(propertyFilters[key]);
             }
         }
-
+        console.log('Property filters:', propertyFilters);
+        console.log('Location query:', locationQuery);
         // Check for invalid filter values
         if (!!propertyFilters.minPrice && !!propertyFilters.maxPrice)
             if (propertyFilters.minPrice > propertyFilters.maxPrice)

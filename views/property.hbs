@@ -141,17 +141,18 @@
                     <p>Year built</p>
                     <p><b>{{property.constructionYear}}</b></p>
                 </div>
-
+                {{#if property.floor}}
                 <div>
                     <p>Floor</p>
                     <p><b>{{property.floor}}</b></p>
                 </div>
-
+                {{/if}}
+                {{#if property.levels}}
                 <div>
                     <p>Levels</p>
                     <p><b>{{property.levels}}</b></p>
                 </div>
-
+                {{/if}}
                 {{#if property.bedrooms}}
                     <div>
                         <p>Bedrooms</p>
@@ -167,11 +168,15 @@
                 {{/if}}
 
                 {{#unless property.bedrooms}}
-                <div>
-                    <p>Parking</p>
-                    <p><b>{{#if property.parking}}Yes{{else}}No{{/if}}</b></p>
-                </div>
+                    {{#if property.bathrooms}}
+                        <div>
+                            <p>Parking</p>
+                            <p><b>{{#if property.parking}}Yes{{else}}No{{/if}}</b></p>
+                        </div> 
+                    {{/if}}               
                 {{/unless}}
+
+                
 
                 <div>
                     <p>Publish date</p>
