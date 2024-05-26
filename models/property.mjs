@@ -212,6 +212,7 @@ export const getPropertyFromID = (propertyID) => {
     }
 }
 
+// Get all properties for rent
 export const getPropertiesForRent = () => {
     try {
         const stmt = db.prepare('SELECT * FROM Properties WHERE forRent = 1');
@@ -222,6 +223,7 @@ export const getPropertiesForRent = () => {
     }
 }
 
+// Get all properties for sale
 export const getPropertiesForSale = () => {
     try {
         const stmt = db.prepare('SELECT * FROM Properties WHERE forRent = 0');
@@ -232,6 +234,7 @@ export const getPropertiesForSale = () => {
     }
 }
 
+// Get properties with filters
 export const getPropertiesWithFilters = (propertyFilters, locationQuery) => {
     console.log('Property filters:', propertyFilters);
     console.log('Location Query:', locationQuery ? locationQuery : '--');
